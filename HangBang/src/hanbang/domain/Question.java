@@ -6,11 +6,11 @@ public class Question {
 	
 	private int questionId;
 	private String writerId;
-	private String businessMemberId;
-	private int date;
+	private int shareHouseId;
+	private int questionDate;
 	private List<Integer> schedule;
 	private int phoneNumber;
-	private String content;
+	private String questionContent;
 	private List<Answer> answers;
 	
 	public Question() {
@@ -32,21 +32,6 @@ public class Question {
 		this.writerId = writerId;
 	}
 
-	public String getBusinessMemberId() {
-		return businessMemberId;
-	}
-
-	public void setBusinessMemberId(String businessMemberId) {
-		this.businessMemberId = businessMemberId;
-	}
-
-	public int getDate() {
-		return date;
-	}
-
-	public void setDate(int date) {
-		this.date = date;
-	}
 
 	public List<Integer> getSchedule() {
 		return schedule;
@@ -64,20 +49,36 @@ public class Question {
 		this.phoneNumber = phoneNumber;
 	}
 
-	public String getContent() {
-		return content;
-	}
-
-	public void setContent(String content) {
-		this.content = content;
-	}
-
 	public List<Answer> getAnswers() {
 		return answers;
 	}
 
 	public void setAnswers(List<Answer> answers) {
 		this.answers = answers;
+	}
+
+	public int getShareHouseId() {
+		return shareHouseId;
+	}
+
+	public void setShareHouseId(int shareHouseId) {
+		this.shareHouseId = shareHouseId;
+	}
+
+	public int getQuestionDate() {
+		return questionDate;
+	}
+
+	public void setQuestionDate(int questionDate) {
+		this.questionDate = questionDate;
+	}
+
+	public String getQuestionContent() {
+		return questionContent;
+	}
+
+	public void setQuestionContent(String questionContent) {
+		this.questionContent = questionContent;
 	}
 	
 }
