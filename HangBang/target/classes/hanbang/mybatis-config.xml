@@ -4,15 +4,18 @@
   "http://mybatis.org/dtd/mybatis-3-config.dtd">
 
 <configuration>
-	<properties resource="daldal/dataresource.properties"/>
+	<properties resource="hanbang/dataresource.properties"/>
 	<typeAliases>
-		<typeAlias type="daldal.domain.Member" alias="Member"/>
-		<typeAlias type="daldal.domain.CoupleDiary" alias="CoupleDiary"/>
-		<typeAlias type="daldal.domain.MiniHomePage" alias="MiniHomePage"/>
-		<typeAlias type="daldal.domain.Photo" alias="Photo"/>
-		<typeAlias type="daldal.domain.PhotoComment" alias="PhotoComment"/>
-		<typeAlias type="daldal.domain.Story" alias="Story" />
-		<typeAlias type="daldal.domain.StoryComment" alias="StoryComment" />
+		<typeAlias type="hanbang.domain.Answer" alias="Answer"/>
+		<typeAlias type="hanbang.domain.EssentialInfo" alias="EssentialInfo"/>
+		<typeAlias type="hanbang.domain.ExtraInfo" alias="ExtraInfo"/>
+		<typeAlias type="hanbang.domain.House" alias="House"/>
+		<typeAlias type="hanbang.domain.Member" alias="Member"/>
+		<typeAlias type="hanbang.domain.Question" alias="Question"/>
+		<typeAlias type="hanbang.domain.Review" alias="Review"/>
+		<typeAlias type="hanbang.domain.Room" alias="Room"/>
+		<typeAlias type="hanbang.domain.ShareHouse" alias="ShareHouse"/>
+		
 	</typeAliases>
 	<environments default="development">
 		<environment id="development">
@@ -26,12 +29,7 @@
 		</environment>
 	</environments>
 	<mappers>
-		<mapper resource="daldal/mapper/MemberMapper.xml"/>
-		<mapper resource="daldal/mapper/CoupleDiaryMapper.xml"/>
-		<mapper resource="daldal/mapper/MiniHomePageMapper.xml"/>
-		<mapper resource="daldal/mapper/PhotoMapper.xml"/>
-		<mapper resource="daldal/mapper/PhotoCommentMapper.xml"/>
-		<mapper resource="daldal/mapper/StoryMapper.xml" />
-		<mapper resource="daldal/mapper/StoryCommentMapper.xml" />
+		<mapper resource="hanbang/mapper/MemberMapper.xml"/>
+		
 	</mappers>
 </configuration>
