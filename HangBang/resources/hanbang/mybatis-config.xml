@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration
+  PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-config.dtd">
+
+<configuration>
+	<properties resource="daldal/dataresource.properties"/>
+	<typeAliases>
+		<typeAlias type="daldal.domain.Member" alias="Member"/>
+		<typeAlias type="daldal.domain.CoupleDiary" alias="CoupleDiary"/>
+		<typeAlias type="daldal.domain.MiniHomePage" alias="MiniHomePage"/>
+		<typeAlias type="daldal.domain.Photo" alias="Photo"/>
+		<typeAlias type="daldal.domain.PhotoComment" alias="PhotoComment"/>
+		<typeAlias type="daldal.domain.Story" alias="Story" />
+		<typeAlias type="daldal.domain.StoryComment" alias="StoryComment" />
+	</typeAliases>
+	<environments default="development">
+		<environment id="development">
+			<transactionManager type="JDBC"/>
+			<dataSource type="POOLED">
+				<property name="driver" value="${driver}"/>
+				<property name="url" value="${url}"/>
+				<property name="username" value="${username}"/>
+				<property name="password" value="${password}"/>
+			</dataSource>
+		</environment>
+	</environments>
+	<mappers>
+		<mapper resource="daldal/mapper/MemberMapper.xml"/>
+		<mapper resource="daldal/mapper/CoupleDiaryMapper.xml"/>
+		<mapper resource="daldal/mapper/MiniHomePageMapper.xml"/>
+		<mapper resource="daldal/mapper/PhotoMapper.xml"/>
+		<mapper resource="daldal/mapper/PhotoCommentMapper.xml"/>
+		<mapper resource="daldal/mapper/StoryMapper.xml" />
+		<mapper resource="daldal/mapper/StoryCommentMapper.xml" />
+	</mappers>
+</configuration>
