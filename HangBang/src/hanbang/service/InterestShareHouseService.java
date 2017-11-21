@@ -1,0 +1,14 @@
+package hanbang.service;
+
+import java.util.List;
+
+import hanbang.domain.ShareHouse;
+
+public interface InterestShareHouseService {
+	
+	boolean register(String memberId, int shareHouseId);
+	List<ShareHouse> findAll(String memberId);
+	boolean remove(String memberId);
+	boolean removeByShareHouse(int shareHouseId);
+
+}
