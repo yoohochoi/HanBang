@@ -56,6 +56,10 @@ public class MemberController {
 		return "index";
 	}
 	
+	public String login(String memberId, String password) {
+		return null;
+	}
+	
 	
 	
 }
