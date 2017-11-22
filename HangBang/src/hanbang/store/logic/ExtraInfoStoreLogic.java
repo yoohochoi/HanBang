@@ -1,41 +1,82 @@
 package hanbang.store.logic;
 
+import org.apache.ibatis.session.SqlSession;
+import org.apache.ibatis.session.SqlSessionFactory;
+
 import hanbang.domain.ExtraInfo;
 import hanbang.store.ExtraInfoStore;
 import hanbang.store.factory.SqlSessionFactoryProvider;
+import hanbang.store.mapper.ExtraInfoMapper;
 
 public class ExtraInfoStoreLogic implements ExtraInfoStore {
 
-	private SqlSessionFactoryProvider factory;
+	private SqlSessionFactory factory;
+
+	public ExtraInfoStoreLogic() {
+		factory = SqlSessionFactoryProvider.getSqlSessionFactory();
+	}
 
 	@Override
 	public int create(ExtraInfo extraInfo) {
-		// TODO Auto-generated method stub
-		return 0;
+		SqlSession session = factory.openSession();
+		int check = 0;
+
+		try {
+			ExtraInfoMapper mapper = session.getMapper(ExtraInfoMapper.class);
+			check = mapper.create(extraInfo);
+			session.commit();
+		} finally {
+			session.close();
+		}
+
+		return check;
 	}
 
 	@Override
 	public ExtraInfo retrive(int shareHouseId) {
-		// TODO Auto-generated method stub
-		return null;
+		SqlSession session = factory.openSession();
+		ExtraInfo extraInfo = null;
+
+		try {
+			ExtraInfoMapper mapper = session.getMapper(ExtraInfoMapper.class);
+			extraInfo = mapper.retrive(shareHouseId);
+		} finally {
+			session.close();
+		}
+
+		return extraInfo;
 	}
 
 	@Override
 	public int update(ExtraInfo extraInfo) {
-		// TODO Auto-generated method stub
-		return 0;
-	}
+		SqlSession session = factory.openSession();
+		int check = 0;
 
-	@Override
-	public int delete(int extraInfoId) {
-		// TODO Auto-generated method stub
-		return 0;
+		try {
+			ExtraInfoMapper mapper = session.getMapper(ExtraInfoMapper.class);
+			check = mapper.update(extraInfo);
+			session.commit();
+		} finally {
+			session.close();
+		}
+
+		return check;
 	}
 
 	@Override
 	public int deleteByShareHouse(int shareHouseId) {
-		// TODO Auto-generated method stub
-		return 0;
+		SqlSession session = factory.openSession();
+		int check = 0;
+
+		try {
+			ExtraInfoMapper mapper = session.getMapper(ExtraInfoMapper.class);
+			check = mapper.deleteByShareHouse(shareHouseId);
+			session.commit();
+		} finally {
+			session.close();
+		}
+
+		return check;
 	}
 
 }
