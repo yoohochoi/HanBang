@@ -2,48 +2,110 @@ package hanbang.store.logic;
 
 import java.util.List;
 
+import org.apache.ibatis.session.SqlSession;
+import org.apache.ibatis.session.SqlSessionFactory;
+
 import hanbang.domain.ShareHouse;
 import hanbang.store.ShareHouseStore;
 import hanbang.store.factory.SqlSessionFactoryProvider;
+import hanbang.store.mapper.ShareHouseMapper;
 
 public class ShareHouseStoreLogic implements ShareHouseStore {
 
-	private SqlSessionFactoryProvider factory;
+	private SqlSessionFactory factory;
+
+	public ShareHouseStoreLogic() {
+		factory = SqlSessionFactoryProvider.getSqlSessionFactory();
+	}
 
 	@Override
 	public int create(ShareHouse shareHouse) {
-		// TODO Auto-generated method stub
-		return 0;
+		SqlSession session = factory.openSession();
+		int check = 0;
+
+		try {
+			ShareHouseMapper mapper = session.getMapper(ShareHouseMapper.class);
+			check = mapper.create(shareHouse);
+			session.commit();
+		} finally {
+			session.close();
+		}
+
+		return check;
 	}
 
 	@Override
 	public List<ShareHouse> retriveAll() {
-		// TODO Auto-generated method stub
-		return null;
+		SqlSession session = factory.openSession();
+		List<ShareHouse> list = null;
+		try {
+			ShareHouseMapper mapper = session.getMapper(ShareHouseMapper.class);
+			list = mapper.retriveAll();
+		} finally {
+			session.close();
+		}
+
+		return list;
 	}
 
 	@Override
 	public ShareHouse retrive(int shareHouseId) {
-		// TODO Auto-generated method stub
-		return null;
+		SqlSession session = factory.openSession();
+		ShareHouse shareHouse = null;
+		try {
+			ShareHouseMapper mapper = session.getMapper(ShareHouseMapper.class);
+			shareHouse = mapper.retrive(shareHouseId);
+		} finally {
+			session.close();
+		}
+
+		return shareHouse;
 	}
 
 	@Override
 	public int update(ShareHouse shareHouse) {
-		// TODO Auto-generated method stub
-		return 0;
+		SqlSession session = factory.openSession();
+		int check = 0;
+
+		try {
+			ShareHouseMapper mapper = session.getMapper(ShareHouseMapper.class);
+			check = mapper.update(shareHouse);
+			session.commit();
+		} finally {
+			session.close();
+		}
+
+		return check;
 	}
 
 	@Override
 	public int delete(int shareHouseId) {
-		// TODO Auto-generated method stub
-		return 0;
+		SqlSession session = factory.openSession();
+		int check = 0;
+
+		try {
+			ShareHouseMapper mapper = session.getMapper(ShareHouseMapper.class);
+			check = mapper.delete(shareHouseId);
+			session.commit();
+		} finally {
+			session.close();
+		}
+
+		return check;
 	}
 
 	@Override
 	public List<ShareHouse> retriveByMemberId(String memberId) {
-		// TODO Auto-generated method stub
-		return null;
+		SqlSession session = factory.openSession();
+		List<ShareHouse> list = null;
+		try {
+			ShareHouseMapper mapper = session.getMapper(ShareHouseMapper.class);
+			list = mapper.retriveByMemberId(memberId);
+		} finally {
+			session.close();
+		}
+
+		return list;
 	}
 
 	@Override
@@ -54,14 +116,34 @@ public class ShareHouseStoreLogic implements ShareHouseStore {
 
 	@Override
 	public int report(int shareHouseId, String memberId) {
-		// TODO Auto-generated method stub
-		return 0;
+		SqlSession session = factory.openSession();
+		int check = 0;
+
+		try {
+			ShareHouseMapper mapper = session.getMapper(ShareHouseMapper.class);
+			check = mapper.report(shareHouseId, memberId);
+			session.commit();
+		} finally {
+			session.close();
+		}
+
+		return check;
 	}
 
 	@Override
 	public int deleteByMemberId(String memberId) {
-		// TODO Auto-generated method stub
-		return 0;
+		SqlSession session = factory.openSession();
+		int check = 0;
+
+		try {
+			ShareHouseMapper mapper = session.getMapper(ShareHouseMapper.class);
+			check = mapper.deleteByMemberId(memberId);
+			session.commit();
+		} finally {
+			session.close();
+		}
+
+		return check;
 	}
 
 }

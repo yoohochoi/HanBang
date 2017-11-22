@@ -5,35 +5,39 @@
   
 <mapper namespace="store.mapper.QuestionMapper">
 
+	<sql id="selectQuestion">
+		SELECT questionId, writerId, shareHouseId, questionDate, phoneNumber, 
+				schedule, questionContent
+		FROM question_tb
+	</sql>
+
 	<insert id="create" parameterType="Question">
 	<selectKey keyProperty="questionId" resultType="String" order="BEFORE">
 		SELECT questionId_seq.nextval FROM dual
 	</selectKey>
 		INSERT INTO question_tb(questionId, writerId, shareHouseId, questionDate, phoneNumber, schedule, questionContent)
-		VALUSE(#{questionId}, #{writerId}, #{shareHouseId}, #{questionDate}, #{phoneNumber}, #{schedule}, #{questionContent})
+		VALUSE(#{questionId}, #{writerId}, #{shareHouseId}, sysdate, #{phoneNumber}, #{schedule}, #{questionContent})
 	</insert>
 	
 	<select id="retriveByMemberId" parameterType="String" resultType="Question">
-		SELECT questionId, writerId, shareHouseId, questionDate, phoneNumber, schedule, questionContent
-		FROM question_tb
+		<include refid="selectQuestion"/>
 		WHERE writerId = #{writerId}
 	</select>
-	
+	 
 	<select id="retriveByMemberId" parameterType="int" resultType="Question">
-		SELECT questionId, writerId, shareHouseId, questionDate, phoneNumber, schedule, questionContent
-		FROM question_tb
+		<include refid="selectQuestion"/>
 		WHERE shareHouseId = #{shareHouseId}
 	</select>
 	
 	<select id="retrive" parameterType="int" resultType="Question">
-		SELECT questionId, writerId, shareHouseId, questionDate, phoneNumber, schedule, questionContent
-		FROM question_tb
+		<include refid="selectQuestion"/>
 		WHERE questionId = #{questionId}
 	</select>
 	
-	<update id="update" parameterType="int">
+	<update id="update" parameterType="Question">
 		UPDATE question_tb
-		SET questionDate = #{questionDate}, phoneNumber = #{phoneNumber}, schedule = #{schedule}, questionContent = #{questionContent}
+		SET questionDate = sysdate, phoneNumber = #{phoneNumber}, schedule = #{schedule}, 
+			questionContent = #{questionContent}
 		WHERE questionId = #{questionId}
 	</update>
 	

@@ -30,6 +30,8 @@
 	</environments>
 	<mappers>
 		<mapper resource="hanbang/mapper/MemberMapper.xml"/>
+		<mapper resource="hanbang/mapper/QuestionMapper.xml"/>
+		<mapper resource="hanbang/mapper/QuestionAnswerMapper.xml"/>
 		
 	</mappers>
 </configuration>
