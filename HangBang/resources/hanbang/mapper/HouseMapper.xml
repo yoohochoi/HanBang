@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<mapper namespace="mapper.HouseMapper">
+
+	<insert id="create" parameterType="House" resultType="int">
+		<selectKey keyProperty="houseId" resultType="int" order="BEFORE">
+			SELECT HOUSEID_seq.nextval FROM dual
+		</selectKey>
+		INSERT INTO HOUSE_TB(
+		HOUSEID , PHOTO , ADDRESS, WHOLEAREA,
+		PUBLICUSAGE, BATHROOMS, ROOMS)
+		VALUES (#{HOUSEID} , #{PHOTO} ,
+		#{ADDRESS}, #{WHOLEAREA},
+		#{PUBLICUSAGE},
+		#{BATHROOMS}, #{ROOMS})
+	</insert>
+
+	<select id="retriveByMemberId" parameterType="String"
+		resultType="House">
+		SELECT ADDRESS, WHOLEAREA, PUBLICUSAGE, BATHROOMS, ROOMS
+		FROM HOUSE_TB
+	</select>
+
+	<select id="retrive" parameterType="int" resultType="House">
+		SELECT
+		PHOTO, ADDRESS, WHOLEAREA, PUBLICUSAGE, BATHROOMS, ROOMS
+		FROM HOUSE_TB
+		WHERE HOUSEID = (SELECT HOUSEID
+		FROM sharehouse_tb
+		WHERE
+		house_tb.houseid = #{HOUSEID}
+		)
+	</select>
+
+	<update id="update" parameterType="House" resultType="int">
+		UPDATE
+		HOUSE_TB
+		SET ADDRESS, WHOLEAREA, PUBLICUSAGE, BATHROOMS, ROOMS
+		WHERE
+		HOUSEID = #{HOUSEID}
+	</update>
+
+	<delete id="delete" parameterType="int" resultType="int">
+		DELETE FROM
+		HOUSE_TB
+		WHERE HOUSEID = #{HOUSEID}
+	</delete>
+
+	<delete id="deleteByMemberId" parameterType="String" resultType="int">
+		DELETE FROM
+		HOUSE_TB
+		WHERE MEMBERID =(SELECT MEMBERID
+		FROM MEMBER_TB
+		WHERE HOUSE_TB.MEMBERID = #{MEMBERID})
+	</delete>
+
+
+</mapper>
