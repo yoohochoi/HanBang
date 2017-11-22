@@ -6,11 +6,10 @@ import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.springframework.stereotype.Repository;
 
-import hanbang.domain.Answer;
 import hanbang.domain.Question;
-import hanbang.store.QuestionAnswerStore;
 import hanbang.store.QuestionStore;
 import hanbang.store.factory.SqlSessionFactoryProvider;
+import hanbang.store.mapper.QuestionMapper;
 
 @Repository
 public class QuestionStoreLogic implements QuestionStore{
@@ -23,50 +22,127 @@ public class QuestionStoreLogic implements QuestionStore{
 
 	@Override
 	public int create(Question question) {
-//		SqlSession session = 
-		return 0;
+		SqlSession session = factory.openSession();
+		int check = 0;
+		
+		try {
+			QuestionMapper mapper = session.getMapper(QuestionMapper.class);
+			check = mapper.create(question);
+			session.commit();
+		} finally {
+			session.close();
+		}
+		
+		return check;
 	}
 
 	@Override
 	public List<Question> retriveByMemberId(String memberId) {
-		// TODO Auto-generated method stub
-		return null;
+		SqlSession session = factory.openSession();
+		List<Question> list = null;
+		
+		try {
+			QuestionMapper mapper = session.getMapper(QuestionMapper.class);
+			list = mapper.retriveByMemberId(memberId);
+		} finally {
+			session.close();
+		}
+		
+		return list;
 	}
 
 	@Override
 	public List<Question> retriveByShareHouseId(int shareHouseId) {
-		// TODO Auto-generated method stub
-		return null;
+		SqlSession session = factory.openSession();
+		List<Question> list = null;
+		
+		try {
+			QuestionMapper mapper = session.getMapper(QuestionMapper.class);
+			list = mapper.retriveByShareHouseId(shareHouseId);
+		} finally {
+			session.close();
+		}
+		
+		return list;
 	}
 
 	@Override
 	public Question retrive(int questionId) {
-		// TODO Auto-generated method stub
-		return null;
+		SqlSession session = factory.openSession();
+		Question question = null;
+		
+		try {
+			QuestionMapper mapper = session.getMapper(QuestionMapper.class);
+			question = mapper.retrive(questionId);
+		} finally {
+			session.close();
+		}
+		
+		return question;
 	}
 
 	@Override
 	public int update(Question question) {
-		// TODO Auto-generated method stub
-		return 0;
+		SqlSession session = factory.openSession();
+		int check = 0;
+		
+		try {
+			QuestionMapper mapper = session.getMapper(QuestionMapper.class);
+			check = mapper.update(question);
+			session.commit();
+		} finally {
+			session.close();
+		}
+		
+		return check;
 	}
 
 	@Override
 	public int delete(int questionId) {
-		// TODO Auto-generated method stub
-		return 0;
+		SqlSession session = factory.openSession();
+		int check = 0;
+		
+		try {
+			QuestionMapper mapper = session.getMapper(QuestionMapper.class);
+			check = mapper.delete(questionId);
+			session.commit();
+		} finally {
+			session.close();
+		}
+		
+		return check;
 	}
 
 	@Override
 	public int deleteByMemberId(String memberId) {
-		// TODO Auto-generated method stub
-		return 0;
+		SqlSession session = factory.openSession();
+		int check = 0;
+		
+		try {
+			QuestionMapper mapper = session.getMapper(QuestionMapper.class);
+			check = mapper.deleteByMemberId(memberId);
+			session.commit();
+		} finally {
+			session.close();
+		}
+		
+		return check;
 	}
 
 	@Override
 	public int deleteByShareHouse(int shareHouseId) {
-		// TODO Auto-generated method stub
-		return 0;
+		SqlSession session = factory.openSession();
+		int check = 0;
+		
+		try {
+			QuestionMapper mapper = session.getMapper(QuestionMapper.class);
+			check = mapper.deleteByShareHouse(shareHouseId);
+			session.commit();
+		} finally {
+			session.close();
+		}
+		
+		return check;
 	}
 
 }

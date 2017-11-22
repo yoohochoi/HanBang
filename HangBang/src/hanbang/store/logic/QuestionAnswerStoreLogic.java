@@ -2,12 +2,14 @@ package hanbang.store.logic;
 
 import java.util.List;
 
+import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.springframework.stereotype.Repository;
 
 import hanbang.domain.Answer;
 import hanbang.store.QuestionAnswerStore;
 import hanbang.store.factory.SqlSessionFactoryProvider;
+import hanbang.store.mapper.QuestionAnswerMapper;
 
 @Repository
 public class QuestionAnswerStoreLogic implements QuestionAnswerStore{
@@ -20,38 +22,85 @@ public class QuestionAnswerStoreLogic implements QuestionAnswerStore{
 
 	@Override
 	public int create(Answer answer) {
-		// TODO Auto-generated method stub
-		return 0;
+		SqlSession session = factory.openSession();
+		int check = 0;
+		try {
+			QuestionAnswerMapper mapper = session.getMapper(QuestionAnswerMapper.class);
+			check = mapper.create(answer);
+			session.commit();
+		} finally {
+			session.close();
+		}
+		return check;
 	}
 
 	@Override
 	public List<Answer> retrive(int questionId) {
-		// TODO Auto-generated method stub
-		return null;
+		SqlSession session = factory.openSession();
+		List<Answer> list = null;
+		try {
+			QuestionAnswerMapper mapper = session.getMapper(QuestionAnswerMapper.class);
+			list = mapper.retrive(questionId);
+		} finally {
+			session.close();
+		}
+		return list;
 	}
 
 	@Override
 	public int update(Answer answer) {
-		// TODO Auto-generated method stub
-		return 0;
+		SqlSession session = factory.openSession();
+		int check = 0;
+		try {
+			QuestionAnswerMapper mapper = session.getMapper(QuestionAnswerMapper.class);
+			check = mapper.update(answer);
+			session.commit();
+		} finally {
+			session.close();
+		}
+		return check;
 	}
 
 	@Override
 	public int delete(String memberId) {
-		// TODO Auto-generated method stub
-		return 0;
+		SqlSession session = factory.openSession();
+		int check = 0;
+		try {
+			QuestionAnswerMapper mapper = session.getMapper(QuestionAnswerMapper.class);
+			check = mapper.delete(memberId);
+			session.commit();
+		} finally {
+			session.close();
+		}
+		return check;
 	}
 
 	@Override
 	public int deleteByQuestionId(int questionId) {
-		// TODO Auto-generated method stub
-		return 0;
+		SqlSession session = factory.openSession();
+		int check = 0;
+		try {
+			QuestionAnswerMapper mapper = session.getMapper(QuestionAnswerMapper.class);
+			check = mapper.deleteByQuestionId(questionId);
+			session.commit();
+		} finally {
+			session.close();
+		}
+		return check;
 	}
 
 	@Override
 	public int deleteByAnswerId(int answerId) {
-		// TODO Auto-generated method stub
-		return 0;
+		SqlSession session = factory.openSession();
+		int check = 0;
+		try {
+			QuestionAnswerMapper mapper = session.getMapper(QuestionAnswerMapper.class);
+			check = mapper.deleteByAnswerId(answerId);
+			session.commit();
+		} finally {
+			session.close();
+		}
+		return check;
 	}
 
 }

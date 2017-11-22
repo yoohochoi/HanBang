@@ -4,52 +4,81 @@ import java.util.List;
 
 import org.springframework.stereotype.Service;
 
+import hanbang.domain.Answer;
 import hanbang.domain.Question;
 import hanbang.service.QuestionService;
+import hanbang.store.QuestionAnswerStore;
+import hanbang.store.QuestionStore;
+import hanbang.store.logic.QuestionAnswerStoreLogic;
+import hanbang.store.logic.QuestionStoreLogic;
 
 @Service
 public class QuestionServiceLogic implements QuestionService{
+	
+	private QuestionStore qStore;
+	private QuestionAnswerStore aStore;
+	
+	public QuestionServiceLogic() {
+		qStore = new QuestionStoreLogic();
+		aStore = new QuestionAnswerStoreLogic();
+	}
 
 	@Override
 	public boolean register(Question question) {
-		// TODO Auto-generated method stub
-		return false;
+		int check = qStore.create(question);
+		if(check == 0) {
+			return false;
+		} else {
+			return true;
+		}
 	}
 
 	@Override
 	public Question find(int questionId) {
-		// TODO Auto-generated method stub
-		return null;
+		Question question = qStore.retrive(questionId);
+		List<Answer> questionAnswer = aStore.retrive(questionId);
+		question.setAnswers(questionAnswer);
+		return question;
 	}
 
 	@Override
 	public List<Question> findByMemberId(String memberId) {
-		// TODO Auto-generated method stub
-		return null;
+		return qStore.retriveByMemberId(memberId);
 	}
 
 	@Override
 	public List<Question> findByShareHouseId(int shareHouseId) {
-		// TODO Auto-generated method stub
-		return null;
+		return qStore.retriveByShareHouseId(shareHouseId);
 	}
 
 	@Override
 	public boolean modify(Question question) {
-		// TODO Auto-generated method stub
-		return false;
+		int check = qStore.update(question);
+		if(check == 0) {
+			return false;
+		} else {
+			return true;
+		}
 	}
 
 	@Override
 	public boolean remove(int questionID) {
-		// TODO Auto-generated method stub
-		return false;
+		int check = qStore.delete(questionID);
+		if(check == 0) {
+			return false;
+		} else {
+			return true;
+		}
 	}
 
 	@Override
 	public boolean removeByShareHouse(int shareHouseId) {
-		// TODO Auto-generated method stub
-		return false;
+		int check = qStore.deleteByShareHouse(shareHouseId);
+		if( check == 0) {
+			return false;
+		} else {
+			return true;
+		}
 	}
 
 }
