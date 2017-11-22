@@ -1,1 +1,33 @@
 <?xml version="1.0" encoding="UTF-8"?>
+
+<mapper namespace = "mapper.MemberMapper">
+
+	<insert id = "create" parameterType = "Member" resultType = "int">
+		INSERT INTO MEMBER_TB(MEMBERID , PASSWORD, NAME, PHONENUMBER, EMAIL, MEMBERTYPE)
+		VALUES(#{MEMBERID} , #{PASSWORD}, #{NAME}, #{PHONENUMBER}, #{EMAIL}, #{MEMBERTYPE})
+	</insert>
+
+	<select id = "retriveAll" resultType = "Member">
+		SELECT MEMBERID, MEMBERTYPE, NAME, PHONENUMBER
+		FROM MEMBER_TB
+	</select>
+	
+	<select id = "retrive" parameterType = "int" resultType = "Member">
+		SELECT MEMBERID , PASSWORD, NAME, PHONENUMBER, EMAIL, MEMBERTYPE
+		FROM MEMBER_TB
+		WHERE MEMBERID = #{memberId}
+	</select>
+	
+	<update id = "update" parameterType ="Member" resultType = "int">
+		UPDATE MEMBER_TB
+		SET PASSWORD = #{PASSWORD}, PHONENUMBER = #{PHONENUMBER}, EMAIL = #{EMAIL},} 
+		WHERE MEMBERID = #{MEMBERID}
+	</update>
+	
+	<delete id = "delete" parameterType ="String" resultType = "int">
+		DELETE FROM MEMBER_TB
+		WHERE MEMBERID = #{MEMBERID}
+	</delete>
+	
+
+</mapper>
