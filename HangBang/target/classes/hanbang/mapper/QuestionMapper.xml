@@ -16,7 +16,7 @@
 		SELECT questionId_seq.nextval FROM dual
 	</selectKey>
 		INSERT INTO question_tb(questionId, writerId, shareHouseId, questionDate, phoneNumber, schedule, questionContent)
-		VALUSE(#{questionId}, #{writerId}, #{shareHouseId}, sysdate, #{phoneNumber}, #{schedule}, #{questionContent})
+		VALUSE(#{questionId}, #{writerId}, #{shareHouseId}, sysdate, #{phoneNumber}, #{schedule, jdbcType=VARCHAR}, #{questionContent})
 	</insert>
 	
 	<select id="retriveByMemberId" parameterType="String" resultType="Question">

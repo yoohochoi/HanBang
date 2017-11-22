@@ -1,8 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace = "mapper.MemberMapper">
 
-	<insert id = "create" parameterType = "Member" resultType = "int">
+	<insert id = "create" parameterType = "Member">
 		INSERT INTO MEMBER_TB(MEMBERID , PASSWORD, NAME, PHONENUMBER, EMAIL, MEMBERTYPE)
 		VALUES(#{MEMBERID} , #{PASSWORD}, #{NAME}, #{PHONENUMBER}, #{EMAIL}, #{MEMBERTYPE})
 	</insert>
@@ -18,13 +21,13 @@
 		WHERE MEMBERID = #{memberId}
 	</select>
 	
-	<update id = "update" parameterType ="Member" resultType = "int">
+	<update id = "update" parameterType ="Member">
 		UPDATE MEMBER_TB
 		SET PASSWORD = #{PASSWORD}, PHONENUMBER = #{PHONENUMBER}, EMAIL = #{EMAIL},} 
 		WHERE MEMBERID = #{MEMBERID}
 	</update>
 	
-	<delete id = "delete" parameterType ="String" resultType = "int">
+	<delete id = "delete" parameterType ="String">
 		DELETE FROM MEMBER_TB
 		WHERE MEMBERID = #{MEMBERID}
 	</delete>

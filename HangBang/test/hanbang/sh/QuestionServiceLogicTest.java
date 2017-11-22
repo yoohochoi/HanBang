@@ -2,6 +2,9 @@ package hanbang.sh;
 
 import static org.junit.Assert.*;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.junit.Before;
 import org.junit.Test;
 
@@ -25,6 +28,11 @@ public class QuestionServiceLogicTest {
 		question.setShareHouseId(1);
 		question.setPhoneNumber(1234);
 		question.setQuestionContent("test");
+		/*List<Integer> schedule = new ArrayList<>();
+		schedule.add(17);
+		schedule.add(11);
+		schedule.add(22);
+		question.setSchedule(schedule);*/
 		service.register(question);
 		assertNotNull(question);
 	}
