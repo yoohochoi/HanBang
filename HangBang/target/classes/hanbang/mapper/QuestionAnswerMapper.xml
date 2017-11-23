@@ -3,7 +3,7 @@
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
   
-<mapper namespace="store.mapper.QuestionAnswerMapper">
+<mapper namespace="hanbang.store.mapper.QuestionAnswerMapper">
 
 	<resultMap type="Answer" id="answerMap">
 		<id property="answerId" column="question_answerId"/>

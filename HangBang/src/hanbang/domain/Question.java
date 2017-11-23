@@ -8,7 +8,7 @@ public class Question {
 	private String writerId;
 	private int shareHouseId;
 	private int questionDate;
-	private List<Integer> schedule;
+	private String schedule;
 	private int phoneNumber;
 	private String questionContent;
 	private List<Answer> answers;
@@ -33,11 +33,11 @@ public class Question {
 	}
 
 
-	public List<Integer> getSchedule() {
+	public String getSchedule() {
 		return schedule;
 	}
 
-	public void setSchedule(List<Integer> schedule) {
+	public void setSchedule(String schedule) {
 		this.schedule = schedule;
 	}
 

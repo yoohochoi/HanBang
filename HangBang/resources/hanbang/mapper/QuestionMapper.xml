@@ -3,7 +3,7 @@
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
   
-<mapper namespace="store.mapper.QuestionMapper">
+<mapper namespace="hanbang.store.mapper.QuestionMapper">
 
 	<sql id="selectQuestion">
 		SELECT questionId, writerId, shareHouseId, questionDate, phoneNumber, 
@@ -24,7 +24,7 @@
 		WHERE writerId = #{writerId}
 	</select>
 	 
-	<select id="retriveByMemberId" parameterType="int" resultType="Question">
+	<select id="retriveByShareHouseId" parameterType="int" resultType="Question">
 		<include refid="selectQuestion"/>
 		WHERE shareHouseId = #{shareHouseId}
 	</select>

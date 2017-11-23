@@ -2,9 +2,6 @@ package hanbang.sh;
 
 import static org.junit.Assert.*;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import org.junit.Before;
 import org.junit.Test;
 
@@ -28,43 +25,40 @@ public class QuestionServiceLogicTest {
 		question.setShareHouseId(1);
 		question.setPhoneNumber(1234);
 		question.setQuestionContent("test");
-		/*List<Integer> schedule = new ArrayList<>();
-		schedule.add(17);
-		schedule.add(11);
-		schedule.add(22);
-		question.setSchedule(schedule);*/
+		question.setSchedule("33");
 		service.register(question);
 		assertNotNull(question);
 	}
 
-	@Test
-	public void testFind() {
-		fail("Not yet implemented");
-	}
+//	@Test
+//	public void testFind() {
+//		Question question = service.find(1);
+//		assertEquals("sh", question.getWriterId());
+//	}
 
-	@Test
-	public void testFindByMemberId() {
-		fail("Not yet implemented");
-	}
-
-	@Test
-	public void testFindByShareHouseId() {
-		fail("Not yet implemented");
-	}
-
-	@Test
-	public void testModify() {
-		fail("Not yet implemented");
-	}
-
-	@Test
-	public void testRemove() {
-		fail("Not yet implemented");
-	}
-
-	@Test
-	public void testRemoveByShareHouse() {
-		fail("Not yet implemented");
-	}
+//	@Test
+//	public void testFindByMemberId() {
+//		fail("Not yet implemented");
+//	}
+//
+//	@Test
+//	public void testFindByShareHouseId() {
+//		fail("Not yet implemented");
+//	}
+//
+//	@Test
+//	public void testModify() {
+//		fail("Not yet implemented");
+//	}
+//
+//	@Test
+//	public void testRemove() {
+//		fail("Not yet implemented");
+//	}
+//
+//	@Test
+//	public void testRemoveByShareHouse() {
+//		fail("Not yet implemented");
+//	}
 
 }
