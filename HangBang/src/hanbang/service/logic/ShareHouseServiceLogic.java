@@ -49,6 +49,7 @@ public class ShareHouseServiceLogic implements ShareHouseService {
 		} else {
 			houseStore.create(house);
 		}
+		shareHouse.setHouseId(house.getHouseId());
 		check = shareHouseStore.create(shareHouse);
 		if (check > 0) {
 			int shareHouseId = shareHouse.getShareHouseId();
@@ -65,10 +66,6 @@ public class ShareHouseServiceLogic implements ShareHouseService {
 			}
 			essentialInfoStore.create(essentialInfo);
 			extraInfoStore.create(extraInfo);
-			shareHouse.setHouse(house);
-			shareHouse.setEssentialInfo(essentialInfo);
-			shareHouse.setExtraInfo(extraInfo);
-			shareHouse.setRooms(rooms);
 			return true;
 		} else {
 			return false;
@@ -89,13 +86,21 @@ public class ShareHouseServiceLogic implements ShareHouseService {
 
 	@Override
 	public ShareHouse find(int shareHouseId) {
-		// TODO Auto-generated method stub
-		return null;
+
+		ShareHouse shareHouse = new ShareHouse();
+		shareHouse = shareHouseStore.retrive(shareHouseId);
+		shareHouse.setEssentialInfo(essentialInfoStore.retrive(shareHouseId));
+		shareHouse.setExtraInfo(extraInfoStore.retrive(shareHouseId));
+		shareHouse.setRooms(roomStore.retrive(shareHouseId));
+		// shareHouse.setHouse(houseStore.retrive(shareHouseId));
+
+		return shareHouse;
 	}
 
 	@Override
 	public List<ShareHouse> findByMemberId(String memberId) {
-		// TODO Auto-generated method stub
+		List<ShareHouse> list = new ArrayList<>();
+
 		return null;
 	}
 
@@ -106,33 +111,93 @@ public class ShareHouseServiceLogic implements ShareHouseService {
 	}
 
 	@Override
-	public boolean modify(ShareHouse shareHouse) {
-		// TODO Auto-generated method stub
-		return false;
+	public boolean modify(ShareHouse shareHouse, EssentialInfo essentialInfo, ExtraInfo extraInfo, List<Room> rooms,
+			House house) {
+
+		int check = 0;
+		int index = 0;
+
+		essentialInfoStore.update(essentialInfo);
+		extraInfoStore.update(extraInfo);
+		for (Room room : rooms) {
+			room = new Room();
+			room = rooms.get(index);
+			roomStore.update(room);
+			index++;
+		}
+		houseStore.update(house);
+
+		shareHouse.setHouseId(house.getHouseId());
+		shareHouse.setEssentialInfo(essentialInfo);
+		shareHouse.setExtraInfo(extraInfo);
+		shareHouse.setRooms(rooms);
+
+		check = shareHouseStore.update(shareHouse);
+
+		if (check > 0) {
+			return true;
+		} else {
+			return false;
+		}
 	}
 
 	@Override
 	public boolean notify(int shareHouseId, String memberId) {
-		// TODO Auto-generated method stub
-		return false;
+
+		int check = 0;
+
+		check = shareHouseStore.report(shareHouseId, memberId);
+
+		if (check > 0) {
+			return true;
+		} else {
+			return false;
+		}
 	}
 
 	@Override
 	public boolean remove(int shareHouseId) {
-		// TODO Auto-generated method stub
-		return false;
+
+		int check = 0;
+
+		essentialInfoStore.deleteByShareHouse(shareHouseId);
+		extraInfoStore.deleteByShareHouse(shareHouseId);
+		roomStore.deleteByShareHouse(shareHouseId);
+		check = shareHouseStore.delete(shareHouseId);
+
+		if (check > 0) {
+			return true;
+		} else {
+			return false;
+		}
 	}
 
 	@Override
 	public boolean removeByMemberId(String memberId) {
-		// TODO Auto-generated method stub
-		return false;
-	}
 
-	@Override
-	public boolean reportShareHouse(String memberId, int shareHouseId) {
-		// TODO Auto-generated method stub
-		return false;
+		List<ShareHouse> list = new ArrayList<>();
+		list = shareHouseStore.retriveByMemberId(memberId);
+		int index = 0;
+		int check = 0;
+		for (ShareHouse shareHouse : list) {
+			shareHouse = new ShareHouse();
+
+			shareHouse = list.get(index);
+			int shareHouseId = shareHouse.getShareHouseId();
+			essentialInfoStore.deleteByShareHouse(shareHouseId);
+			extraInfoStore.deleteByShareHouse(shareHouseId);
+			roomStore.deleteByShareHouse(shareHouseId);
+			check += shareHouseStore.delete(shareHouseId);
+
+			index++;
+		}
+
+		if (check == list.size()) {
+			return true;
+		} else {
+			return false;
+		}
+
 	}
 
 }

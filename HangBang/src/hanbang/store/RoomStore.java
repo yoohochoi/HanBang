@@ -6,14 +6,14 @@ import hanbang.domain.Room;
 
 public interface RoomStore {
 
-	public int create(Room room);
+	int create(Room room);
 
-	public List<Room> retrive(int shareHouseId);
+	List<Room> retrive(int shareHouseId);
 
-	public int update(Room room);
+	int update(Room room);
 
-	public int delete(int roomId);
+	int delete(int roomId);
 
-	public int deleteByShareHouse(int shareHouseId);
+	int deleteByShareHouse(int shareHouseId);
 
 }

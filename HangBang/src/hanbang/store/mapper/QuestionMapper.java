@@ -5,21 +5,21 @@ import java.util.List;
 import hanbang.domain.Question;
 
 public interface QuestionMapper {
-	
-	public int create(Question question);
 
-	public List<Question> retriveByMemberId(String memberId);
+	int create(Question question);
 
-	public List<Question> retriveByShareHouseId(int shareHouseId);
+	List<Question> retriveByMemberId(String memberId);
 
-	public Question retrive(int questionId);
+	List<Question> retriveByShareHouseId(int shareHouseId);
 
-	public int update(Question question);
+	Question retrive(int questionId);
 
-	public int delete(int questionId);
+	int update(Question question);
 
-	public int deleteByMemberId(String memberId);
+	int delete(int questionId);
 
-	public int deleteByShareHouse(int shareHouseId);
+	int deleteByMemberId(String memberId);
+
+	int deleteByShareHouse(int shareHouseId);
 
 }

@@ -5,17 +5,17 @@ import java.util.List;
 import hanbang.domain.Answer;
 
 public interface QuestionAnswerMapper {
-	
-	public int create(Answer answer);
 
-	public List<Answer> retrive(int questionId);
+	int create(Answer answer);
 
-	public int update(Answer answer);
+	List<Answer> retrive(int questionId);
 
-	public int delete(String memberId);
+	int update(Answer answer);
 
-	public int deleteByQuestionId(int questionId);
+	int delete(String memberId);
 
-	public int deleteByAnswerId(int answerId);
+	int deleteByQuestionId(int questionId);
+
+	int deleteByAnswerId(int answerId);
 
 }

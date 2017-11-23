@@ -6,18 +6,18 @@ import hanbang.domain.Review;
 
 public interface ReviewStore {
 
-	public int create(Review review);
+	int create(Review review);
 
-	public List<Review> retriveAll(int shareHouseId);
+	List<Review> retriveAll(int shareHouseId);
 
-	public Review retrive(int retriveId);
+	Review retrive(int retriveId);
 
-	public int update(Review review);
+	int update(Review review);
 
-	public int delete(String memberId);
+	int delete(String memberId);
 
-	public int deleteByShareHouse(int shareHouseId);
+	int deleteByShareHouse(int shareHouseId);
 
-	public int reviewReport(String memberId, int reviewId);
+	int reviewReport(String memberId, int reviewId);
 
 }
