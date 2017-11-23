@@ -18,7 +18,7 @@
 	<select id = "retrive" parameterType = "int" resultType = "Member">
 		SELECT MEMBERID , PASSWORD, NAME, PHONENUMBER, EMAIL, MEMBERTYPE
 		FROM MEMBER_TB
-		WHERE MEMBERID = #{memberId}
+		WHERE MEMBERID = #{MEMBERID}
 	</select>
 	
 	<update id = "update" parameterType ="Member">

@@ -14,6 +14,7 @@ import hanbang.store.mapper.MemberMapper;
 public class MemberStoreLogic implements MemberStore {
 
 	private SqlSessionFactory factory;
+	private int check = 0;
 
 	public MemberStoreLogic() {
 		factory = SqlSessionFactoryProvider.getSqlSessionFactory();
@@ -22,22 +23,22 @@ public class MemberStoreLogic implements MemberStore {
 
 	@Override
 	public int create(Member member) {
-		SqlSession session = SqlSessionFactoryProvider.getSqlSessionFactory().openSession();
-		int check;
+		SqlSession session = factory.openSession();
 		try {
 			MemberMapper mapper = session.getMapper(MemberMapper.class);
 			check = mapper.create(member);
 			session.commit();
-		} catch (Exception e) {
-			session.commit();
+		} finally {
+			session.close();
 		}
 
-		return 0;
+		return check;
+
 	}
 
 	@Override
 	public List<Member> retriveAll() {
-		SqlSession session = SqlSessionFactoryProvider.getSqlSessionFactory().openSession();
+		SqlSession session = factory.openSession();
 		List<Member> list = null;
 
 		try {
@@ -53,7 +54,7 @@ public class MemberStoreLogic implements MemberStore {
 
 	@Override
 	public Member retrive(String memberId) {
-		SqlSession session = SqlSessionFactoryProvider.getSqlSessionFactory().openSession();
+		SqlSession session = factory.openSession();
 		Member member;
 
 		try {
@@ -67,29 +68,31 @@ public class MemberStoreLogic implements MemberStore {
 
 	@Override
 	public int update(Member member) {
-		SqlSession session = SqlSessionFactoryProvider.getSqlSessionFactory().openSession();
+		SqlSession session = factory.openSession();
 
 		try {
 			MemberMapper mapper = session.getMapper(MemberMapper.class);
 			mapper.update(member);
+			session.commit();
 		} finally {
 			session.close();
 		}
-
-		return 0;
+		return check;
 	}
 
 	@Override
 	public int delete(String memberId) {
-SqlSession session = SqlSessionFactoryProvider.getSqlSessionFactory().openSession();
-		
-//		try {
-//			MemberMapper mapper = session.getMapper(MemberMapper.class);
-//		
-//		}
-//		
-		
-		return 0;
+		SqlSession session = factory.openSession();
+
+		try {
+			MemberMapper mapper = session.getMapper(MemberMapper.class);
+			mapper.delete(memberId);
+			session.commit();
+		} finally {
+			session.close();
+		}
+
+		return check;
 	}
 
 }

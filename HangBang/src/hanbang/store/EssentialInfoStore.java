@@ -10,8 +10,6 @@ public interface EssentialInfoStore {
 
 	public int update(EssentialInfo essentialInfo);
 
-	public int delete(int essentialInfoId);
-
 	public int deleteByShareHouse(int shareHouseId);
 
 }

@@ -3,14 +3,23 @@ package hanbang.domain;
 import java.util.List;
 
 public class ExtraInfo {
-	
+
+	private int shareHouseId;
 	private boolean pet;
 	private boolean smoke;
 	private List<String> facilities;
 	private List<String> providedGoods;
 	private String heatingSystem;
-	
+
 	public ExtraInfo() {
+	}
+
+	public int getShareHouseId() {
+		return shareHouseId;
+	}
+
+	public void setShareHouseId(int shareHouseId) {
+		this.shareHouseId = shareHouseId;
 	}
 
 	public boolean isPet() {
@@ -52,5 +61,5 @@ public class ExtraInfo {
 	public void setHeatingSystem(String heatingSystem) {
 		this.heatingSystem = heatingSystem;
 	}
-	
+
 }
