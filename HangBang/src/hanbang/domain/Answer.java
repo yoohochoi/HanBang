@@ -6,7 +6,7 @@ public class Answer {
 	private int quesOrReviewId;
 	private String writerId;
 	private String content;
-	private int date;
+	private String date;
 	private int typeId;
 	
 	
@@ -53,11 +53,11 @@ public class Answer {
 		this.content = content;
 	}
 
-	public int getDate() {
+	public String getDate() {
 		return date;
 	}
 
-	public void setDate(int date) {
+	public void setDate(String date) {
 		this.date = date;
 	}
 	

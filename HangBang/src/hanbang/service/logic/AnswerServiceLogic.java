@@ -81,27 +81,47 @@ public class AnswerServiceLogic implements AnswerService{
 
 	@Override
 	public List<Answer> findReview(int reviewId) {
-		return null;
+		return rStore.retrieve(reviewId);
 	}
 
 	@Override
 	public boolean modifyReview(Answer answer) {
-		return false;
+		int check = rStore.update(answer);
+		if(check == 0) {
+			return false;
+		} else {
+			return true;
+		}
 	}
 
 	@Override
 	public boolean removeReviewAnswer(String memberId) {
-		return false;
+		int check = rStore.delete(memberId);
+		if(check == 0) {
+			return false;
+		} else {
+			return true;
+		}
 	}
 
 	@Override
 	public boolean removeByReviewId(int reviewId) {
-		return false;
+		int check = rStore.deleteByReviewId(reviewId);
+		if(check == 0) {
+			return false;
+		} else {
+			return true;
+		}
 	}
 
 	@Override
 	public boolean removeByAnswerId(int answerId) {
-		return false;
+		int check = rStore.deleteByAnswerId(answerId);
+		if(check == 0) {
+			return false;
+		} else {
+			return true;
+		}
 	}
 
 }

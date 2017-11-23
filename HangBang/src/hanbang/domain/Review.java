@@ -4,22 +4,33 @@ import java.util.List;
 
 public class Review {
 	
-	private int reviewId;
+	private String reviewId;
 	private String writerId;
-	private int date;
+	private String date;
+	private int shareHouseId;
 	private String title;
 	private String photo;
 	private String content;
 	private List<Answer> answers;
 	
+	
+	
+	public int getShareHouseId() {
+		return shareHouseId;
+	}
+
+	public void setShareHouseId(int shareHouseId) {
+		this.shareHouseId = shareHouseId;
+	}
+
 	public Review() {
 	}
 
-	public int getReviewId() {
+	public String getReviewId() {
 		return reviewId;
 	}
 
-	public void setReviewId(int reviewId) {
+	public void setReviewId(String reviewId) {
 		this.reviewId = reviewId;
 	}
 
@@ -31,11 +42,11 @@ public class Review {
 		this.writerId = writerId;
 	}
 
-	public int getDate() {
+	public String getDate() {
 		return date;
 	}
 
-	public void setDate(int date) {
+	public void setDate(String date) {
 		this.date = date;
 	}
 
