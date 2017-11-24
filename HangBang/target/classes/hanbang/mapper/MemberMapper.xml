@@ -3,7 +3,7 @@
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace = "mapper.MemberMapper">
+<mapper namespace = "hanbang.store.mapper.MemberMapper">
 
 	<insert id = "create" parameterType = "Member">
 		INSERT INTO MEMBER_TB(MEMBERID , PASSWORD, NAME, PHONENUMBER, EMAIL, MEMBERTYPE)
@@ -23,7 +23,7 @@
 	
 	<update id = "update" parameterType ="Member">
 		UPDATE MEMBER_TB
-		SET PASSWORD = #{PASSWORD}, PHONENUMBER = #{PHONENUMBER}, EMAIL = #{EMAIL},} 
+		SET PASSWORD = #{PASSWORD}, PHONENUMBER = #{PHONENUMBER}, EMAIL = #{EMAIL} 
 		WHERE MEMBERID = #{MEMBERID}
 	</update>
 	
