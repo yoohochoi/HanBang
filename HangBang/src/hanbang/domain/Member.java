@@ -5,11 +5,14 @@ public class Member {
 	private String id;
 	private String password;
 	private String name;
-	private int phoneNumber;
+	private String phoneNumber;
 	private String email;
 	private int memberTypeId;
 	
 	public Member() {
+	}
+	
+	public Member(String memberId, String password, String name, String phoneNumber, String email, int memberTypeId) {
 	}
 
 	public String getId() {
@@ -36,11 +39,11 @@ public class Member {
 		this.name = name;
 	}
 
-	public int getPhoneNumber() {
+	public String getPhoneNumber() {
 		return phoneNumber;
 	}
 
-	public void setPhoneNumber(int phoneNumber) {
+	public void setPhoneNumber(String phoneNumber) {
 		this.phoneNumber = phoneNumber;
 	}
 
