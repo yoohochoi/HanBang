@@ -1,9 +1,11 @@
 package hanbang.sh;
 
+
+import org.junit.Test;
+
 import static org.junit.Assert.*;
 
 import org.junit.Before;
-import org.junit.Test;
 
 import hanbang.domain.Question;
 import hanbang.service.QuestionService;
@@ -23,7 +25,7 @@ public class QuestionServiceLogicTest {
 		Question question = new Question();
 		question.setWriterId("sh");
 		question.setShareHouseId(1);
-		question.setPhoneNumber(1234);
+		question.setPhoneNumber("1234");
 		question.setQuestionContent("test");
 		question.setSchedule("33");
 		service.register(question);

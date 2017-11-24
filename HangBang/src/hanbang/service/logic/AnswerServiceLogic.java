@@ -26,6 +26,7 @@ public class AnswerServiceLogic implements AnswerService{
 	public boolean registerQuestion(Answer answer) {
 		int check = 0;
 		check = qStore.create(answer);
+		answer.setTypeId(1);
 		if(check == 0) {
 			return false;
 		} else {
@@ -35,7 +36,7 @@ public class AnswerServiceLogic implements AnswerService{
 
 	@Override
 	public List<Answer> findQuestion(int questionId) {
-		return qStore.retrive(questionId);
+		return qStore.retrieveAll(questionId);
 	}
 
 	@Override
@@ -72,6 +73,7 @@ public class AnswerServiceLogic implements AnswerService{
 	public boolean registerReview(Answer answer) {
 		int check = 0;
 		check = rStore.create(answer);
+		answer.setTypeId(2);
 		if(check == 0) {
 			return false;
 		} else {
@@ -81,27 +83,47 @@ public class AnswerServiceLogic implements AnswerService{
 
 	@Override
 	public List<Answer> findReview(int reviewId) {
-		return null;
+		return rStore.retrieve(reviewId);
 	}
 
 	@Override
 	public boolean modifyReview(Answer answer) {
-		return false;
+		int check = rStore.update(answer);
+		if(check == 0) {
+			return false;
+		} else {
+			return true;
+		}
 	}
 
 	@Override
 	public boolean removeReviewAnswer(String memberId) {
-		return false;
+		int check = rStore.delete(memberId);
+		if(check == 0) {
+			return false;
+		} else {
+			return true;
+		}
 	}
 
 	@Override
 	public boolean removeByReviewId(int reviewId) {
-		return false;
+		int check = rStore.deleteByReviewId(reviewId);
+		if(check == 0) {
+			return false;
+		} else {
+			return true;
+		}
 	}
 
 	@Override
 	public boolean removeByAnswerId(int answerId) {
-		return false;
+		int check = rStore.deleteByAnswerId(answerId);
+		if(check == 0) {
+			return false;
+		} else {
+			return true;
+		}
 	}
 
 }

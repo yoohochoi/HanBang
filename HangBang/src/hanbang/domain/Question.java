@@ -7,12 +7,12 @@ public class Question {
 	private int questionId;
 	private String writerId;
 	private int shareHouseId;
-	private int questionDate;
+	private String questionDate;
 	private String schedule;
-	private int phoneNumber;
+	private String phoneNumber;
 	private String questionContent;
 	private List<Answer> answers;
-	
+
 	public Question() {
 	}
 
@@ -41,11 +41,11 @@ public class Question {
 		this.schedule = schedule;
 	}
 
-	public int getPhoneNumber() {
+	public String getPhoneNumber() {
 		return phoneNumber;
 	}
 
-	public void setPhoneNumber(int phoneNumber) {
+	public void setPhoneNumber(String phoneNumber) {
 		this.phoneNumber = phoneNumber;
 	}
 
@@ -65,11 +65,11 @@ public class Question {
 		this.shareHouseId = shareHouseId;
 	}
 
-	public int getQuestionDate() {
+	public String getQuestionDate() {
 		return questionDate;
 	}
 
-	public void setQuestionDate(int questionDate) {
+	public void setQuestionDate(String questionDate) {
 		this.questionDate = questionDate;
 	}
 

@@ -18,23 +18,27 @@
 	</sql>
 	
 	<insert id="create" parameterType="Answer">
-	<selectKey keyProperty="answerId" resultType="String" order="BEFORE">
+	<selectKey keyProperty="answerId" resultType="Integer" order="BEFORE">
 		SELECT question_answerId_seq.nextval FROM dual
 	</selectKey>
 		INSERT INTO questionAnswer_tb(question_answerId, questionId, writerId, 
-									  question_answerContent, question_answerDate)
-		VALUSE(#{answerId}, #{quesOrReviewId}, #{writerId}, #{content}, sysdate)
+									  question_answerContent, question_answerDate, typeId)
+		VALUES(#{answerId}, #{quesOrReviewId}, #{writerId}, #{content}, sysdate, #{typeId})
 	</insert>
 	
-	<select id="retrive" parameterType="Integer" resultType="Answer">
+	<select id="retrieveAll" parameterType="Integer" resultType="Answer">
+		<include refid="selectAnswer"/>
+		WHERE questionId = #{quesOrReviewId}
+	</select>
+	
+	<select id="retrieveByAnswerId" parameterType="Integer" resultType="Answer">
 		<include refid="selectAnswer"/>
 		WHERE question_answerId = #{answerId}
 	</select>
 	
-	
 	<update id="update" parameterType="Answer">
 		UPDATE questionAnswer_tb
-		SET quetion_answerContent = #{content}, question_answerDate = sysdate
+		SET question_answerContent = #{content}, question_answerDate = sysdate
 		WHERE question_answerId = #{answerId}
 	</update>
 	

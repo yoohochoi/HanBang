@@ -1,13 +1,17 @@
 package hanbang.store.logic;
 
 import java.util.List;
+import java.util.Map;
 
+import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.springframework.stereotype.Repository;
+
 
 import hanbang.domain.Review;
 import hanbang.store.ReviewStore;
 import hanbang.store.factory.SqlSessionFactoryProvider;
+import hanbang.store.mapper.ReviewMapper;
 
 @Repository
 public class ReviewStoreLogic implements ReviewStore{
@@ -20,45 +24,118 @@ public class ReviewStoreLogic implements ReviewStore{
 
 	@Override
 	public int create(Review review) {
-		// TODO Auto-generated method stub
-		return 0;
+		SqlSession session = factory.openSession();
+		int check = 0;
+		
+		try {
+			ReviewMapper mapper = session.getMapper(ReviewMapper.class);
+			check = mapper.create(review);
+			session.commit();
+		} finally {
+			session.close();
+		}
+		
+		return check;
 	}
 
 	@Override
 	public List<Review> retriveAll(int shareHouseId) {
-		// TODO Auto-generated method stub
-		return null;
+		SqlSession session = factory.openSession();
+		List<Review> list = null;
+		
+		try {
+			ReviewMapper mapper = session.getMapper(ReviewMapper.class);
+			list = mapper.retriveAll(shareHouseId);
+		} finally {
+			session.close();
+		}
+		
+		return list;
 	}
 
 	@Override
 	public Review retrive(int retriveId) {
-		// TODO Auto-generated method stub
-		return null;
+		SqlSession session = factory.openSession();
+		Review review = null;
+		
+		try {
+			ReviewMapper mapper = session.getMapper(ReviewMapper.class);
+			review = mapper.retrive(retriveId);
+		} finally {
+			session.close();
+		}
+		return review;
 	}
 
 	@Override
 	public int update(Review review) {
-		// TODO Auto-generated method stub
-		return 0;
-	}
-
-	@Override
-	public int delete(String memberId) {
-		// TODO Auto-generated method stub
-		return 0;
+		SqlSession session = factory.openSession();
+		int check = 0;
+		
+		try {
+			ReviewMapper mapper = session.getMapper(ReviewMapper.class);
+			check = mapper.update(review);
+			session.commit();
+		} finally {
+			session.close();
+		}
+		return check;
 	}
 
 	@Override
 	public int deleteByShareHouse(int shareHouseId) {
-		// TODO Auto-generated method stub
-		return 0;
+		SqlSession session = factory.openSession();
+		int check = 0;
+		try {
+			ReviewMapper mapper = session.getMapper(ReviewMapper.class);
+			check = mapper.deleteByShareHouse(shareHouseId);
+			session.commit();
+		} finally {
+			session.close();
+		}
+		return check;
 	}
 
 	@Override
-	public int reviewReport(String memberId, int reviewId) {
-		// TODO Auto-generated method stub
-		return 0;
+	public int deleteByMemberId(String memberId) {
+		SqlSession session = factory.openSession();
+		int check = 0;
+		try {
+			ReviewMapper mapper = session.getMapper(ReviewMapper.class);
+			check = mapper.deleteByMemberId(memberId);
+			session.commit();
+		} finally {
+			session.close();
+		}
+		return check;
 	}
-	
-	
+
+	@Override
+	public int deleteByReviewId(int reviewId) {
+		SqlSession session = factory.openSession();
+		int check = 0;
+		try {
+			ReviewMapper mapper = session.getMapper(ReviewMapper.class);
+			check = mapper.deleteByReviewId(reviewId);
+			session.commit();
+		} finally {
+			session.close();
+		}
+		return check;
+	}
+
+	@Override
+	public int reviewReport(Map<String, Object> map) {
+		SqlSession session = factory.openSession();
+		int check = 0;
+		try {
+			ReviewMapper mapper = session.getMapper(ReviewMapper.class);
+			check = mapper.reviewReport(map);
+			session.commit();
+		} finally {
+			session.close();
+		}
+		return check;
+	}
+
 }

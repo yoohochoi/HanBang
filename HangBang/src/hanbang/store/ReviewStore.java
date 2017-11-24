@@ -1,6 +1,7 @@
 package hanbang.store;
 
 import java.util.List;
+import java.util.Map;
 
 import hanbang.domain.Review;
 
@@ -14,10 +15,12 @@ public interface ReviewStore {
 
 	int update(Review review);
 
-	int delete(String memberId);
+	int deleteByMemberId(String memberId);
+
+	int deleteByReviewId(int reviewId);
 
 	int deleteByShareHouse(int shareHouseId);
 
-	int reviewReport(String memberId, int reviewId);
+	int reviewReport(Map<String, Object> map);
 
 }
