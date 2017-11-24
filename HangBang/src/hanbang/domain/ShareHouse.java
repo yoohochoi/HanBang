@@ -10,6 +10,7 @@ public class ShareHouse {
 	private Date shareHouseDate;
 	private String title;
 	private String content;
+	private List<String> photos;
 	private int houseId;
 	private EssentialInfo essentialInfo;
 	private ExtraInfo extraInfo;
@@ -37,6 +38,14 @@ public class ShareHouse {
 
 	public Date getShareHouseDate() {
 		return shareHouseDate;
+	}
+
+	public List<String> getPhotos() {
+		return photos;
+	}
+
+	public void setPhotos(List<String> photos) {
+		this.photos = photos;
 	}
 
 	public void setShareHouseDate(Date shareHouseDate) {
