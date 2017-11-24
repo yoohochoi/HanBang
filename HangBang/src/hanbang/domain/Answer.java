@@ -3,21 +3,11 @@ package hanbang.domain;
 public class Answer {
 	
 	private int answerId;
-	private int quesOrReviewId;
 	private String writerId;
+	private int typeId;
 	private String content;
 	private int date;
-	private int typeId;
 	
-	
-	public int getQuesOrReviewId() {
-		return quesOrReviewId;
-	}
-
-	public void setQuesOrReviewId(int quesOrReviewId) {
-		this.quesOrReviewId = quesOrReviewId;
-	}
-
 	public Answer() {
 	}
 

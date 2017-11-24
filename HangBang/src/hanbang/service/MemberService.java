@@ -11,5 +11,6 @@ public interface MemberService {
 	Member find(String memberId);
 	boolean modify(Member member);
 	boolean remove(String memberId);
+	boolean login(String memberId, String password);
 
 }
