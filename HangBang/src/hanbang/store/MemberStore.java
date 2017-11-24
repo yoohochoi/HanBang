@@ -6,14 +6,14 @@ import hanbang.domain.Member;
 
 public interface MemberStore {
 
-	public int create(Member member);
+	int create(Member member);
 
-	public List<Member> retriveAll();
+	List<Member> retriveAll();
 
-	public Member retrive(String memberId);
+	Member retrive(String memberId);
 
-	public int update(Member member);
+	int update(Member member);
 
-	public int delete(String memberId);
+	int delete(String memberId);
 
 }

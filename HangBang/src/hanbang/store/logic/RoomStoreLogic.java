@@ -4,12 +4,14 @@ import java.util.List;
 
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
+import org.springframework.stereotype.Repository;
 
 import hanbang.domain.Room;
 import hanbang.store.RoomStore;
 import hanbang.store.factory.SqlSessionFactoryProvider;
 import hanbang.store.mapper.RoomMapper;
 
+@Repository
 public class RoomStoreLogic implements RoomStore {
 
 	private SqlSessionFactory factory;

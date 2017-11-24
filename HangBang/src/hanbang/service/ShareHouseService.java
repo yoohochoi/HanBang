@@ -21,14 +21,13 @@ public interface ShareHouseService {
 
 	List<ShareHouse> researchShareHouse(String searchWord);
 
-	boolean modify(ShareHouse shareHouse);
+	boolean modify(ShareHouse shareHouse, EssentialInfo essentialInfo, ExtraInfo extraInfo, List<Room> rooms,
+			House house);
 
 	boolean notify(int shareHouseId, String memberId);
 
 	boolean remove(int shareHouseId);
 
 	boolean removeByMemberId(String memberId);
-
-	boolean reportShareHouse(String memberId, int shareHouseId);
 
 }

@@ -6,7 +6,7 @@ public class EssentialInfo {
 	private String sex;
 	private String floorTotalFloor;
 	private String parking;
-	private boolean lift;
+	private String lift;
 	private int managementFee;
 	private String buildingType;
 
@@ -45,11 +45,11 @@ public class EssentialInfo {
 		this.parking = parking;
 	}
 
-	public boolean isLift() {
+	public String getLift() {
 		return lift;
 	}
 
-	public void setLift(boolean lift) {
+	public void setLift(String lift) {
 		this.lift = lift;
 	}
 

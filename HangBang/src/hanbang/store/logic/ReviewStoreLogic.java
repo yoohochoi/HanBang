@@ -135,6 +135,5 @@ public class ReviewStoreLogic implements ReviewStore{
 		}
 		return check;
 	}
-	
-	
+
 }

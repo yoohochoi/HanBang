@@ -6,15 +6,15 @@ import hanbang.domain.House;
 
 public interface HouseStore {
 
-	public int create(House house);
+	int create(House house);
 
-	public House retrive(int houseId);
+	House retrive(int houseId);
 
-	public List<House> retriveByMemberId(String memberId);
+	List<House> retriveByMemberId(String memberId);
 
-	public int update(House house);
+	int update(House house);
 
-	public int delete(int houseId);
+	int delete(int houseId);
 
-	public int deleteByMemberId(String memberId);
+	int deleteByMemberId(String memberId);
 }

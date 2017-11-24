@@ -22,6 +22,6 @@ public interface ShareHouseMapper {
 
 	int report(int shareHouseId, String memberId);
 
-	int deleteByMemberId(String memberId);
+	int deleteByMemberId(String membserId);
 
 }

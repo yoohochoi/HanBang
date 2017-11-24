@@ -4,12 +4,12 @@ import hanbang.domain.EssentialInfo;
 
 public interface EssentialInfoStore {
 
-	public int create(EssentialInfo essentialInfo);
+	int create(EssentialInfo essentialInfo);
 
-	public EssentialInfo retrive(int shareHouseId);
+	EssentialInfo retrive(int shareHouseId);
 
-	public int update(EssentialInfo essentialInfo);
+	int update(EssentialInfo essentialInfo);
 
-	public int deleteByShareHouse(int shareHouseId);
+	int deleteByShareHouse(int shareHouseId);
 
 }

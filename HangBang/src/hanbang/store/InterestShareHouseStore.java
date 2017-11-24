@@ -6,14 +6,14 @@ import hanbang.domain.ShareHouse;
 
 public interface InterestShareHouseStore {
 
-	public int create(int shareHouseId);
+	int create(int shareHouseId);
 
-	public List<ShareHouse> retriveAll(String memberId);
+	List<ShareHouse> retriveAll(String memberId);
 
-	public int delete(int shareHouseId);
+	int delete(int shareHouseId);
 
-	public int deleteByMemberId(String memberId);
+	int deleteByMemberId(String memberId);
 
-	public int deleteInterestShareHouse(String memberId, int shareHouseId);
+	int deleteInterestShareHouse(String memberId, int shareHouseId);
 
 }
