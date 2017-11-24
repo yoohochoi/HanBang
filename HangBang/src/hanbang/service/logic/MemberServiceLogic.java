@@ -78,10 +78,6 @@ public class MemberServiceLogic implements MemberService {
 		}
 	}
 
-	@Override
-	public boolean login(String memberId, String password) {
 
-		return false;
-	}
 
 }
