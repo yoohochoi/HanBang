@@ -17,7 +17,7 @@
 		FROM reviewAnswer_tb
 	</sql>
 	
-	<insert id="create" parameterType="Answer">
+	<insert id="create" parameterType="Answerd">
 		<selectKey>
 			SELECT review_answerId_seq.nextval FROM dual
 		</selectKey>
