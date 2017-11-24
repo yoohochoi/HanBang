@@ -6,12 +6,9 @@
 
 	<insert id="create" parameterType="ExtraInfo">
 		INSERT INTO
-		extraInfo_tb(shareHouseId, pet, smoke, facilities,
-		providedGoods,
-		heatingSystem)
-		VALUES(#{shareHouseId}, #{pet}, #{smoke}, #{facilities},
-		#{providedGoods},
-		#{heatingSystem})
+		extraInfo_tb(extraInfoId, shareHouseId, pet, smoke, heatingSystem)
+		VALUES({#extraInfoId}, #{shareHouseId}, #{pet},
+		#{smoke},#{heatingSystem})
 	</insert>
 
 	<update id="update" parameterType="ExtraInfo">
