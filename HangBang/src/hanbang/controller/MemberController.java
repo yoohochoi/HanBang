@@ -2,6 +2,7 @@ package hanbang.controller;
 
 import java.util.List;
 
+import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
@@ -21,9 +22,27 @@ public class MemberController {
 	private MemberService service;
 	
 	@RequestMapping(value="memberJoin.do", method = RequestMethod.POST)
-	public String registerMember(Member member){
+	public String registerMember(Member member, HttpServletRequest request){
+	
+		String memberId = request.getParameter("memberId");
+		String password =request.getParameter("password");
+		String name = request.getParameter("name");
+		String phoneNumber = request.getParameter("phoneNumber");
+		String email = request.getParameter("email");
+		int memberTypeId = Integer.parseInt(request.getParameter("memberTypeId"));
 		
-		//아직!
+		Member idCheck = service.find(memberId);
+		
+		if(idCheck == null) {
+			 member = new Member(memberId, password, name, 
+					 			phoneNumber, email, memberTypeId);
+			 service.register(member);
+			 return "redirect:/index.do";
+		}else {
+			
+		}
+		
+		
 		
 		return null;
 	}
@@ -69,18 +88,27 @@ public class MemberController {
 	}
 
 	@RequestMapping(value = "login.do" , method = RequestMethod.POST)
-	public String login(HttpServletRequest request) {
-		String memberId = request.getParameter("memberId");
-		String password = request.getParameter("password");
+	public String login(HttpServletRequest request, String memberId, String password ) {
 
 		HttpSession session = request.getSession();
 		Member loginMember = service.find(memberId);
+		
+		try {
+			request.login(memberId, password);
+		} catch (ServletException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		//다시
 
 		if (loginMember != null) {
 			if (loginMember.getPassword().equals(password)) {
 				session.setAttribute("memberId", memberId);
 				session.setAttribute("name", loginMember.getName());
 				return "redirect:/index.jsp";
+				
+				//사업자 하우스 등록하지않았을때 하우스 등록 jsp로 추가하기
 			} else {
 				return "redirect:/login.jsp";
 			}

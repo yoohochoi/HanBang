@@ -26,13 +26,14 @@
 	<delete id="deleteByMemberId" parameterType="String">
 		DELETE FROM
 		INTERESTSHAREHOUSE_TB
-		WHERE MEMBERID = {#memberId}
+		WHERE MEMBERID = #{memberId}
 	</delete>
 	
-	<delete id="deleteInterestShareHouse" parameterType="String">
+	<delete id="deleteInterestShareHouse" parameterType="map">
 		DELETE FROM
 		INTERESTSHAREHOUSE_TB
-		WHERE MEMBERID = {#memberId}
+		WHERE MEMBERID = #{memberId}
+			SAHREHOUSEID = #{sharehouseId}
 		
 	</delete>
 	

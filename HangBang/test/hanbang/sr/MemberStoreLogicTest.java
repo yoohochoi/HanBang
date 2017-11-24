@@ -50,7 +50,7 @@ public class MemberStoreLogicTest {
 	@Test
 	public void testUpdate() {
 		Member member = store.retrive("sora525");
-		member.setPhoneNumber(546);
+		member.setPhoneNumber("546");
 		store.update(member);
 	}
 
