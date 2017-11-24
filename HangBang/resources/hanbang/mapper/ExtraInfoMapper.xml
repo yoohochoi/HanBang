@@ -10,7 +10,7 @@
 		<result property="pet" column="PET"/>
 		<result property="smoke" column="SMOKE"/>
 		<result property="heatingSystem" column="HEATINGSYSTEM"/>
-		<collection property=""></collection>
+		<collection property="facilities" column="EXTRAINFOID" javaType="java.util.ArrayList" ofType=""></collection>
 	</resultMap>
 
 	<insert id="create" parameterType="ExtraInfo">
