@@ -37,7 +37,7 @@ public class QuestionServiceLogic implements QuestionService{
 	@Override
 	public Question find(int questionId) {
 		Question question = qStore.retrive(questionId);
-		List<Answer> questionAnswer = aStore.retrive(questionId);
+		List<Answer> questionAnswer = aStore.retrieveAll(questionId);
 		question.setAnswers(questionAnswer);
 		return question;
 	}

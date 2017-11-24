@@ -26,6 +26,7 @@ public class AnswerServiceLogic implements AnswerService{
 	public boolean registerQuestion(Answer answer) {
 		int check = 0;
 		check = qStore.create(answer);
+		answer.setTypeId(1);
 		if(check == 0) {
 			return false;
 		} else {
@@ -35,7 +36,7 @@ public class AnswerServiceLogic implements AnswerService{
 
 	@Override
 	public List<Answer> findQuestion(int questionId) {
-		return qStore.retrive(questionId);
+		return qStore.retrieveAll(questionId);
 	}
 
 	@Override
@@ -72,6 +73,7 @@ public class AnswerServiceLogic implements AnswerService{
 	public boolean registerReview(Answer answer) {
 		int check = 0;
 		check = rStore.create(answer);
+		answer.setTypeId(2);
 		if(check == 0) {
 			return false;
 		} else {

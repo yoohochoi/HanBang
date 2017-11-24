@@ -18,17 +18,17 @@ public class QuestionStoreLogicTest {
 		store = new QuestionStoreLogic();
 	}
 
-//	@Test
-//	public void testCreate() {
-//		Question question = new Question();
-//		question.setPhoneNumber("111");
-//		question.setQuestionContent("test1");
-//		question.setSchedule("17.11.23");
-//		question.setShareHouseId(1);
-//		question.setWriterId("sh");
-//		store.create(question);
-//		assertNotNull(question);
-//	}
+	@Test
+	public void testCreate() {
+		Question question = new Question();
+		question.setPhoneNumber("111");
+		question.setQuestionContent("test1");
+		question.setSchedule("17.11.24");
+		question.setShareHouseId(1);
+		question.setWriterId("sh");
+		store.create(question);
+		assertNotNull(question);
+	}
 
 //	@Test
 //	public void testRetriveByMemberId() {
@@ -44,20 +44,20 @@ public class QuestionStoreLogicTest {
 //		assertEquals(3, list.size());
 //	}
 
-	@Test
-	public void testRetrive() {
-		Question question = store.retrive(24);
-		assertNotNull(question);
-		assertEquals("sh", question.getWriterId());
-	}
-
-	@Test
-	public void testUpdate() {
-		Question question = store.retrive(24);
-		question.setQuestionContent("ㅇㅇ");
-		store.update(question);
-		assertEquals("sh", question.getWriterId());
-	}
+//	@Test
+//	public void testRetrive() {
+//		Question question = store.retrive(24);
+//		assertNotNull(question);
+//		assertEquals("sh", question.getWriterId());
+//	}
+//
+//	@Test
+//	public void testUpdate() {
+//		Question question = store.retrive(24);
+//		question.setQuestionContent("ㅇㅇ");
+//		store.update(question);
+//		assertEquals("sh", question.getWriterId());
+//	}
 
 //	@Test
 //	public void testDelete() {

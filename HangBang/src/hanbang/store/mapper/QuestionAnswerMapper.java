@@ -8,7 +8,9 @@ public interface QuestionAnswerMapper {
 
 	int create(Answer answer);
 
-	List<Answer> retrive(int questionId);
+	List<Answer> retrieveAll(int questionId);
+	
+	Answer retrieveByAnswerId(int answerId);
 
 	int update(Answer answer);
 

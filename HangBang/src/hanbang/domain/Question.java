@@ -4,7 +4,7 @@ import java.util.List;
 
 public class Question {
 	
-	private String questionId;
+	private int questionId;
 	private String writerId;
 	private int shareHouseId;
 	private String questionDate;
@@ -12,15 +12,15 @@ public class Question {
 	private String phoneNumber;
 	private String questionContent;
 	private List<Answer> answers;
-	
+
 	public Question() {
 	}
 
-	public String getQuestionId() {
+	public int getQuestionId() {
 		return questionId;
 	}
 
-	public void setQuestionId(String questionId) {
+	public void setQuestionId(int questionId) {
 		this.questionId = questionId;
 	}
 

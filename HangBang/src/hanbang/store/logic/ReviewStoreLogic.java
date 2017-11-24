@@ -1,10 +1,12 @@
 package hanbang.store.logic;
 
 import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.springframework.stereotype.Repository;
+
 
 import hanbang.domain.Review;
 import hanbang.store.ReviewStore;
@@ -95,20 +97,6 @@ public class ReviewStoreLogic implements ReviewStore{
 	}
 
 	@Override
-	public int reviewReport(String memberId, int reviewId) {
-		SqlSession session = factory.openSession();
-		int check = 0;
-		try {
-			ReviewMapper mapper = session.getMapper(ReviewMapper.class);
-			check = mapper.reviewReport(memberId, reviewId);
-			session.commit();
-		} finally {
-			session.close();
-		}
-		return check;
-	}
-
-	@Override
 	public int deleteByMemberId(String memberId) {
 		SqlSession session = factory.openSession();
 		int check = 0;
@@ -129,6 +117,20 @@ public class ReviewStoreLogic implements ReviewStore{
 		try {
 			ReviewMapper mapper = session.getMapper(ReviewMapper.class);
 			check = mapper.deleteByReviewId(reviewId);
+			session.commit();
+		} finally {
+			session.close();
+		}
+		return check;
+	}
+
+	@Override
+	public int reviewReport(Map<String, Object> map) {
+		SqlSession session = factory.openSession();
+		int check = 0;
+		try {
+			ReviewMapper mapper = session.getMapper(ReviewMapper.class);
+			check = mapper.reviewReport(map);
 			session.commit();
 		} finally {
 			session.close();

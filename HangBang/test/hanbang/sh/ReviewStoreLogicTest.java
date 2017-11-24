@@ -2,6 +2,9 @@ package hanbang.sh;
 
 import static org.junit.Assert.*;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import org.junit.Before;
 import org.junit.Test;
 
@@ -18,16 +21,16 @@ public class ReviewStoreLogicTest {
 		store = new ReviewStoreLogic();
 	}
 	
-	@Test
-	public void testCreate() {
-		Review review = new Review();
-		review.setContent("22 test");
-		review.setTitle("11");
-		review.setWriterId("ms");
-		review.setShareHouseId(1);
-		store.create(review);
-		assertNotNull(review);
-	}
+//	@Test
+//	public void testCreate() {
+//		Review review = new Review();
+//		review.setContent("22 test");
+//		review.setTitle("11");
+//		review.setWriterId("ms");
+//		review.setShareHouseId(1);
+//		store.create(review);
+//		assertNotNull(review);
+//	}
 
 //	@Test
 //	public void testRetriveAll() {
@@ -47,14 +50,17 @@ public class ReviewStoreLogicTest {
 //		store.update(review);
 //	}
 
-	@Test
-	public void testDeleteByShareHouse() {
-		store.deleteByShareHouse(1);
-	}
+//	@Test
+//	public void testDeleteByShareHouse() {
+//		store.deleteByShareHouse(1);
+//	}
 
 //	@Test
 //	public void testReviewReport() {
-//		fail("Not yet implemented");
+//		Map<String, Object> map = new HashMap<>();
+//		map.put("reporterId", "sh");
+//		map.put("reviewId", 12);
+//		store.reviewReport(map);
 //	}
 
 //	@Test

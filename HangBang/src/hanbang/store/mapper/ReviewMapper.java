@@ -1,6 +1,7 @@
 package hanbang.store.mapper;
 
 import java.util.List;
+import java.util.Map;
 
 import hanbang.domain.Review;
 
@@ -20,6 +21,6 @@ public interface ReviewMapper {
 
 	int deleteByShareHouse(int shareHouseId);
 
-	int reviewReport(String memberId, int reviewId);
+	int reviewReport(Map<String, Object> map);
 
 }

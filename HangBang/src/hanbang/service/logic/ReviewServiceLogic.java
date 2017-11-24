@@ -1,6 +1,8 @@
 package hanbang.service.logic;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -64,7 +66,10 @@ public class ReviewServiceLogic implements ReviewService{
 
 	@Override
 	public boolean reportReview(String memberId, int reviewId) {
-		int check = rStore.reviewReport(memberId, reviewId);
+		Map<String, Object> map = new HashMap<>();
+		map.put("reporterId", memberId);
+		map.put("reviewId", reviewId);
+		int check = rStore.reviewReport(map);
 		if(check == 0) {
 			return false;
 		} else {
