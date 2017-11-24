@@ -34,11 +34,6 @@ public class ReviewServiceLogic implements ReviewService{
 		return false;
 	}
 
-	@Override
-	public boolean remove(int reviewId) {
-		// TODO Auto-generated method stub
-		return false;
-	}
 
 	@Override
 	public boolean removeByShareHouse(int shareHouseId) {
@@ -48,6 +43,18 @@ public class ReviewServiceLogic implements ReviewService{
 
 	@Override
 	public boolean reportReview(String memberId, int reviewId) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public boolean removeByMemberId(String memberId) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public boolean removeByReviewId(int reviewId) {
 		// TODO Auto-generated method stub
 		return false;
 	}

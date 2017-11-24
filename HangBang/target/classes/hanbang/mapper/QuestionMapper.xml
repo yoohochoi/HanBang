@@ -3,7 +3,7 @@
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
   
-<mapper namespace="store.mapper.QuestionMapper">
+<mapper namespace="hanbang.store.mapper.QuestionMapper">
 
 	<sql id="selectQuestion">
 		SELECT questionId, writerId, shareHouseId, questionDate, phoneNumber, 
@@ -13,10 +13,10 @@
 
 	<insert id="create" parameterType="Question">
 	<selectKey keyProperty="questionId" resultType="String" order="BEFORE">
-		SELECT questionId_seq.nextval FROM dual
+		SELECT QUESTIONID_seq.nextval FROM dual
 	</selectKey>
 		INSERT INTO question_tb(questionId, writerId, shareHouseId, questionDate, phoneNumber, schedule, questionContent)
-		VALUSE(#{questionId}, #{writerId}, #{shareHouseId}, sysdate, #{phoneNumber}, #{schedule}, #{questionContent})
+		VALUES(#{questionId}, #{writerId}, #{shareHouseId}, sysdate, #{phoneNumber}, #{schedule, jdbcType=VARCHAR}, #{questionContent})
 	</insert>
 	
 	<select id="retriveByMemberId" parameterType="String" resultType="Question">
@@ -24,7 +24,7 @@
 		WHERE writerId = #{writerId}
 	</select>
 	 
-	<select id="retriveByMemberId" parameterType="int" resultType="Question">
+	<select id="retriveByShareHouseId" parameterType="int" resultType="Question">
 		<include refid="selectQuestion"/>
 		WHERE shareHouseId = #{shareHouseId}
 	</select>

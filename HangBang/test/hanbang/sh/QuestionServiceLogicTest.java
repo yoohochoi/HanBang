@@ -23,7 +23,7 @@ public class QuestionServiceLogicTest {
 		Question question = new Question();
 		question.setWriterId("sh");
 		question.setShareHouseId(1);
-		question.setPhoneNumber(1234);
+		question.setPhoneNumber("1234");
 		question.setQuestionContent("test");
 		service.register(question);
 		assertNotNull(question);

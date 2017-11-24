@@ -4,23 +4,23 @@ import java.util.List;
 
 public class Question {
 	
-	private int questionId;
+	private String questionId;
 	private String writerId;
 	private int shareHouseId;
-	private int questionDate;
-	private List<Integer> schedule;
-	private int phoneNumber;
+	private String questionDate;
+	private String schedule;
+	private String phoneNumber;
 	private String questionContent;
 	private List<Answer> answers;
 	
 	public Question() {
 	}
 
-	public int getQuestionId() {
+	public String getQuestionId() {
 		return questionId;
 	}
 
-	public void setQuestionId(int questionId) {
+	public void setQuestionId(String questionId) {
 		this.questionId = questionId;
 	}
 
@@ -33,19 +33,19 @@ public class Question {
 	}
 
 
-	public List<Integer> getSchedule() {
+	public String getSchedule() {
 		return schedule;
 	}
 
-	public void setSchedule(List<Integer> schedule) {
+	public void setSchedule(String schedule) {
 		this.schedule = schedule;
 	}
 
-	public int getPhoneNumber() {
+	public String getPhoneNumber() {
 		return phoneNumber;
 	}
 
-	public void setPhoneNumber(int phoneNumber) {
+	public void setPhoneNumber(String phoneNumber) {
 		this.phoneNumber = phoneNumber;
 	}
 
@@ -65,11 +65,11 @@ public class Question {
 		this.shareHouseId = shareHouseId;
 	}
 
-	public int getQuestionDate() {
+	public String getQuestionDate() {
 		return questionDate;
 	}
 
-	public void setQuestionDate(int questionDate) {
+	public void setQuestionDate(String questionDate) {
 		this.questionDate = questionDate;
 	}
 
