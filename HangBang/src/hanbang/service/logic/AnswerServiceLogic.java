@@ -2,79 +2,129 @@ package hanbang.service.logic;
 
 import java.util.List;
 
-import org.springframework.stereotype.Controller;
 import org.springframework.stereotype.Service;
 
 import hanbang.domain.Answer;
 import hanbang.service.AnswerService;
+import hanbang.store.QuestionAnswerStore;
+import hanbang.store.ReviewAnswerStore;
+import hanbang.store.logic.QuestionAnswerStoreLogic;
+import hanbang.store.logic.ReviewAnswerStoreLogic;
 
 @Service
 public class AnswerServiceLogic implements AnswerService{
+	
+	private QuestionAnswerStore qStore;
+	private ReviewAnswerStore rStore;
+	
+	public AnswerServiceLogic() {
+		qStore = new QuestionAnswerStoreLogic();
+		rStore = new ReviewAnswerStoreLogic();
+	}
 
 	@Override
 	public boolean registerQuestion(Answer answer) {
-		// TODO Auto-generated method stub
-		return false;
+		int check = 0;
+		check = qStore.create(answer);
+		answer.setTypeId(1);
+		if(check == 0) {
+			return false;
+		} else {
+			return true;
+		}
 	}
 
 	@Override
 	public List<Answer> findQuestion(int questionId) {
-		// TODO Auto-generated method stub
-		return null;
+		return qStore.retrieveAll(questionId);
 	}
 
 	@Override
 	public boolean modifyQuestion(Answer answer) {
-		// TODO Auto-generated method stub
-		return false;
+		int check = qStore.update(answer);
+		if(check == 0) {
+			return false;
+		} else {
+			 return true;
+		}
 	}
 
 	@Override
 	public boolean removeQuestionAnswer(String memberId) {
-		// TODO Auto-generated method stub
-		return false;
+		int check = qStore.delete(memberId);
+		if(check == 0) {
+			return false;
+		} else {
+			 return true;
+		}
 	}
 
 	@Override
 	public boolean removeByQuestionId(int questionId) {
-		// TODO Auto-generated method stub
-		return false;
+		int check = qStore.deleteByQuestionId(questionId);
+		if(check == 0) {
+			return false;
+		} else {
+			return true;
+		}
 	}
 
 	@Override
 	public boolean registerReview(Answer answer) {
-		// TODO Auto-generated method stub
-		return false;
+		int check = 0;
+		check = rStore.create(answer);
+		answer.setTypeId(2);
+		if(check == 0) {
+			return false;
+		} else {
+			return true;
+		}
 	}
 
 	@Override
 	public List<Answer> findReview(int reviewId) {
-		// TODO Auto-generated method stub
-		return null;
+		return rStore.retrieve(reviewId);
 	}
 
 	@Override
 	public boolean modifyReview(Answer answer) {
-		// TODO Auto-generated method stub
-		return false;
+		int check = rStore.update(answer);
+		if(check == 0) {
+			return false;
+		} else {
+			return true;
+		}
 	}
 
 	@Override
 	public boolean removeReviewAnswer(String memberId) {
-		// TODO Auto-generated method stub
-		return false;
+		int check = rStore.delete(memberId);
+		if(check == 0) {
+			return false;
+		} else {
+			return true;
+		}
 	}
 
 	@Override
 	public boolean removeByReviewId(int reviewId) {
-		// TODO Auto-generated method stub
-		return false;
+		int check = rStore.deleteByReviewId(reviewId);
+		if(check == 0) {
+			return false;
+		} else {
+			return true;
+		}
 	}
 
 	@Override
 	public boolean removeByAnswerId(int answerId) {
-		// TODO Auto-generated method stub
-		return false;
+		int check = rStore.deleteByAnswerId(answerId);
+		if(check == 0) {
+			return false;
+		} else {
+			return true;
+		}
 	}
 
 }
+>>>>>>> refs/remotes/origin/master

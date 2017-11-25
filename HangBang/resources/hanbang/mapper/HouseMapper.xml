@@ -10,10 +10,12 @@
 			SELECT HOUSEID_seq.nextval FROM dual
 		</selectKey>
 		INSERT INTO HOUSE_TB(
-		HOUSEID , PHOTO , ADDRESS, WHOLEAREA,
-		PUBLICUSAGE, BATHROOMS, ROOMS)
+		HOUSEID , ADDRESS, WHOLEAREA,
+		PUBLICUSAGE,
+		BATHROOMS, ROOMS)
 		VALUES (#{houseId} , #{photos} ,
-		#{address}, #{wholeArea},
+		#{address},
+		#{wholeArea},
 		#{publicUsage},
 		#{bathrooms}, #{rooms})
 	</insert>
@@ -38,7 +40,8 @@
 	<update id="update" parameterType="House">
 		UPDATE
 		HOUSE_TB
-		SET ADDRESS, WHOLEAREA, PUBLICUSAGE, BATHROOMS, ROOMS
+		SET ADDRESS,
+		WHOLEAREA, PUBLICUSAGE, BATHROOMS, ROOMS
 		WHERE
 		HOUSEID = #{houseId}
 	</update>
@@ -46,7 +49,8 @@
 	<delete id="delete" parameterType="int">
 		DELETE FROM
 		HOUSE_TB
-		WHERE HOUSEID = #{houseId}
+		WHERE
+		HOUSEID = #{houseId}
 	</delete>
 
 	<delete id="deleteByMemberId" parameterType="String">
@@ -54,7 +58,8 @@
 		HOUSE_TB
 		WHERE MEMBERID =(SELECT MEMBERID
 		FROM MEMBER_TB
-		WHERE HOUSE_TB.MEMBERID = #{memgerId})
+		WHERE HOUSE_TB.MEMBERID
+		= #{memgerId})
 	</delete>
 
 

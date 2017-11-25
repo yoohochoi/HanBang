@@ -6,13 +6,13 @@ public class Question {
 	
 	private int questionId;
 	private String writerId;
-	private String businessMemberId;
-	private int date;
-	private List<Integer> schedule;
-	private int phoneNumber;
-	private String content;
+	private int shareHouseId;
+	private String questionDate;
+	private String schedule;
+	private String phoneNumber;
+	private String questionContent;
 	private List<Answer> answers;
-	
+
 	public Question() {
 	}
 
@@ -32,44 +32,21 @@ public class Question {
 		this.writerId = writerId;
 	}
 
-	public String getBusinessMemberId() {
-		return businessMemberId;
-	}
 
-	public void setBusinessMemberId(String businessMemberId) {
-		this.businessMemberId = businessMemberId;
-	}
-
-	public int getDate() {
-		return date;
-	}
-
-	public void setDate(int date) {
-		this.date = date;
-	}
-
-	public List<Integer> getSchedule() {
+	public String getSchedule() {
 		return schedule;
 	}
 
-	public void setSchedule(List<Integer> schedule) {
+	public void setSchedule(String schedule) {
 		this.schedule = schedule;
 	}
 
-	public int getPhoneNumber() {
+	public String getPhoneNumber() {
 		return phoneNumber;
 	}
 
-	public void setPhoneNumber(int phoneNumber) {
+	public void setPhoneNumber(String phoneNumber) {
 		this.phoneNumber = phoneNumber;
-	}
-
-	public String getContent() {
-		return content;
-	}
-
-	public void setContent(String content) {
-		this.content = content;
 	}
 
 	public List<Answer> getAnswers() {
@@ -79,5 +56,30 @@ public class Question {
 	public void setAnswers(List<Answer> answers) {
 		this.answers = answers;
 	}
+
+	public int getShareHouseId() {
+		return shareHouseId;
+	}
+
+	public void setShareHouseId(int shareHouseId) {
+		this.shareHouseId = shareHouseId;
+	}
+
+	public String getQuestionDate() {
+		return questionDate;
+	}
+
+	public void setQuestionDate(String questionDate) {
+		this.questionDate = questionDate;
+	}
+
+	public String getQuestionContent() {
+		return questionContent;
+	}
+
+	public void setQuestionContent(String questionContent) {
+		this.questionContent = questionContent;
+	}
 	
 }
+>>>>>>> refs/remotes/origin/master
