@@ -5,10 +5,12 @@ import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
@@ -20,33 +22,18 @@ public class MemberController {
 
 	@Autowired
 	private MemberService service;
-	
-	@RequestMapping(value="memberJoin.do", method = RequestMethod.POST)
-	public String registerMember(Member member, HttpServletRequest request){
-	
-		String memberId = request.getParameter("memberId");
-		String password =request.getParameter("password");
-		String name = request.getParameter("name");
-		String phoneNumber = request.getParameter("phoneNumber");
-		String email = request.getParameter("email");
-		int memberTypeId = Integer.parseInt(request.getParameter("memberTypeId"));
-		
-		Member idCheck = service.find(memberId);
-		
-		if(idCheck == null) {
-			 member = new Member(memberId, password, name, 
-					 			phoneNumber, email, memberTypeId);
-			 service.register(member);
-			 return "redirect:/index.do";
-		}else {
-			
+
+	@RequestMapping(value = "memberJoin.do", method = RequestMethod.POST)
+	public String registerMember(@Valid Member member, BindingResult bindingResult, HttpServletRequest request) {
+
+		if (bindingResult.hasErrors()) {
+			return "memberJoin.jsp";
+		} else {
+			service.register(member);
+			return "index.jsp";
 		}
-		
-		
-		
-		return null;
+
 	}
-	
 
 	@RequestMapping(value = "findAllMember.do", method = RequestMethod.GET)
 	public String findAllMember(Model model) {
@@ -87,43 +74,37 @@ public class MemberController {
 		return "index.jsp";
 	}
 
-	@RequestMapping(value = "login.do" , method = RequestMethod.POST)
-	public String login(HttpServletRequest request, String memberId, String password ) {
+	@RequestMapping(value = "login.do", method = RequestMethod.POST)
+	public String login(HttpServletRequest request, String memberId, String password) {
 
+		Member member = service.find(memberId);
 		HttpSession session = request.getSession();
-		Member loginMember = service.find(memberId);
-		
-		try {
-			request.login(memberId, password);
-		} catch (ServletException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		
-		//다시
 
-		if (loginMember != null) {
-			if (loginMember.getPassword().equals(password)) {
+		if (member != null) {
+			if (member.getPassword().equals(password)) {
 				session.setAttribute("memberId", memberId);
-				session.setAttribute("name", loginMember.getName());
-				return "redirect:/index.jsp";
+				session.setAttribute("name", member.getName());
+				if(member.getMemberTypeId()==1) {
+					return "redirect:/index.jsp";
+				}else {
+					return "redirect:/houseRegister.jsp";
+				}
 				
-				//사업자 하우스 등록하지않았을때 하우스 등록 jsp로 추가하기
 			} else {
 				return "redirect:/login.jsp";
 			}
 		} else {
 			return "redirect:/login.jsp";
 		}
+
 	}
-	
+
 	@RequestMapping(value = "logout.do")
-	public String logout(HttpServletRequest request){
+	public String logout(HttpServletRequest request) {
 		HttpSession session = request.getSession();
 		session.invalidate();
-		
+
 		return "redirect:/index.do";
 	}
-	
 
 }

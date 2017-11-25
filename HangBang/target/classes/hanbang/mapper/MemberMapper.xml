@@ -30,13 +30,16 @@
 	<update id="update" parameterType="Member">
 		UPDATE MEMBER_TB
 		SET
-		PASSWORD = #{password}, PHONENUMBER = #{phoneNumber}, EMAIL = #{email}
-		WHERE MEMBERID = #{id}
+		PASSWORD =
+		#{password}, PHONENUMBER = #{phoneNumber}, EMAIL = #{email}
+		WHERE
+		MEMBERID = #{id}
 	</update>
 
 	<delete id="delete" parameterType="String">
 		DELETE FROM MEMBER_TB
-		WHERE MEMBERID = #{id}
+		WHERE
+		MEMBERID = #{id}
 	</delete>
 
 </mapper>
