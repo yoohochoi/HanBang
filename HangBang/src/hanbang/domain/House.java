@@ -7,7 +7,6 @@ public class House {
 	private int houseId;
 	private String memberId;
 	private String address;
-	private List<String> photos;
 	private String wholeArea;
 	private List<String> publicUsage;
 	private int bathrooms;
@@ -38,14 +37,6 @@ public class House {
 
 	public void setAddress(String address) {
 		this.address = address;
-	}
-
-	public List<String> getPhotos() {
-		return photos;
-	}
-
-	public void setPhotos(List<String> photos) {
-		this.photos = photos;
 	}
 
 	public String getWholeArea() {
@@ -81,3 +72,4 @@ public class House {
 	}
 	
 }
+>>>>>>> refs/remotes/origin/master

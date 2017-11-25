@@ -1,6 +1,7 @@
 package hanbang.store;
 
 import java.util.List;
+import java.util.Map;
 
 import hanbang.domain.Review;
 
@@ -18,6 +19,12 @@ public interface ReviewStore {
 
 	public int deleteByShareHouse(int shareHouseId);
 
+<<<<<<< HEAD
 	public int reviewReport(String memberId, int reviewId);
+=======
+	int deleteByShareHouse(int shareHouseId);
+
+	int reviewReport(Map<String, Object> map);
+>>>>>>> refs/remotes/origin/master
 
 }

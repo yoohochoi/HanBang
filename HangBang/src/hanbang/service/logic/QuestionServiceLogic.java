@@ -2,6 +2,7 @@ package hanbang.service.logic;
 
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import hanbang.domain.Answer;
@@ -9,19 +10,19 @@ import hanbang.domain.Question;
 import hanbang.service.QuestionService;
 import hanbang.store.QuestionAnswerStore;
 import hanbang.store.QuestionStore;
-import hanbang.store.logic.QuestionAnswerStoreLogic;
-import hanbang.store.logic.QuestionStoreLogic;
 
 @Service
 public class QuestionServiceLogic implements QuestionService{
 	
+	@Autowired
 	private QuestionStore qStore;
+	@Autowired
 	private QuestionAnswerStore aStore;
 	
-	public QuestionServiceLogic() {
-		qStore = new QuestionStoreLogic();
-		aStore = new QuestionAnswerStoreLogic();
-	}
+//	public QuestionServiceLogic() {
+//		qStore = new QuestionStoreLogic();
+//		aStore = new QuestionAnswerStoreLogic();
+//	}
 
 	@Override
 	public boolean register(Question question) {
@@ -36,7 +37,7 @@ public class QuestionServiceLogic implements QuestionService{
 	@Override
 	public Question find(int questionId) {
 		Question question = qStore.retrive(questionId);
-		List<Answer> questionAnswer = aStore.retrive(questionId);
+		List<Answer> questionAnswer = aStore.retrieveAll(questionId);
 		question.setAnswers(questionAnswer);
 		return question;
 	}
@@ -82,3 +83,4 @@ public class QuestionServiceLogic implements QuestionService{
 	}
 
 }
+>>>>>>> refs/remotes/origin/master

@@ -19,6 +19,8 @@ public class QuestionController {
 	@Autowired
 	private QuestionService service;
 	
+//	private AnswerService answerService;
+	
 	@RequestMapping("/question/registQuestion.do")
 	public String registerQuestion() {
 		return "registQuestion.jsp";
@@ -54,11 +56,17 @@ public class QuestionController {
 	// 문의 수정
 	@RequestMapping("/question/modifyQuestion.do")
 	public String modifyQuestion(int questionId, HttpSession session, Model model) {
+		String memberId = (String)session.getAttribute("loginedUser");
 		Question question = service.find(questionId);
-		model.addAttribute(question);
-		return "modifyQuestion.jsp";
+		if(question.getWriterId().equals(memberId)) {
+			model.addAttribute(question);
+			return "modifyQuestion.jsp";
+		} else {
+			return "questionDetail.do";
+		}
 	}
 	
+	//
 	@RequestMapping(value="/question/modifyQuestion.do", method=RequestMethod.POST)
 	public String modifyQuestion(Question question, Model model) {
 		service.modify(question);
@@ -87,3 +95,4 @@ public class QuestionController {
 
 
 
+>>>>>>> refs/remotes/origin/master

@@ -48,7 +48,7 @@ public class MemberServiceLogic implements MemberService {
 
 	@Override
 	public List<Member> findAll() {
-	
+
 		return memberStore.retriveAll();
 	}
 
@@ -77,6 +77,17 @@ public class MemberServiceLogic implements MemberService {
 			return false;
 		}
 	}
-
+//	@Override
+//	public boolean login(String memberId, String password) {
+//
+//		Member member = memberStore.retrive(memberId);
+//
+//		if (member.getPassword().equals(password)) {
+//			return true;
+//		} else {
+//			return false;
+//		}
+//	}
 
 }
+>>>>>>> refs/remotes/origin/master

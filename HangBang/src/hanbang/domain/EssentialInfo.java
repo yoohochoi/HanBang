@@ -1,24 +1,15 @@
 package hanbang.domain;
 
 public class EssentialInfo {
-
-	private int shareHouseId;
+	
 	private String sex;
 	private String floorTotalFloor;
 	private String parking;
-	private String lift;
+	private boolean lift;
 	private int managementFee;
 	private String buildingType;
-
+	
 	public EssentialInfo() {
-	}
-
-	public int getShareHouseId() {
-		return shareHouseId;
-	}
-
-	public void setShareHouseId(int shareHouseId) {
-		this.shareHouseId = shareHouseId;
 	}
 
 	public String getSex() {
@@ -45,11 +36,11 @@ public class EssentialInfo {
 		this.parking = parking;
 	}
 
-	public String getLift() {
+	public boolean isLift() {
 		return lift;
 	}
 
-	public void setLift(String lift) {
+	public void setLift(boolean lift) {
 		this.lift = lift;
 	}
 

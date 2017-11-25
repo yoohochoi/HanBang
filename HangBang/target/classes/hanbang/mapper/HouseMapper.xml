@@ -10,7 +10,7 @@
 			SELECT HOUSEID_seq.nextval FROM dual
 		</selectKey>
 		INSERT INTO HOUSE_TB(
-		HOUSEID , PHOTO , ADDRESS, WHOLEAREA,
+		HOUSEID , ADDRESS, WHOLEAREA,
 		PUBLICUSAGE, BATHROOMS, ROOMS)
 		VALUES (#{houseId} , #{photos} ,
 		#{address}, #{wholeArea},

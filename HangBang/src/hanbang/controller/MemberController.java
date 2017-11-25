@@ -2,12 +2,15 @@ package hanbang.controller;
 
 import java.util.List;
 
+import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
@@ -19,15 +22,18 @@ public class MemberController {
 
 	@Autowired
 	private MemberService service;
-	
-	@RequestMapping(value="memberJoin.do", method = RequestMethod.POST)
-	public String registerMember(Member member){
-		
-		//아직!
-		
-		return null;
+
+	@RequestMapping(value = "memberJoin.do", method = RequestMethod.POST)
+	public String registerMember(@Valid Member member, BindingResult bindingResult, HttpServletRequest request) {
+
+		if (bindingResult.hasErrors()) {
+			return "memberJoin.jsp";
+		} else {
+			service.register(member);
+			return "index.jsp";
+		}
+
 	}
-	
 
 	@RequestMapping(value = "findAllMember.do", method = RequestMethod.GET)
 	public String findAllMember(Model model) {
@@ -68,34 +74,38 @@ public class MemberController {
 		return "index.jsp";
 	}
 
-	@RequestMapping(value = "login.do" , method = RequestMethod.POST)
-	public String login(HttpServletRequest request) {
-		String memberId = request.getParameter("memberId");
-		String password = request.getParameter("password");
+	@RequestMapping(value = "login.do", method = RequestMethod.POST)
+	public String login(HttpServletRequest request, String memberId, String password) {
 
+		Member member = service.find(memberId);
 		HttpSession session = request.getSession();
-		Member loginMember = service.find(memberId);
 
-		if (loginMember != null) {
-			if (loginMember.getPassword().equals(password)) {
+		if (member != null) {
+			if (member.getPassword().equals(password)) {
 				session.setAttribute("memberId", memberId);
-				session.setAttribute("name", loginMember.getName());
-				return "redirect:/index.jsp";
+				session.setAttribute("name", member.getName());
+				if(member.getMemberTypeId()==1) {
+					return "redirect:/index.jsp";
+				}else {
+					return "redirect:/houseRegister.jsp";
+				}
+				
 			} else {
 				return "redirect:/login.jsp";
 			}
 		} else {
 			return "redirect:/login.jsp";
 		}
+
 	}
-	
+
 	@RequestMapping(value = "logout.do")
-	public String logout(HttpServletRequest request){
+	public String logout(HttpServletRequest request) {
 		HttpSession session = request.getSession();
 		session.invalidate();
-		
+
 		return "redirect:/index.do";
 	}
-	
 
 }
+>>>>>>> refs/remotes/origin/master

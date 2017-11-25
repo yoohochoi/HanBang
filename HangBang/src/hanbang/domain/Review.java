@@ -1,15 +1,16 @@
 package hanbang.domain;
 
+import java.io.File;
 import java.util.List;
 
 public class Review {
 	
-	private String reviewId;
+	private int reviewId;
 	private String writerId;
 	private String date;
 	private int shareHouseId;
 	private String title;
-	private String photo;
+	private File photo;
 	private String content;
 	private List<Answer> answers;
 	
@@ -26,11 +27,11 @@ public class Review {
 	public Review() {
 	}
 
-	public String getReviewId() {
+	public int getReviewId() {
 		return reviewId;
 	}
 
-	public void setReviewId(String reviewId) {
+	public void setReviewId(int reviewId) {
 		this.reviewId = reviewId;
 	}
 
@@ -58,11 +59,11 @@ public class Review {
 		this.title = title;
 	}
 
-	public String getPhoto() {
+	public File getPhoto() {
 		return photo;
 	}
 
-	public void setPhoto(String photo) {
+	public void setPhoto(File photo) {
 		this.photo = photo;
 	}
 
@@ -83,3 +84,4 @@ public class Review {
 	}
 	
 }
+>>>>>>> refs/remotes/origin/master

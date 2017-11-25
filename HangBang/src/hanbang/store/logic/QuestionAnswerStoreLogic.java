@@ -12,10 +12,10 @@ import hanbang.store.factory.SqlSessionFactoryProvider;
 import hanbang.store.mapper.QuestionAnswerMapper;
 
 @Repository
-public class QuestionAnswerStoreLogic implements QuestionAnswerStore{
-	
+public class QuestionAnswerStoreLogic implements QuestionAnswerStore {
+
 	private SqlSessionFactory factory;
-	
+
 	public QuestionAnswerStoreLogic() {
 		factory = SqlSessionFactoryProvider.getSqlSessionFactory();
 	}
@@ -32,19 +32,6 @@ public class QuestionAnswerStoreLogic implements QuestionAnswerStore{
 			session.close();
 		}
 		return check;
-	}
-
-	@Override
-	public List<Answer> retrive(int questionId) {
-		SqlSession session = factory.openSession();
-		List<Answer> list = null;
-		try {
-			QuestionAnswerMapper mapper = session.getMapper(QuestionAnswerMapper.class);
-			list = mapper.retrive(questionId);
-		} finally {
-			session.close();
-		}
-		return list;
 	}
 
 	@Override
@@ -101,6 +88,32 @@ public class QuestionAnswerStoreLogic implements QuestionAnswerStore{
 			session.close();
 		}
 		return check;
+	}
+
+	@Override
+	public List<Answer> retrieveAll(int questionId) {
+		SqlSession session = factory.openSession();
+		List<Answer> list = null;
+		try {
+			QuestionAnswerMapper mapper = session.getMapper(QuestionAnswerMapper.class);
+			list = mapper.retrieveAll(questionId);
+		} finally {
+			session.close();
+		}
+		return list;
+	}
+
+	@Override
+	public Answer retrieveByAnswerId(int answerId) {
+		SqlSession session = factory.openSession();
+		Answer answer = null;
+		try {
+			QuestionAnswerMapper mapper = session.getMapper(QuestionAnswerMapper.class);
+			answer = mapper.retrieveByAnswerId(answerId);
+		} finally {
+			session.close();
+		}
+		return answer;
 	}
 
 }
