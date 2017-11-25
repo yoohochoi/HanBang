@@ -2,27 +2,18 @@
 <!DOCTYPE mapper
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-
 <mapper namespace="hanbang.store.mapper.ShareHouseMapper">
 
 	<insert id="create" parameterType="ShareHouse">
-		<selectKey keyProperty="shareHouseId" resultType="int"
-			order="BEFORE">
-			SELECT SHAREHOUSEID_seq.nextval FROM dual
-		</selectKey>
 		INSERT INTO
-		ShareHouse_tb(shareHouseId, writerId, shareHouseDate,
-		title, content, houseId)
-		VALUES(#{shareHouseId}, #{writerId}, sysdate,
-		#{title}, #{content}, #{houseId})
+		room_tb(shareHouseId, writerId, date, title, content)
+		VALUES(#{shareHouseId}, #{writerId}, #{date}, #{title}, #{content})
 	</insert>
 
 	<update id="update" parameterType="ShareHouse">
 		UPDATE shareHouse_tb
 		SET
-		writerId = #{writerId}, shareHouseDate = sysdate, title =
-		#{title},
-		content =
+		writerId = #{writerId}, date = #{date}, title = #{title}, content =
 		#{content}
 		WHERE shareHouseId = #{shareHouseId}
 	</update>
@@ -30,26 +21,25 @@
 	<select id="retriveAll" resultType="ShareHouse">
 		SELECT
 		shareHouseId, writerId,
-		shareHouseDate, title, content, houseId
+		date, title, content
 		FROM shareHouse_tb
 	</select>
 
 	<select id="retriveByMemberId" parameterType="String"
 		resultType="ShareHouse">
 		SELECT
-		shareHouseId, writerId, shareHouseDate, title,
-		content, houseId
+		shareHouseId, writerId, date, title, content
 		FROM
 		shareHouse_tb
 		WHERE
-		writerId = #{writerId}
+		memberId = #{memberId}
 	</select>
 
 	<select id="retrive" parameterType="int" resultType="ShareHouse">
 		SELECT
-		shareHouseId, writerId, shareHouseDate, title, content, houseId
-		FROM
-		shareHouse_tb
+		shareHouseId, writerId,
+		date, title, content
+		FROM shareHouse_tb
 		WHERE
 		shareHouseId =
 		#{shareHouseId}
@@ -66,9 +56,14 @@
 		DELETE FROM
 		shareHouse_tb
 		WHERE
-		writerId = #{writerId}
+		memberId = #{memberId}
 	</delete>
-	<insert id=""></insert>
 
+	<insert id="report" parameterType="int, String">
+		INSERT INTO
+		SHAREHOUSEREPORT_TB(shareHouseId, memberId)
+		VALUES(#{shareHouseId},
+		#{memberId})
+	</insert>
 
 </mapper>
