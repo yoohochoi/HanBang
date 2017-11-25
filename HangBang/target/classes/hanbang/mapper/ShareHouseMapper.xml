@@ -5,20 +5,6 @@
 
 <mapper namespace="hanbang.store.mapper.ShareHouseMapper">
 
-	<resultMap type="ShareHouse" id="ShareHouseMap">
-		<id property="shareHouseId" column="shareHouseId" />
-		<result property="writerId" column="writerId" />
-		<result property="shareHouseDate" column="shareHouseDate" />
-		<result property="title" column="title" />
-		<result property="content" column="content" />
-		<result property="houseId" column="houseId" />
-		<collection property="photos" ofType="Photo" />
-		<collection property="reviews" ofType="Review" />
-		<collection property="rooms" ofType="Room" />
-	</resultMap>
-
-
-
 	<insert id="create" parameterType="ShareHouse">
 		<selectKey keyProperty="shareHouseId" resultType="int"
 			order="BEFORE">
