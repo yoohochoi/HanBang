@@ -3,34 +3,44 @@
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace = "hanbang.store.mapper.MemberMapper">
 
-	<insert id = "create" parameterType = "Member">
-		INSERT INTO MEMBER_TB(MEMBERID , PASSWORD, NAME, PHONENUMBER, EMAIL, MEMBERTYPE)
-		VALUES(#{MEMBERID} , #{PASSWORD}, #{NAME}, #{PHONENUMBER}, #{EMAIL}, #{MEMBERTYPE})
+<mapper namespace="hanbang.store.mapper.MemberMapper">
+
+	<insert id="create" parameterType="Member">
+		INSERT INTO MEMBER_TB(MEMBERID
+		, PASSWORD, NAME, PHONENUMBER, EMAIL, MEMBERTYPE)
+		VALUES(#{id} ,
+		#{password}, #{name}, #{phoneNumber}, #{email}, #{memberTypeId})
 	</insert>
 
-	<select id = "retriveAll" resultType = "Member">
-		SELECT MEMBERID, MEMBERTYPE, NAME, PHONENUMBER
+	<select id="retriveAll" resultType="Member">
+		SELECT MEMBERID, MEMBERTYPE,
+		NAME, PHONENUMBER
 		FROM MEMBER_TB
 	</select>
-	
-	<select id = "retrive" parameterType = "int" resultType = "Member">
-		SELECT MEMBERID , PASSWORD, NAME, PHONENUMBER, EMAIL, MEMBERTYPE
-		FROM MEMBER_TB
-		WHERE MEMBERID = #{MEMBERID}
+
+	<select id="retrive" parameterType="String" resultType="Member">
+		SELECT
+		MEMBERID , PASSWORD, NAME, PHONENUMBER, EMAIL, MEMBERTYPE
+		FROM
+		MEMBER_TB
+		WHERE MEMBERID = #{id}
 	</select>
-	
-	<update id = "update" parameterType ="Member">
+
+	<update id="update" parameterType="Member">
 		UPDATE MEMBER_TB
-		SET PASSWORD = #{PASSWORD}, PHONENUMBER = #{PHONENUMBER}, EMAIL = #{EMAIL} 
-		WHERE MEMBERID = #{MEMBERID}
+		SET
+		PASSWORD =
+		#{password}, PHONENUMBER = #{phoneNumber}, EMAIL = #{email}
+		WHERE
+		MEMBERID = #{id}
 	</update>
-	
-	<delete id = "delete" parameterType ="String">
+
+	<delete id="delete" parameterType="String">
 		DELETE FROM MEMBER_TB
-		WHERE MEMBERID = #{MEMBERID}
+		WHERE
+		MEMBERID = #{id}
 	</delete>
-	
+
 
 </mapper>

@@ -4,14 +4,23 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="hanbang.store.mapper.ExtraInfoMapper">
 
+	<resultMap type="ExtraInfo" id="ExtraInfoResult">
+		<result property="extraInfoId" column="EXTRAINFOID"/>
+		<result property="shareHouseId" column="SHAREHOUEID"/>
+		<result property="pet" column="PET"/>
+		<result property="smoke" column="SMOKE"/>
+		<result property="heatingSystem" column="HEATINGSYSTEM"/>
+		<collection property="facilities" column="EXTRAINFOID" javaType="java.util.ArrayList" ofType=""></collection>
+	</resultMap>
+
 	<insert id="create" parameterType="ExtraInfo">
+		<selectKey keyProperty="extraInfoId" resultType="int" order="BEFORE">
+			SELECT EXTRAINFOID_seq.nextval FROM dual
+		</selectKey>
 		INSERT INTO
-		extraInfo_tb(shareHouseId, pet, smoke, facilities,
-		providedGoods,
-		heatingSystem)
-		VALUES(#{shareHouseId}, #{pet}, #{smoke}, #{facilities},
-		#{providedGoods},
-		#{heatingSystem})
+		extraInfo_tb(extraInfoId, shareHouseId, pet, smoke, heatingSystem)
+		VALUES({#extraInfoId}, #{shareHouseId}, #{pet},
+		#{smoke},#{heatingSystem})
 	</insert>
 
 	<update id="update" parameterType="ExtraInfo">
@@ -28,7 +37,7 @@
 
 	<select id="retrive" parameterType="int" resultType="extraInfo">
 		SELECT
-		shareHouseId, pet, smoke, facilities,
+		extraInfoId, shareHouseId, pet, smoke, facilities,
 		providedGoods
 		FROM extraInfo_tb
 		WHERE shareHouseId = #{shareHouseId}

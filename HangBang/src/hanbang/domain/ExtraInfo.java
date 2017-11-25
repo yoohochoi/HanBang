@@ -4,14 +4,23 @@ import java.util.List;
 
 public class ExtraInfo {
 
+	private int extraInfoId;
 	private int shareHouseId;
-	private boolean pet;
-	private boolean smoke;
+	private String pet;
+	private String smoke;
 	private List<String> facilities;
 	private List<String> providedGoods;
 	private String heatingSystem;
 
 	public ExtraInfo() {
+	}
+
+	public int getExtraInfoId() {
+		return extraInfoId;
+	}
+
+	public void setExtraInfoId(int extraInfoId) {
+		this.extraInfoId = extraInfoId;
 	}
 
 	public int getShareHouseId() {
@@ -22,20 +31,20 @@ public class ExtraInfo {
 		this.shareHouseId = shareHouseId;
 	}
 
-	public boolean isPet() {
-		return pet;
-	}
-
-	public void setPet(boolean pet) {
+	public void setPet(String pet) {
 		this.pet = pet;
 	}
 
-	public boolean isSmoke() {
-		return smoke;
+	public String getPet() {
+		return pet;
 	}
 
-	public void setSmoke(boolean smoke) {
+	public void setSmoke(String smoke) {
 		this.smoke = smoke;
+	}
+
+	public String getSmoke() {
+		return smoke;
 	}
 
 	public List<String> getFacilities() {

@@ -14,7 +14,6 @@ import hanbang.store.mapper.MemberMapper;
 public class MemberStoreLogic implements MemberStore {
 
 	private SqlSessionFactory factory;
-	private int check = 0;
 
 	public MemberStoreLogic() {
 		factory = SqlSessionFactoryProvider.getSqlSessionFactory();
@@ -24,6 +23,7 @@ public class MemberStoreLogic implements MemberStore {
 	@Override
 	public int create(Member member) {
 		SqlSession session = factory.openSession();
+		int check;
 		try {
 			MemberMapper mapper = session.getMapper(MemberMapper.class);
 			check = mapper.create(member);
@@ -69,10 +69,10 @@ public class MemberStoreLogic implements MemberStore {
 	@Override
 	public int update(Member member) {
 		SqlSession session = factory.openSession();
-
+		int check;
 		try {
 			MemberMapper mapper = session.getMapper(MemberMapper.class);
-			mapper.update(member);
+			check = mapper.update(member);
 			session.commit();
 		} finally {
 			session.close();
@@ -83,10 +83,10 @@ public class MemberStoreLogic implements MemberStore {
 	@Override
 	public int delete(String memberId) {
 		SqlSession session = factory.openSession();
-
+		int check;
 		try {
 			MemberMapper mapper = session.getMapper(MemberMapper.class);
-			mapper.delete(memberId);
+			check = mapper.delete(memberId);
 			session.commit();
 		} finally {
 			session.close();
