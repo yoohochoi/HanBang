@@ -19,19 +19,19 @@ public class MemberServiceLogicTest {
 	public void setUp() {
 		service = new MemberServiceLogic();
 	}
+	@Test
+	public void testRegister() {
+		Member member = new Member();
+		member.setId("1fsgsgs");
+		member.setPassword("1gsgsgs");
+		member.setName("test");
+		member.setPhoneNumber("0105225332");
+		member.setEmail("testth_fkcdsc@nate.com");
+		member.setMemberTypeId(1);
+		service.register(member);
+		assertNotNull(member);
+	}
 
-//	@Test
-//	public void testRegister() {
-//		Member member = new Member();
-//		member.setId("test");
-//		member.setPassword("test");
-//		member.setName("test");
-//		member.setPhoneNumber(0105225332);
-//		member.setEmail("testth_fkcdsc@nate.com");
-//		member.setMemberTypeId(12);
-//		service.register(member);
-//		assertNotNull(member);
-//	}
 
 //	@Test
 //	public void testFindAll() {

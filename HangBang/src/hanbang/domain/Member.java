@@ -1,11 +1,31 @@
 package hanbang.domain;
 
+import javax.persistence.Column;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Pattern;
+import javax.validation.constraints.Size;
+
+import org.hibernate.annotations.Entity;
+
+@Entity
 public class Member {
 	
+	@Column
+	@NotNull
+	@Size(min = 6, max = 10, message ="ID는 6-10자 이내로 입력해주세요.")
 	private String id;
+	@Column
+	@NotNull
+	@Pattern(regexp="^(?=.*\\d)(?=.*[a-z]).{8,12}$", message ="숫자,영어 조합으로 8-12자 이내로 입력해주세요.")
 	private String password;
+	@Column
+	@NotNull
+	@Size(min= 2, max = 8 ,message = "이름은 2-8자 이내로 입력해주세요.")
 	private String name;
 	private String phoneNumber;
+	@Column
+	@NotNull
+	@Pattern(regexp="\\S", message = "이메일을 입력해주세요.")
 	private String email;
 	private int memberTypeId;
 	
