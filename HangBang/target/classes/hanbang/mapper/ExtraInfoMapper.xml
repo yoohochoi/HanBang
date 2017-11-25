@@ -4,26 +4,41 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="hanbang.store.mapper.ExtraInfoMapper">
 
-	<resultMap type="ExtraInfo" id="ExtraInfoResult">
-		<result property="extraInfoId" column="EXTRAINFOID"/>
-		<result property="shareHouseId" column="SHAREHOUEID"/>
-		<result property="pet" column="PET"/>
-		<result property="smoke" column="SMOKE"/>
-		<result property="heatingSystem" column="HEATINGSYSTEM"/>
-		<collection property="facilities" column="EXTRAINFOID" javaType="java.util.ArrayList" ofType=""></collection>
+	<resultMap type="ExtraInfo" id="ExtraInfoMap">
+		<id property="extraInfoId" column="EXTRAINFOID" />
+		<result property="shareHouseId" column="SHAREHOUEID" />
+		<result property="pet" column="PET" />
+		<result property="smoke" column="SMOKE" />
+		<result property="heatingSystem" column="HEATINGSYSTEM" />
+		<collection property="facilities" ofType="Facilitie"
+			resultMap="FacilitieMap" columnPrefix="facilities_" />
+		<collection property="providedGoods" ofType="ProvidedGood"
+			resultMap="ProvidedGoodMap" columnPrefix="providedGoods_" />
 	</resultMap>
 
-	<insert id="create" parameterType="ExtraInfo">
+	<resultMap type="Facilitie" id="FacilitieMap">
+		<id property="facilitiesId" column="facilitiesId" />
+		<result property="extraInfoId" column="extraInfoId" />
+		<result property="facilitie" column="facilitie" />
+	</resultMap>
+	<resultMap type="ProvidedGood" id="ProvidedGoodMap">
+		<id property="providedGoodId" column="providedGoodId" />
+		<result property="extraInfoId" column="extraInfoId" />
+		<result property="providedGood" column="providedGood" />
+	</resultMap>
+
+	<insert id="create" parameterType="ExtraInfoMap">
 		<selectKey keyProperty="extraInfoId" resultType="int" order="BEFORE">
 			SELECT EXTRAINFOID_seq.nextval FROM dual
 		</selectKey>
 		INSERT INTO
-		extraInfo_tb(extraInfoId, shareHouseId, pet, smoke, heatingSystem)
+		extraInfo_tb(extraInfoId, shareHouseId, pet, smoke,
+		heatingSystem)
 		VALUES({#extraInfoId}, #{shareHouseId}, #{pet},
 		#{smoke},#{heatingSystem})
 	</insert>
 
-	<update id="update" parameterType="ExtraInfo">
+	<update id="update" parameterType="ExtraInfoMap">
 		UPDATE extraInfo_tb
 		SET
 		pet =
@@ -35,11 +50,12 @@
 		#{shareHouseId}
 	</update>
 
-	<select id="retrive" parameterType="int" resultType="extraInfo">
+	<select id="retrive" parameterType="int" resultType="ExtraInfoMap">
 		SELECT
 		extraInfoId, shareHouseId, pet, smoke, facilities,
 		providedGoods
-		FROM extraInfo_tb
+		FROM
+		extraInfo_tb
 		WHERE shareHouseId = #{shareHouseId}
 	</select>
 
