@@ -14,7 +14,9 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import hanbang.domain.House;
 import hanbang.domain.Member;
+import hanbang.service.HouseService;
 import hanbang.service.MemberService;
 
 @Controller
@@ -22,6 +24,8 @@ public class MemberController {
 
 	@Autowired
 	private MemberService service;
+	@Autowired
+	private HouseService houseService;
 
 	@RequestMapping(value = "memberJoin.do", method = RequestMethod.POST)
 	public String registerMember(@Valid Member member, BindingResult bindingResult, HttpServletRequest request) {
@@ -84,12 +88,16 @@ public class MemberController {
 			if (member.getPassword().equals(password)) {
 				session.setAttribute("memberId", memberId);
 				session.setAttribute("name", member.getName());
-				if(member.getMemberTypeId()==1) {
+				if (member.getMemberTypeId() == 1) {
 					return "redirect:/index.jsp";
-				}else {
-					return "redirect:/houseRegister.jsp";
+				} else {
+					List<House> house = houseService.findByMemberId(memberId);
+					if (house == null) {
+						return "redirect:/houseRegister.jsp";
+					} else {
+						return "redirect:/login.jsp";
+					}
 				}
-				
 			} else {
 				return "redirect:/login.jsp";
 			}

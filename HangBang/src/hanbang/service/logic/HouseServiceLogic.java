@@ -2,6 +2,7 @@ package hanbang.service.logic;
 
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import hanbang.domain.House;
@@ -12,6 +13,7 @@ import hanbang.store.logic.HouseStoreLogic;
 @Service
 public class HouseServiceLogic implements HouseService {
 
+	@Autowired
 	private HouseStore houseStore;
 	private int check;
 
