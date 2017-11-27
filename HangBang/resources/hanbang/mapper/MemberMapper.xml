@@ -3,8 +3,12 @@
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-
 <mapper namespace="hanbang.store.mapper.MemberMapper">
+
+	<resultMap type="Member" id="MemberMap">
+		<id property="id" column="memberId"/>
+		</resultMap>
+	
 
 	<insert id="create" parameterType="Member">
 		INSERT INTO MEMBER_TB(MEMBERID
@@ -19,27 +23,22 @@
 		FROM MEMBER_TB
 	</select>
 
-	<select id="retrive" parameterType="String" resultType="Member">
+	<select id="retrive" parameterType="String" resultType="Member" resultMap="MemberMap">
 		SELECT
-		MEMBERID , PASSWORD, NAME, PHONENUMBER, EMAIL, MEMBERTYPE
-		FROM
-		MEMBER_TB
-		WHERE MEMBERID = #{id}
+		MEMBERID, PASSWORD, NAME, PHONENUMBER, EMAIL, MEMBERTYPE
+		FROM MEMBER_TB
+		WHERE memberId = #{id}
 	</select>
 
 	<update id="update" parameterType="Member">
-		UPDATE MEMBER_TB
-		SET
-		PASSWORD =
-		#{password}, PHONENUMBER = #{phoneNumber}, EMAIL = #{email}
-		WHERE
-		MEMBERID = #{id}
+		update member_tb
+		set password = #{password}, phoneNumber = #{phoneNumber}, email = #{email}
+		where memberId = #{id}
 	</update>
 
 	<delete id="delete" parameterType="String">
-		DELETE FROM MEMBER_TB
-		WHERE
-		MEMBERID = #{id}
+		DELETE FROM MEMBER_TB		
+		WHERE MEMBERID = #{id}
 	</delete>
 
 </mapper>

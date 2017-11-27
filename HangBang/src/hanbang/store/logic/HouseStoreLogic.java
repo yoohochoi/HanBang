@@ -4,12 +4,14 @@ import java.util.List;
 
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
+import org.springframework.stereotype.Repository;
 
 import hanbang.domain.House;
 import hanbang.store.HouseStore;
 import hanbang.store.factory.SqlSessionFactoryProvider;
 import hanbang.store.mapper.HouseMapper;
 
+@Repository
 public class HouseStoreLogic implements HouseStore {
 
 	private SqlSessionFactory factory;

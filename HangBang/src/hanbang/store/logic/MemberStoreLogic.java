@@ -5,12 +5,14 @@ import java.util.List;
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.apache.ibatis.session.SqlSessionFactoryBuilder;
+import org.springframework.stereotype.Repository;
 
 import hanbang.domain.Member;
 import hanbang.store.MemberStore;
 import hanbang.store.factory.SqlSessionFactoryProvider;
 import hanbang.store.mapper.MemberMapper;
 
+@Repository
 public class MemberStoreLogic implements MemberStore {
 
 	private SqlSessionFactory factory;
@@ -74,6 +76,7 @@ public class MemberStoreLogic implements MemberStore {
 			MemberMapper mapper = session.getMapper(MemberMapper.class);
 			check = mapper.update(member);
 			session.commit();
+			
 		} finally {
 			session.close();
 		}
