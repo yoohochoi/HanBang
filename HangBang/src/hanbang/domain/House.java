@@ -7,7 +7,7 @@ public class House {
 	private int houseId;
 	private String memberId;
 	private String address;
-	private String wholeArea;
+	private int wholeArea;
 	private List<String> publicUsage;
 	private int bathrooms;
 	private int rooms;
@@ -39,11 +39,11 @@ public class House {
 		this.address = address;
 	}
 
-	public String getWholeArea() {
+	public int getWholeArea() {
 		return wholeArea;
 	}
 
-	public void setWholeArea(String wholeArea) {
+	public void setWholeArea(int wholeArea) {
 		this.wholeArea = wholeArea;
 	}
 

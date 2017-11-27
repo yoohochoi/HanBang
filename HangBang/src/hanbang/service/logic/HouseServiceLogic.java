@@ -76,4 +76,9 @@ public class HouseServiceLogic implements HouseService {
 		}
 	}
 
+	@Override
+	public House findMyHouse(int houseId) {
+		return houseStore.retriveMyHouse(houseId);
+	}
+
 }

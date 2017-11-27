@@ -8,8 +8,6 @@ public interface PublicUsageMapper {
 
 	int create(PublicUsage publicUsage);
 
-	int update(PublicUsage publicUsage);
-
 	int deleteByHouseId(int houseId);
 
 	int delete(int publicUsageId);

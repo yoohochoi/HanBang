@@ -2,6 +2,8 @@ package hanbang.sr;
 
 import static org.junit.Assert.*;
 
+import java.util.List;
+
 import org.junit.Before;
 import org.junit.Test;
 
@@ -18,28 +20,29 @@ public class PublicUsageStoreLogicTest {
 		store = new PublicUsageStoreLogic();
 	}
 
-	@Test
-	public void testCreate() {
-		PublicUsage pub = new PublicUsage();
-		pub.setHouseId(1);
-		pub.setPublicUsage("tv");
-		pub.setPublicUsageId(1);
-		store.create(pub);
-	}
+//	@Test
+//	public void testCreate() {
+//		PublicUsage pub = new PublicUsage();
+//		pub.setHouseId(1);
+//		pub.setPublicUsage("맥북");
+//		store.create(pub);
+//	}
 
 //	@Test
 //	public void testDeleteByHouseId() {
-//		fail("Not yet implemented");
+//		store.deleteByHouseId(1);
 //	}
-//
+
 //	@Test
 //	public void testDelete() {
-//		fail("Not yet implemented");
-//	}
 //
-//	@Test
-//	public void testRetriveAll() {
-//		fail("Not yet implemented");
+//		store.delete(7);
 //	}
+
+	@Test
+	public void testRetriveAll() {
+		List<PublicUsage> list =store.retriveAll(1);
+		assertEquals(2, list.size());
+	}
 
 }

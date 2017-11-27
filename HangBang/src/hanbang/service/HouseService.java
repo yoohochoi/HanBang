@@ -8,6 +8,7 @@ public interface HouseService {
 	
 	boolean register(House house);
 	House find(int houseId);
+	House findMyHouse(int houseId);
 	public List<House> findByMemberId(String memberId);
 	boolean modify(House house);
 	boolean remove(int houseId);
