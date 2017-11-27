@@ -24,8 +24,6 @@ public class ReviewController {
 	@Autowired
 	private ReviewService service;
 	
-//	private AnswerService answerService;
-	
 	@RequestMapping("/review/registReview.do")
 	public String registerReview() {
 		return "registReview.jsp";

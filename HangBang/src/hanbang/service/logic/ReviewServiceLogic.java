@@ -34,7 +34,7 @@ public class ReviewServiceLogic implements ReviewService{
 	@Override
 	public Review find(int reviewId) {
 		Review review = rStore.retrive(reviewId);
-		List<Answer> reviewAnswers = aStore.retrieve(reviewId);
+		List<Answer> reviewAnswers = aStore.retrieveAll(reviewId);
 		review.setAnswers(reviewAnswers);
 		return review;
 	}
