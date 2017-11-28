@@ -104,4 +104,17 @@ public class HouseStoreLogic implements HouseStore {
 		return check;
 	}
 
+	@Override
+	public House retriveMyHouse(int houseId) {
+		SqlSession session = factory.openSession();
+		House house;
+		try {
+			HouseMapper mapper = session.getMapper(HouseMapper.class);
+			house = mapper.retriveMyHouse(houseId);
+		} finally {
+			session.close();
+		}
+		return house;
+	}
+
 }

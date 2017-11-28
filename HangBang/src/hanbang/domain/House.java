@@ -7,8 +7,8 @@ public class House {
 	private int houseId;
 	private String memberId;
 	private String address;
-	private String wholeArea;
-	private List<String> publicUsage;
+	private int wholeArea;
+	private List<PublicUsage> publicUsage;
 	private int bathrooms;
 	private int rooms;
 	
@@ -39,19 +39,20 @@ public class House {
 		this.address = address;
 	}
 
-	public String getWholeArea() {
+	public int getWholeArea() {
 		return wholeArea;
 	}
 
-	public void setWholeArea(String wholeArea) {
+	public void setWholeArea(int wholeArea) {
 		this.wholeArea = wholeArea;
 	}
 
-	public List<String> getPublicUsage() {
+
+	public List<PublicUsage> getPublicUsage() {
 		return publicUsage;
 	}
 
-	public void setPublicUsage(List<String> publicUsage) {
+	public void setPublicUsage(List<PublicUsage> publicUsage) {
 		this.publicUsage = publicUsage;
 	}
 

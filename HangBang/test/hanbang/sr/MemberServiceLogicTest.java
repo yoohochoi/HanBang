@@ -23,8 +23,8 @@ public class MemberServiceLogicTest {
 //	public void testRegister() {
 //		Member member = new Member();
 //		member.setId("thfkthfk");
-//		member.setPassword("test1234");
-//		member.setName("test");
+//		member.setPassword("ssss1128");
+//		member.setName("testd");
 //		member.setPhoneNumber("0105225332");
 //		member.setEmail("ggg@nate");
 //		member.setMemberTypeId(2);
@@ -32,12 +32,12 @@ public class MemberServiceLogicTest {
 //	}
 
 
-//	@Test
-//	public void testFindAll() {
-//		List<Member> list = service.findAll();
-//		
-//		assertEquals(3, list.size());
-//	}
+	@Test
+	public void testFindAll() {
+		List<Member> list = service.findAll();
+		
+		assertEquals(6, list.size());
+	}
 
 //	@Test
 //	public void testFind() {
