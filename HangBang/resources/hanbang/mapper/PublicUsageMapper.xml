@@ -21,11 +21,21 @@
 		FROM PUBLICUSAGE_TB
 		WHERE HOUSEID = #{houseId}
 	</select>
-
-	<delete id="delete" parameterType="int">
-		DELETE FROM PUBLICUSAGE_TB
+	
+	<select id ="retrive" resultType ="PublicUsage" parameterType="int">
+		SELECT PUBLICUSAGEID, HOUSEID, PUBLICUSAGE
+		FROM PUBLICUSAGE_TB
 		WHERE PUBLICUSAGEID = #{publicUsageId}
-	</delete>
+	</select>
+	
+	<update id="update">
+		Update publicUsage_tb
+		set publicUsage = #{publicUsage}
+		where houseId = (select houseId
+		from house_tb
+		where houseId = #{houseId}
+		)
+	</update>
 
 	<delete id="deleteByHouseId" parameterType="int">
 		DELETE FROM

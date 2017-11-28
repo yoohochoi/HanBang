@@ -30,12 +30,9 @@ public class MemberServiceLogic implements MemberService {
 	@Autowired
 	private InterestShareHouseStore interestStore;
 
-
 	@Override
 	public boolean register(Member member) {
-		
 		int check = memberStore.create(member);
-
 		if (check > 0) {
 			return true;
 		} else {
@@ -74,23 +71,23 @@ public class MemberServiceLogic implements MemberService {
 			reviewStore.deleteByMemberId(memberId);
 			questionStore.deleteByMemberId(memberId);
 			interestStore.deleteByMemberId(memberId);
-			
+
 			return true;
 		} else {
 			return false;
 		}
 	}
-	
-//	@Override
-//	public boolean login(String memberId, String password) {
-//
-//		Member member = memberStore.retrive(memberId);
-//
-//		if (member.getPassword().equals(password)) {
-//			return true;
-//		} else {
-//			return false;
-//		}
-//	}
+
+	// @Override
+	// public boolean login(String memberId, String password) {
+	//
+	// Member member = memberStore.retrive(memberId);
+	//
+	// if (member.getPassword().equals(password)) {
+	// return true;
+	// } else {
+	// return false;
+	// }
+	// }
 
 }

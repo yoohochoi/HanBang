@@ -4,6 +4,10 @@
 	<groupId>HangBang</groupId>
 	<artifactId>HangBang</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
+	<properties>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+	</properties>
 	<packaging>war</packaging>
 	<dependencies>
 
@@ -90,9 +94,10 @@
 	<build>
 		<sourceDirectory>src</sourceDirectory>
 		<plugins>
-		<plugin>
+			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-surefire-plugin</artifactId>
+				<version>2.16</version>
 				<configuration>
 					<junitArtifactName>junit:junit</junitArtifactName>
 					<excludes>

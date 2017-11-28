@@ -1,10 +1,13 @@
 package hanbang.service.logic;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import hanbang.domain.InterestShareHouse;
 import hanbang.domain.ShareHouse;
 import hanbang.service.InterestShareHouseService;
 import hanbang.store.InterestShareHouseStore;
@@ -16,8 +19,8 @@ public class InterestShareHouseServiceLogic implements InterestShareHouseService
 	private InterestShareHouseStore interestHouse;
 
 	@Override
-	public boolean register(String memberId, int shareHouseId) {
-		int check = interestHouse.create(shareHouseId);
+	public boolean register(InterestShareHouse interestShareHouse) {
+		int check = interestHouse.create(interestShareHouse);
 		if (check > 0) {
 			return true;
 		} else {
@@ -52,7 +55,11 @@ public class InterestShareHouseServiceLogic implements InterestShareHouseService
 
 	@Override
 	public boolean removeInterestShareHouse(String memberId, int shareHouseId) {
-		int check = interestHouse.deleteInterestShareHouse(memberId, shareHouseId);
+		
+		Map<String, Object> map = new HashMap<>();
+		map.put("memberId", memberId);
+		map.put("shareHouseId", shareHouseId);
+		int check = interestHouse.deleteInterestShareHouse(map);
 		if (check > 0) {
 			return true;
 		} else {
