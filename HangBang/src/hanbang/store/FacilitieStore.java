@@ -14,6 +14,8 @@ public interface FacilitieStore {
 
 	int deleteByExtraInfo(int extraInfoId);
 
+	Facilitie retrive(int facilitieId);
+
 	List<Facilitie> retriveAll(int extraInfoId);
 
 }

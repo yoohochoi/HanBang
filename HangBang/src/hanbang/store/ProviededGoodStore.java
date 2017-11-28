@@ -14,6 +14,8 @@ public interface ProviededGoodStore {
 
 	int deleteByExtraInfo(int extraInfoId);
 
+	ProvidedGood retrive(int providedGoodId);
+
 	List<ProvidedGood> retriveAll(int extraInfoId);
 
 }

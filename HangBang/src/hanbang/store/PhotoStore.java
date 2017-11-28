@@ -14,6 +14,8 @@ public interface PhotoStore {
 
 	int delete(int photoId);
 
+	Photo retrive(int photoId);
+
 	List<Photo> retriveAll(int shareHouseId);
 
 }

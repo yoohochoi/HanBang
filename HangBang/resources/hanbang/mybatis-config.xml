@@ -38,6 +38,9 @@
 		<mapper resource="hanbang/mapper/ReviewMapper.xml" />
 		<mapper resource="hanbang/mapper/ShareHouseMapper.xml" />
 		<mapper resource="hanbang/mapper/EssentialInfoMapper.xml" />
-	
+		<mapper resource="hanbang/mapper/ExtraInfoMapper.xml" />
+		<mapper resource="hanbang/mapper/ProvidedGoodMapper.xml" />
+		<mapper resource="hanbang/mapper/FacilitieMapper.xml" />
+		<mapper resource="hanbang/mapper/PhotoMapper.xml" />
 	</mappers>
 </configuration>
