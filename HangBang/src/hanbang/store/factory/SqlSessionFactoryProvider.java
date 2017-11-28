@@ -27,7 +27,6 @@ public class SqlSessionFactoryProvider {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-
 	}
 
 }

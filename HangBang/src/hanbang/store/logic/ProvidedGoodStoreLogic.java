@@ -96,4 +96,17 @@ public class ProvidedGoodStoreLogic implements ProviededGoodStore {
 		return providedGoods;
 	}
 
+	@Override
+	public ProvidedGood retrive(int providedGoodId) {
+		SqlSession session = factory.openSession();
+		ProvidedGood providedGood = null;
+		try {
+			ProvidedGoodMapper mapper = session.getMapper(ProvidedGoodMapper.class);
+			providedGood = mapper.retrive(providedGoodId);
+		} finally {
+			session.close();
+		}
+		return providedGood;
+	}
+
 }

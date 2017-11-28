@@ -21,16 +21,16 @@ public class ShareHouseStoreLogicTest {
 		shareHouseStore = new ShareHouseStoreLogic();
 	}
 
-	 @Test
-	 public void testCreate() {
-	 ShareHouse shareHouse = new ShareHouse();
-	 shareHouse.setTitle("noname");
-	 shareHouse.setContent("nocontent");
-	 shareHouse.setHouseId(4);
-	 shareHouse.setWriterId("yh");
-	 shareHouseStore.create(shareHouse);
-	 assertNotNull(shareHouse);
-	 }
+	// @Test
+	// public void testCreate() {
+	// ShareHouse shareHouse = new ShareHouse();
+	// shareHouse.setTitle("noname");
+	// shareHouse.setContent("nocontent");
+	// shareHouse.setHouseId(4);
+	// shareHouse.setWriterId("yh");
+	// shareHouseStore.create(shareHouse);
+	// assertNotNull(shareHouse);
+	// }
 
 	// @Test
 	// public void testRetriveAll() {
