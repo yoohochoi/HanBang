@@ -4,11 +4,11 @@ C:\Users\kosta\git\HanBang\HangBang\src\hanbang\store\mapper\HouseMapper.java
 C:\Users\kosta\git\HanBang\HangBang\src\hanbang\store\logic\FacilitieStoreLogic.java
 C:\Users\kosta\git\HanBang\HangBang\src\hanbang\domain\Question.java
 C:\Users\kosta\git\HanBang\HangBang\src\hanbang\store\logic\PublicUsageStoreLogic.java
-C:\Users\kosta\git\HanBang\HangBang\src\hanbang\store\ReviewReportStore.java
 C:\Users\kosta\git\HanBang\HangBang\src\hanbang\controller\ReviewController.java
 C:\Users\kosta\git\HanBang\HangBang\src\hanbang\service\logic\ReviewServiceLogic.java
 C:\Users\kosta\git\HanBang\HangBang\src\hanbang\store\logic\PhotoStoreLogic.java
 C:\Users\kosta\git\HanBang\HangBang\src\hanbang\store\mapper\FacilitieMapper.java
+C:\Users\kosta\git\HanBang\HangBang\src\hanbang\controller\ReviewAnswerController.java
 C:\Users\kosta\git\HanBang\HangBang\src\hanbang\service\MemberService.java
 C:\Users\kosta\git\HanBang\HangBang\src\hanbang\store\mapper\ReviewMapper.java
 C:\Users\kosta\git\HanBang\HangBang\src\hanbang\store\logic\QuestionAnswerStoreLogic.java
@@ -38,6 +38,7 @@ C:\Users\kosta\git\HanBang\HangBang\src\hanbang\domain\Member.java
 C:\Users\kosta\git\HanBang\HangBang\src\hanbang\service\logic\MemberServiceLogic.java
 C:\Users\kosta\git\HanBang\HangBang\src\hanbang\domain\ShareHouse.java
 C:\Users\kosta\git\HanBang\HangBang\src\hanbang\service\logic\HouseServiceLogic.java
+C:\Users\kosta\git\HanBang\HangBang\src\hanbang\controller\QuestionAnswerController.java
 C:\Users\kosta\git\HanBang\HangBang\src\hanbang\store\factory\SqlSessionFactoryProvider.java
 C:\Users\kosta\git\HanBang\HangBang\src\hanbang\controller\MemberController.java
 C:\Users\kosta\git\HanBang\HangBang\src\hanbang\domain\Answer.java
