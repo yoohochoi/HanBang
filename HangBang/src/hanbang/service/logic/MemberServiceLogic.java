@@ -2,42 +2,39 @@ package hanbang.service.logic;
 
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import hanbang.domain.House;
 import hanbang.domain.Member;
-import hanbang.domain.ShareHouse;
 import hanbang.service.MemberService;
 import hanbang.store.HouseStore;
+import hanbang.store.InterestShareHouseStore;
 import hanbang.store.MemberStore;
+import hanbang.store.QuestionStore;
 import hanbang.store.ReviewStore;
 import hanbang.store.ShareHouseStore;
-import hanbang.store.logic.HouseStoreLogic;
-import hanbang.store.logic.MemberStoreLogic;
-import hanbang.store.logic.ReviewStoreLogic;
-import hanbang.store.logic.ShareHouseStoreLogic;
 
 @Service
 public class MemberServiceLogic implements MemberService {
 
+	@Autowired
 	private MemberStore memberStore;
+	@Autowired
 	private HouseStore houseStore;
+	@Autowired
 	private ShareHouseStore shareHouseStore;
+	@Autowired
 	private ReviewStore reviewStore;
+	@Autowired
+	private QuestionStore questionStore;
+	@Autowired
+	private InterestShareHouseStore interestStore;
 
-	private int check;
-
-	public MemberServiceLogic() {
-		memberStore = new MemberStoreLogic();
-		houseStore = new HouseStoreLogic();
-		shareHouseStore = new ShareHouseStoreLogic();
-		reviewStore = new ReviewStoreLogic();
-	}
 
 	@Override
 	public boolean register(Member member) {
-
-		check = memberStore.create(member);
+		
+		int check = memberStore.create(member);
 
 		if (check > 0) {
 			return true;
@@ -60,7 +57,7 @@ public class MemberServiceLogic implements MemberService {
 
 	@Override
 	public boolean modify(Member member) {
-		check = memberStore.update(member);
+		int check = memberStore.update(member);
 		if (check > 0) {
 			return true;
 		} else {
@@ -70,13 +67,20 @@ public class MemberServiceLogic implements MemberService {
 
 	@Override
 	public boolean remove(String memberId) {
-		check = memberStore.delete(memberId);
+		int check = memberStore.delete(memberId);
 		if (check > 0) {
+			shareHouseStore.deleteByMemberId(memberId);
+			houseStore.deleteByMemberId(memberId);
+			reviewStore.deleteByMemberId(memberId);
+			questionStore.deleteByMemberId(memberId);
+			interestStore.deleteByMemberId(memberId);
+			
 			return true;
 		} else {
 			return false;
 		}
 	}
+	
 //	@Override
 //	public boolean login(String memberId, String password) {
 //

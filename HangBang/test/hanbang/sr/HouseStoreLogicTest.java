@@ -24,8 +24,6 @@ public class HouseStoreLogicTest {
 		house.setAddress("서울");
 		house.setBathrooms(1);
 		house.setMemberId("sora123");
-//		house.setPhotos("photos");
-//		house.setPublicUsage("dsdd");
 		house.setWholeArea("ss");
 		house.setHouseId(1);
 		house.setRooms(6);

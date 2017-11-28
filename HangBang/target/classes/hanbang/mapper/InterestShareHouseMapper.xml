@@ -32,7 +32,7 @@
 	<delete id="deleteInterestShareHouse" parameterType="map">
 		DELETE FROM
 		INTERESTSHAREHOUSE_TB
-		WHERE MEMBERID = #{memberId}
+		WHERE MEMBERID = #{memberId} and
 			SAHREHOUSEID = #{sharehouseId}
 		
 	</delete>

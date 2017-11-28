@@ -39,18 +39,19 @@ public class MemberStoreLogicTest {
 //		assertEquals(2, list.size());
 //	}
 //
-//	@Test
-//	public void testRetrive() {
-//		Member member = store.retrive("sora525");
-//		
+	@Test
+	public void testRetrive() {
+		Member member = store.retrive("sora525");
+		System.out.println(member.getId());
 //		assertEquals("ss", member.getName());
-//		
-//	}
+		
+	}
 
 	@Test
 	public void testUpdate() {
 		Member member = store.retrive("sora525");
-		member.setPhoneNumber("546");
+		System.out.println(member.getId());
+		member.setPhoneNumber("test1234");
 		store.update(member);
 	}
 
