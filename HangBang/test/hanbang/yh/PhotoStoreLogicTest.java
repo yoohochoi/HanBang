@@ -56,11 +56,11 @@ public class PhotoStoreLogicTest {
 	// assertNull(store.retrive(1));
 	// }
 
-	// @Test
-	// public void testRetriveAll() {
-	// List<Photo> photos = store.retriveAll(2);
-	// assertEquals(2, photos.size());
-	//
-	// }
+	 @Test
+	 public void testRetriveAll() {
+	 List<Photo> photos = store.retriveAll(2);
+	 assertEquals(2, photos.size());
+	
+	 }
 
 }
