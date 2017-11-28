@@ -4,7 +4,7 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="hanbang.store.mapper.ExtraInfoMapper">
 
-	<insert id="create" parameterType="ExtraInfoMap">
+	<insert id="create" parameterType="ExtraInfo">
 		<selectKey keyProperty="extraInfoId" resultType="int" order="BEFORE">
 			SELECT EXTRAINFOID_seq.nextval FROM dual
 		</selectKey>
@@ -15,25 +15,24 @@
 		#{smoke},#{heatingSystem})
 	</insert>
 
-	<update id="update" parameterType="ExtraInfoMap">
+	<update id="update" parameterType="ExtraInfo">
 		UPDATE extraInfo_tb
 		SET
 		pet =
-		#{pet}, smoke = #{smoke}, facilities = #{facilities},
-		providedGoods =
-		#{providedGoods},
+		#{pet}, smoke = #{smoke}
 		heatingSystem = #{heatingSystem}
-		WHERE shareHouseId =
+		WHERE
+		shareHouseId =
 		#{shareHouseId}
 	</update>
 
-	<select id="retrive" parameterType="int" resultType="ExtraInfoMap">
+	<select id="retrive" parameterType="int" resultType="ExtraInfo">
 		SELECT
-		extraInfoId, shareHouseId, pet, smoke, facilities,
-		providedGoods
+		extraInfoId, shareHouseId, pet, smoke
 		FROM
 		extraInfo_tb
-		WHERE shareHouseId = #{shareHouseId}
+		WHERE
+		shareHouseId = #{shareHouseId}
 	</select>
 
 	<delete id="deleteByShareHouse" parameterType="int">

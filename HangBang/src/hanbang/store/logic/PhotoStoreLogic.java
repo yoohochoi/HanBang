@@ -92,4 +92,17 @@ public class PhotoStoreLogic implements PhotoStore {
 		return photos;
 	}
 
+	@Override
+	public Photo retrive(int photoId) {
+		SqlSession session = factory.openSession();
+		Photo photo = null;
+		try {
+			PhotoMapper mapper = session.getMapper(PhotoMapper.class);
+			photo = mapper.retrive(photoId);
+		} finally {
+			session.close();
+		}
+		return photo;
+	}
+
 }

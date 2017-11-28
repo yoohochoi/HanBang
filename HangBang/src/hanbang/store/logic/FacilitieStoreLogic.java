@@ -98,4 +98,18 @@ public class FacilitieStoreLogic implements FacilitieStore {
 		return facilities;
 	}
 
+	@Override
+	public Facilitie retrive(int facilitieId) {
+		SqlSession session = factory.openSession();
+		Facilitie facilitie = null;
+		try {
+			FacilitieMapper mapper = session.getMapper(FacilitieMapper.class);
+			facilitie = mapper.retrive(facilitieId);
+		}finally {
+			session.close();
+		}
+		
+		return null;
+	}
+
 }

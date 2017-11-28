@@ -5,9 +5,9 @@
 <mapper namespace="hanbang.store.mapper.PhotoMapper">
 
 	<insert id="create" parameterType="Photo">
-		<selectKey keyProperty="photoId" resultType="int">
+		<selectKey keyProperty="photoId" resultType="int" order="BEFORE">
 			SELECT
-			PHOTOID_seq.nextval FROM dual
+			PHOTO_seq.nextval FROM dual
 		</selectKey>
 		INSERT INTO
 		photo_tb(photoId, shareHouseId, photo)
@@ -31,13 +31,22 @@
 		#{shareHouseId}
 	</select>
 
+	<select id="retrive" parameterType="int" resultType="Photo">
+		SELECT
+		photoId, shareHouseId, photo
+		FROM photo_tb
+		WHERE photoId = #{photoId}
+	</select>
+
 	<delete id="delete" parameterType="int">
 		DELETE FROM photo_tb
-		WHERE photoId = #{photoId}
+		WHERE
+		photoId = #{photoId}
 	</delete>
 
 	<delete id="deleteByShareHouse" parameterType="int">
-		DELETE FROM photo_tb
+		DELETE FROM
+		photo_tb
 		WHERE shareHouseId = #{shareHouseId}
 	</delete>
 </mapper>
