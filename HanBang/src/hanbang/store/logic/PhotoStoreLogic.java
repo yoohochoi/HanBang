@@ -4,12 +4,14 @@ import java.util.List;
 
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
+import org.springframework.stereotype.Repository;
 
 import hanbang.domain.Photo;
 import hanbang.store.PhotoStore;
 import hanbang.store.factory.SqlSessionFactoryProvider;
 import hanbang.store.mapper.PhotoMapper;
 
+@Repository
 public class PhotoStoreLogic implements PhotoStore {
 
 	private SqlSessionFactory factory;

@@ -17,11 +17,11 @@
 <main>
 	<section>
 		<h3>후기 등록</h3>
-		<form action="${ctx}/reviewCreate.do" method="post">
+		<form action="${ctx}/review/registReview.do" method="post" enctype="multipart/form-data">
 			<div>
-				<input type="text" name="reviewTitle" placeholder="제목">
-				<textarea rows="30" cols="100"></textarea>
-				<label><input type="file" name="uploadPhoto">사진 추가</label>
+				<input type="text" name="title" placeholder="제목">
+				<textarea rows="30" cols="100" name="content"></textarea>
+				<label><input type="file" name="file">사진 추가</label>
 			</div>
 			<input type="submit" name="reviewCreateBtn" value="등록하기">
 		</form>

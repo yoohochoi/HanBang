@@ -17,12 +17,12 @@
 <main>
 	<section>
 		<h3>문의 등록</h3>
-		<form action="${ctx}/questionCreate.do" method="post">
+		<form action="${ctx}/question/registQuestion.do" method="post">
 			<div>
 				<h4>${shareHouseTitle}</h4>
-				<label>방문 가능 날짜<input type="date" name="visitDate"></label>
+				<label>방문 가능 날짜<input type="date" name="schedule"></label>
 				<input type="tel" name="phoneNumber" placeholder="연락처">
-				<textarea rows="30" cols="100"></textarea>
+				<textarea rows="30" cols="100" name="content"></textarea>
 			</div>
 			<input type="submit" name="questionCreateBtn" value="문의하기">
 		</form>

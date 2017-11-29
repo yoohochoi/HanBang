@@ -4,12 +4,14 @@ import java.util.List;
 
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
+import org.springframework.stereotype.Repository;
 
 import hanbang.domain.Facilitie;
 import hanbang.store.FacilitieStore;
 import hanbang.store.factory.SqlSessionFactoryProvider;
 import hanbang.store.mapper.FacilitieMapper;
 
+@Repository
 public class FacilitieStoreLogic implements FacilitieStore {
 
 	private SqlSessionFactory factory;
