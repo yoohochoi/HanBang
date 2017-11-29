@@ -26,12 +26,12 @@
 		VALUES(#{answerId}, #{quesOrReviewId}, #{writerId}, #{content}, sysdate, #{typeId})
 	</insert>
 	
-	<select id="retrieveAll" parameterType="Integer" resultType="Answer">
+	<select id="retrieveAll" parameterType="Integer" resultMap="answerMap">
 		<include refid="selectAnswer"/>
 		WHERE questionId = #{quesOrReviewId}
 	</select>
 	
-	<select id="retrieveByAnswerId" parameterType="Integer" resultType="Answer">
+	<select id="retrieveByAnswerId" parameterType="Integer" resultMap="answerMap">
 		<include refid="selectAnswer"/>
 		WHERE question_answerId = #{answerId}
 	</select>
@@ -53,7 +53,7 @@
 	</delete>
 	
 	<delete id="deleteByAnswerId" parameterType="Integer">
-		DELETE FORM questionAnswer_tb
+		DELETE FROM questionAnswer_tb
 		WHERE question_answerId = #{answerId}
 	</delete>
 	
