@@ -19,11 +19,9 @@ public class QuestionController {
 	@Autowired
 	private QuestionService service;
 	
-//	private AnswerService answerService;
-	
 	@RequestMapping("/question/registQuestion.do")
 	public String registerQuestion() {
-		return "registQuestion.jsp";
+		return "questionCreate.jsp";
 	}
 	
 	// 문의 등록

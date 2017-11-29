@@ -8,7 +8,9 @@ public interface ReviewAnswerStore {
 
 	int create(Answer answer);
 
-	List<Answer> retrieve(int reviewId);
+	List<Answer> retrieveAll(int reviewId);
+	
+	Answer retrieveByAnswerId(int answerId);
 
 	int update(Answer answer);
 
