@@ -8,8 +8,8 @@ public class ExtraInfo {
 	private int shareHouseId;
 	private String pet;
 	private String smoke;
-	private List<String> facilities;
-	private List<String> providedGoods;
+	private List<Facilitie> facilities;
+	private List<ProvidedGood> providedGoods;
 	private String heatingSystem;
 
 	public ExtraInfo() {
@@ -47,19 +47,20 @@ public class ExtraInfo {
 		return smoke;
 	}
 
-	public List<String> getFacilities() {
+
+	public List<Facilitie> getFacilities() {
 		return facilities;
 	}
 
-	public void setFacilities(List<String> facilities) {
+	public void setFacilities(List<Facilitie> facilities) {
 		this.facilities = facilities;
 	}
 
-	public List<String> getProvidedGoods() {
+	public List<ProvidedGood> getProvidedGoods() {
 		return providedGoods;
 	}
 
-	public void setProvidedGoods(List<String> providedGoods) {
+	public void setProvidedGoods(List<ProvidedGood> providedGoods) {
 		this.providedGoods = providedGoods;
 	}
 
