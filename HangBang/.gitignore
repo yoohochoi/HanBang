@@ -1,0 +1,6 @@
+*.log
+*.classpath
+*.springBeans
+MANIFEST.MF
+pom.properties
+org.eclipse.wst.common.component

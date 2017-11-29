@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration
+  PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-config.dtd">
+
+<configuration>
+	<properties resource="hanbang/dataresource.properties" />
+	<typeAliases>
+		<typeAlias type="hanbang.domain.Answer" alias="Answer" />
+		<typeAlias type="hanbang.domain.EssentialInfo" alias="EssentialInfo" />
+		<typeAlias type="hanbang.domain.ExtraInfo" alias="ExtraInfo" />
+		<typeAlias type="hanbang.domain.House" alias="House" />
+		<typeAlias type="hanbang.domain.Member" alias="Member" />
+		<typeAlias type="hanbang.domain.Question" alias="Question" />
+		<typeAlias type="hanbang.domain.Review" alias="Review" />
+		<typeAlias type="hanbang.domain.Room" alias="Room" />
+		<typeAlias type="hanbang.domain.ShareHouse" alias="ShareHouse" />
+	</typeAliases>
+	<environments default="development">
+		<environment id="development">
+			<transactionManager type="JDBC" />
+			<dataSource type="POOLED">
+				<property name="driver" value="${driver}" />
+				<property name="url" value="${url}" />
+				<property name="username" value="${username}" />
+				<property name="password" value="${password}" />
+			</dataSource>
+		</environment>
+	</environments>
+	<mappers>
+		<mapper resource="hanbang/mapper/MemberMapper.xml" />
+		<mapper resource="hanbang/mapper/QuestionMapper.xml" />
+		<mapper resource="hanbang/mapper/QuestionAnswerMapper.xml" />
+		<mapper resource="hanbang/mapper/ShareHouseMapper.xml" />
+		<mapper resource="hanbang/mapper/EssentialInfoMapper.xml" />
+		<mapper resource="hanbang/mapper/ExtraInfoMapper.xml" />
+		<mapper resource="hanbang/mapper/HouseMapper.xml" />
+	</mappers>
+</configuration>
