@@ -4,7 +4,8 @@
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="hanbang.store.mapper.PublicUseageMapper">
+<mapper namespace="hanbang.store.mapper.PublicUsageMapper">
+
 
 	<insert id="create" parameterType="PublicUsage">
 		<selectKey keyProperty="publicUsageId" resultType="Integer"
@@ -18,13 +19,25 @@
 	<select id="retriveAll" resultType="PublicUsage" parameterType="int">
 		SELECT PUBLICUSAGEID, HOUSEID, PUBLICUSAGE
 		FROM PUBLICUSAGE_TB
-		WHERE HOUSEID = #{houseId}
+		WHERE
+		HOUSEID = #{houseId}
 	</select>
 
-	<delete id="delete" parameterType="int">
-		DELETE FROM PUBLICUSAGE_TB
-		WHERE PUBLICUSAGEID = #{publicUsageId}
-	</delete>
+	<select id="retrive" resultType="PublicUsage" parameterType="int">
+		SELECT PUBLICUSAGEID, HOUSEID, PUBLICUSAGE
+		FROM PUBLICUSAGE_TB
+		WHERE
+		PUBLICUSAGEID = #{publicUsageId}
+	</select>
+
+	<update id="update">
+		Update publicUsage_tb
+		set publicUsage = #{publicUsage}
+		where houseId = (select houseId
+		from house_tb
+		where houseId = #{houseId}
+		)
+	</update>
 
 	<delete id="deleteByHouseId" parameterType="int">
 		DELETE FROM

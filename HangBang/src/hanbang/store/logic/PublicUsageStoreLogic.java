@@ -34,19 +34,19 @@ public class PublicUsageStoreLogic implements PublicUsageStore {
 		return check;
 	}
 
-//	@Override
-//	public int update(PublicUsage publicUsage) {
-//		SqlSession session = factory.openSession();
-//		int check;
-//		try {
-//			PublicUsageMapper mapper = session.getMapper(PublicUsageMapper.class);
-//			check = mapper.update(publicUsage);
-//			session.commit();
-//		} finally {
-//			session.close();
-//		}
-//		return check;
-//	}
+	@Override
+	public int update(PublicUsage publicUsage) {
+		SqlSession session = factory.openSession();
+		int check;
+		try {
+			PublicUsageMapper mapper = session.getMapper(PublicUsageMapper.class);
+			check = mapper.update(publicUsage);
+			session.commit();
+		} finally {
+			session.close();
+		}
+		return check;
+	}
 
 	@Override
 	public int deleteByHouseId(int houseId) {
@@ -88,6 +88,19 @@ public class PublicUsageStoreLogic implements PublicUsageStore {
 			session.close();
 		}
 		return list;
+	}
+
+	@Override
+	public PublicUsage retrive(int publicUseageId) {
+		SqlSession session = factory.openSession();
+		PublicUsage publicUsage;
+		try {
+			PublicUsageMapper mapper = session.getMapper(PublicUsageMapper.class);
+			publicUsage = mapper.retrive(publicUseageId);
+		}finally {
+			session.close();
+		}
+		return publicUsage;
 	}
 
 }

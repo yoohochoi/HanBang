@@ -1,12 +1,14 @@
 package hanbang.store;
 
 import java.util.List;
+import java.util.Map;
 
+import hanbang.domain.InterestShareHouse;
 import hanbang.domain.ShareHouse;
 
 public interface InterestShareHouseStore {
 
-	int create(int shareHouseId);
+	int create(InterestShareHouse interestShareHouse);
 
 	List<ShareHouse> retriveAll(String memberId);
 
@@ -14,6 +16,6 @@ public interface InterestShareHouseStore {
 
 	int deleteByMemberId(String memberId);
 
-	int deleteInterestShareHouse(String memberId, int shareHouseId);
+	int deleteInterestShareHouse(Map<String, Object> map);
 
 }

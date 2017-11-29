@@ -52,7 +52,7 @@ public class MemberController {
 		Member member = service.find(memberId);
 		model.addAttribute("memberDetail", member);
 
-		return "memeberDetail.jsp";
+		return "memberDetail.jsp";
 	}
 
 	@RequestMapping(value = "modifyMember.do", method = RequestMethod.GET)
@@ -60,7 +60,7 @@ public class MemberController {
 		Member member = service.find(memberId);
 
 		model.addAttribute("member", member);
-		return "memeberModify.jsp";
+		return "memberModify.jsp";
 	}
 
 	@RequestMapping(value = "modifyMember.do", method = RequestMethod.POST)
