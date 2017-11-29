@@ -4,7 +4,7 @@ public class Facilitie {
 
 	private int facilitiesId;
 	private int extraInfoId;
-	private String facilitie;
+	private String facilities;
 
 	public int getFacilitieId() {
 		return facilitiesId;
@@ -22,12 +22,12 @@ public class Facilitie {
 		this.extraInfoId = extraInfoId;
 	}
 
-	public String getFacilitie() {
-		return facilitie;
+	public String getFacilities() {
+		return facilities;
 	}
 
-	public void setFacilitie(String facilitie) {
-		this.facilitie = facilitie;
+	public void setFacilities(String facilities) {
+		this.facilities = facilities;
 	}
 
 }

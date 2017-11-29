@@ -2,13 +2,13 @@
 <!DOCTYPE mapper
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="hanbang.store.mappper.ProvidedGoodMapper">
+<mapper namespace="hanbang.store.mapper.ProvidedGoodMapper">
 
 	<insert id="create" parameterType="ProvidedGood">
 		<selectKey keyProperty="providedGoodId" resultType="int"
 			order="BEFORE">
 			SELECT
-			PROVIDEDGOODID_seq.nextval FROM dual
+			providedGoodId_seq.nextval FROM dual
 		</selectKey>
 		INSERT INTO
 		providedGoods_tb(providedGoodId, extraInfoId, providedGood)

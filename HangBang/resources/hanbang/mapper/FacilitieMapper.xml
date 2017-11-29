@@ -2,7 +2,7 @@
 <!DOCTYPE mapper
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="hanbang.store.mappper.FacilitieMapper">
+<mapper namespace="hanbang.store.mapper.FacilitieMapper">
 
 	<insert id="create" parameterType="Facilitie">
 		<selectKey keyProperty="facilitiesId" resultType="int"
@@ -11,34 +11,36 @@
 			facilitiesId_seq.nextval FROM dual
 		</selectKey>
 		INSERT INTO
-		facilities_tb(facilitiesId, extraInfoId, facilitie)
-		VALUES(#{facilitiesId}, #{extraInfoId}, #{facilitie})
+		facilities_tb(facilitiesId, extraInfoId, facilities)
+		VALUES(#{facilitiesId}, #{extraInfoId}, #{facilities})
 	</insert>
 
 	<update id="update" parameterType="Facilitie">
 		UPDATE facilities_tb
 		SET
-		facilitie = #{facilitie}
+		facilities = #{facilities}
 		WHERE extraInfoId = #{extraInfoId} AND
 		facilitiesId = #{facilitiesId}
 	</update>
 
 	<select id="retriveAll" parameterType="int" resultType="Facilitie">
 		SELECT
-		extraInfoId, facilitiesId, facilitie
+		extraInfoId, facilitiesId, facilities
 		FROM
 		facilities_tb
-		WHERE extraInfoId
+		WHERE
+		extraInfoId
 		= #{extraInfoId}
 	</select>
 
 	<select id="retrive" parameterType="int" resultType="Facilitie">
 		SELECT
-		extraInfoId, facilitiesId, facilitie
+		extraInfoId, facilitiesId, facilities
 		FROM
 		facilities_tb
-		WHERE facilitieId
-		= #{facilitieId}
+		WHERE
+		facilitiesId
+		= #{facilitiesId}
 	</select>
 
 	<delete id="delete" parameterType="int">

@@ -8,7 +8,7 @@ public interface PhotoStore {
 
 	int create(Photo photo);
 
-	int update(Photo photo);
+	// int update(Photo photo);
 
 	int deleteByShareHouse(int shareHouseId);
 

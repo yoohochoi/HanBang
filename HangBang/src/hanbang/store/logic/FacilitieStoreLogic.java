@@ -35,21 +35,21 @@ public class FacilitieStoreLogic implements FacilitieStore {
 		return check;
 	}
 
-	@Override
-	public int update(Facilitie facilitie) {
-		SqlSession session = factory.openSession();
-		int check = 0;
-
-		try {
-			FacilitieMapper mapper = session.getMapper(FacilitieMapper.class);
-			check = mapper.update(facilitie);
-			session.commit();
-		} finally {
-			session.close();
-		}
-
-		return check;
-	}
+	// @Override
+	// public int update(Facilitie facilitie) {
+	// SqlSession session = factory.openSession();
+	// int check = 0;
+	//
+	// try {
+	// FacilitieMapper mapper = session.getMapper(FacilitieMapper.class);
+	// check = mapper.update(facilitie);
+	// session.commit();
+	// } finally {
+	// session.close();
+	// }
+	//
+	// return check;
+	// }
 
 	@Override
 	public int delete(int facilitieId) {
@@ -105,10 +105,10 @@ public class FacilitieStoreLogic implements FacilitieStore {
 		try {
 			FacilitieMapper mapper = session.getMapper(FacilitieMapper.class);
 			facilitie = mapper.retrive(facilitieId);
-		}finally {
+		} finally {
 			session.close();
 		}
-		
+
 		return null;
 	}
 

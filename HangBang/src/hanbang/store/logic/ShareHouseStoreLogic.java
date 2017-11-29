@@ -1,15 +1,18 @@
 package hanbang.store.logic;
 
 import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
+import org.springframework.stereotype.Repository;
 
 import hanbang.domain.ShareHouse;
 import hanbang.store.ShareHouseStore;
 import hanbang.store.factory.SqlSessionFactoryProvider;
 import hanbang.store.mapper.ShareHouseMapper;
 
+@Repository
 public class ShareHouseStoreLogic implements ShareHouseStore {
 
 	private SqlSessionFactory factory;
@@ -115,13 +118,13 @@ public class ShareHouseStoreLogic implements ShareHouseStore {
 	}
 
 	@Override
-	public int report(int shareHouseId, String memberId) {
+	public int report(Map<String, Object> map) {
 		SqlSession session = factory.openSession();
 		int check = 0;
 
 		try {
 			ShareHouseMapper mapper = session.getMapper(ShareHouseMapper.class);
-			check = mapper.report(shareHouseId, memberId);
+			check = mapper.report(map);
 			session.commit();
 		} finally {
 			session.close();

@@ -18,21 +18,17 @@ public class FacilitieStoreLogicTest {
 		store = new FacilitieStoreLogic();
 	}
 
-	@Test
-	public void testCreate() {
-		Facilitie fa = new Facilitie();
-		fa.setExtraInfoId(1);
-		fa.setFacilitie("wwww");
-		store.create(fa);
+	// @Test
+	// public void testCreate() {
+	// Facilitie fa = new Facilitie();
+	// fa.setExtraInfoId(500);
+	// fa.setFacilities("www");
+	// store.create(fa);
+	//
+	// assertNotNull(fa);
+	// assertEquals("www", store.retriveAll(500).get(0).getFacilities());
+	// }
 
-		assertNotNull(fa);
-		assertEquals("www", store.retriveAll(1).get(0).getFacilitie());
-	}
-
-	@Test
-	public void testUpdate() {
-		fail("Not yet implemented");
-	}
 
 	@Test
 	public void testDelete() {
@@ -49,9 +45,11 @@ public class FacilitieStoreLogicTest {
 		fail("Not yet implemented");
 	}
 
-	@Test
-	public void testRetrive() {
-		fail("Not yet implemented");
-	}
+	// @Test
+	// public void testRetrive() {
+	// Facilitie fa = store.retrive(500);
+	// assertNotNull(fa);
+	// assertEquals("www", fa.getFacilities());
+	// }
 
 }

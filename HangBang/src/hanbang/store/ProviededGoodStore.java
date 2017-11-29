@@ -8,7 +8,7 @@ public interface ProviededGoodStore {
 
 	int create(ProvidedGood providedGood);
 
-	int update(ProvidedGood providedGood);
+	// int update(ProvidedGood providedGood);
 
 	int delete(int providedGoodId);
 

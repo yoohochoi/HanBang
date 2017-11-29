@@ -2,17 +2,23 @@ package hanbang.service.logic;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import hanbang.domain.EssentialInfo;
 import hanbang.domain.ExtraInfo;
+import hanbang.domain.Facilitie;
 import hanbang.domain.House;
+import hanbang.domain.Photo;
+import hanbang.domain.ProvidedGood;
 import hanbang.domain.Room;
 import hanbang.domain.ShareHouse;
 import hanbang.service.ShareHouseService;
 import hanbang.store.EssentialInfoStore;
 import hanbang.store.ExtraInfoStore;
+import hanbang.store.FacilitieStore;
 import hanbang.store.HouseStore;
 import hanbang.store.RoomStore;
 import hanbang.store.ShareHouseStore;
@@ -25,24 +31,27 @@ import hanbang.store.logic.ShareHouseStoreLogic;
 @Service
 public class ShareHouseServiceLogic implements ShareHouseService {
 
+	@Autowired
 	private ShareHouseStore shareHouseStore;
+	@Autowired
 	private EssentialInfoStore essentialInfoStore;
-	private ExtraInfoStore extraInfoStore;
+	@Autowired
 	private RoomStore roomStore;
+	@Autowired
 	private HouseStore houseStore;
 
-	public ShareHouseServiceLogic() {
-
-		shareHouseStore = new ShareHouseStoreLogic();
-		essentialInfoStore = new EssentialInfoStoreLogic();
-		extraInfoStore = new ExtraInfoStoreLogic();
-		roomStore = new RoomStoreLogic();
-		houseStore = new HouseStoreLogic();
-	}
+	// public ShareHouseServiceLogic() {
+	//
+	// shareHouseStore = new ShareHouseStoreLogic();
+	// essentialInfoStore = new EssentialInfoStoreLogic();
+	// extraInfoStore = new ExtraInfoStoreLogic();
+	// roomStore = new RoomStoreLogic();
+	// houseStore = new HouseStoreLogic();
+	// }
 
 	@Override
-	public boolean register(ShareHouse shareHouse, EssentialInfo essentialInfo, ExtraInfo extraInfo, List<Room> rooms,
-			int houseId, House house) {
+	public boolean register(ShareHouse shareHouse, EssentialInfo essentialInfo, List<Room> rooms, int houseId,
+			House house, List<Photo> photos) {
 		int check = 0;
 		if (houseId > 0) {
 			house = houseStore.retrive(houseId);
@@ -55,7 +64,6 @@ public class ShareHouseServiceLogic implements ShareHouseService {
 			int shareHouseId = shareHouse.getShareHouseId();
 
 			essentialInfo.setShareHouseId(shareHouseId);
-			extraInfo.setShareHouseId(shareHouseId);
 			int index = 0;
 			for (Room room : rooms) {
 				room = new Room();
@@ -65,7 +73,6 @@ public class ShareHouseServiceLogic implements ShareHouseService {
 				index++;
 			}
 			essentialInfoStore.create(essentialInfo);
-			extraInfoStore.create(extraInfo);
 			return true;
 		} else {
 			return false;
@@ -90,7 +97,6 @@ public class ShareHouseServiceLogic implements ShareHouseService {
 		ShareHouse shareHouse = new ShareHouse();
 		shareHouse = shareHouseStore.retrive(shareHouseId);
 		shareHouse.setEssentialInfo(essentialInfoStore.retrive(shareHouseId));
-		shareHouse.setExtraInfo(extraInfoStore.retrive(shareHouseId));
 		shareHouse.setRooms(roomStore.retrive(shareHouseId));
 		// shareHouse.setHouse(houseStore.retrive(shareHouseId));
 
@@ -111,14 +117,13 @@ public class ShareHouseServiceLogic implements ShareHouseService {
 	}
 
 	@Override
-	public boolean modify(ShareHouse shareHouse, EssentialInfo essentialInfo, ExtraInfo extraInfo, List<Room> rooms,
-			House house) {
+	public boolean modify(ShareHouse shareHouse, EssentialInfo essentialInfo, List<Room> rooms, House house,
+			List<Photo> photos) {
 
 		int check = 0;
 		int index = 0;
 
 		essentialInfoStore.update(essentialInfo);
-		extraInfoStore.update(extraInfo);
 		for (Room room : rooms) {
 			room = new Room();
 			room = rooms.get(index);
@@ -129,7 +134,6 @@ public class ShareHouseServiceLogic implements ShareHouseService {
 
 		shareHouse.setHouseId(house.getHouseId());
 		shareHouse.setEssentialInfo(essentialInfo);
-		shareHouse.setExtraInfo(extraInfo);
 		shareHouse.setRooms(rooms);
 
 		check = shareHouseStore.update(shareHouse);
@@ -142,11 +146,11 @@ public class ShareHouseServiceLogic implements ShareHouseService {
 	}
 
 	@Override
-	public boolean notify(int shareHouseId, String memberId) {
+	public boolean notify(Map<String, Object> map) {
 
 		int check = 0;
 
-		check = shareHouseStore.report(shareHouseId, memberId);
+		check = shareHouseStore.report(map);
 
 		if (check > 0) {
 			return true;
@@ -161,7 +165,6 @@ public class ShareHouseServiceLogic implements ShareHouseService {
 		int check = 0;
 
 		essentialInfoStore.deleteByShareHouse(shareHouseId);
-		extraInfoStore.deleteByShareHouse(shareHouseId);
 		roomStore.deleteByShareHouse(shareHouseId);
 		check = shareHouseStore.delete(shareHouseId);
 
@@ -185,7 +188,6 @@ public class ShareHouseServiceLogic implements ShareHouseService {
 			shareHouse = list.get(index);
 			int shareHouseId = shareHouse.getShareHouseId();
 			essentialInfoStore.deleteByShareHouse(shareHouseId);
-			extraInfoStore.deleteByShareHouse(shareHouseId);
 			roomStore.deleteByShareHouse(shareHouseId);
 			check += shareHouseStore.delete(shareHouseId);
 

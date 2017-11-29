@@ -1,6 +1,7 @@
 package hanbang.store;
 
 import java.util.List;
+import java.util.Map;
 
 import hanbang.domain.ShareHouse;
 
@@ -20,7 +21,7 @@ public interface ShareHouseStore {
 
 	List<ShareHouse> searchShareHouse(String searchWord);
 
-	int report(int shareHouseId, String memberId);
+	int report(Map<String, Object> map);
 
 	int deleteByMemberId(String memberId);
 

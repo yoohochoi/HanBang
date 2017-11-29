@@ -68,7 +68,12 @@
 		WHERE
 		writerId = #{writerId}
 	</delete>
-	<insert id=""></insert>
+	<insert id="report" parameterType="map">
+		INSERT INTO
+		shareHouseReport(reporterId, shareHouseId)
+		VALUES(#{reporterId},
+		#{shareHouseId})
+	</insert>
 
 
 </mapper>

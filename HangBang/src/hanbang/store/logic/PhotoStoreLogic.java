@@ -34,20 +34,20 @@ public class PhotoStoreLogic implements PhotoStore {
 		return check;
 	}
 
-	@Override
-	public int update(Photo photo) {
-		SqlSession session = factory.openSession();
-		int check = 0;
-
-		try {
-			PhotoMapper mapper = session.getMapper(PhotoMapper.class);
-			check = mapper.update(photo);
-			session.commit();
-		} finally {
-			session.close();
-		}
-		return check;
-	}
+	// @Override
+	// public int update(Photo photo) {
+	// SqlSession session = factory.openSession();
+	// int check = 0;
+	//
+	// try {
+	// PhotoMapper mapper = session.getMapper(PhotoMapper.class);
+	// check = mapper.update(photo);
+	// session.commit();
+	// } finally {
+	// session.close();
+	// }
+	// return check;
+	// }
 
 	@Override
 	public int deleteByShareHouse(int shareHouseId) {

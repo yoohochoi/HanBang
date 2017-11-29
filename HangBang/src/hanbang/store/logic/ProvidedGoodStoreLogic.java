@@ -35,21 +35,21 @@ public class ProvidedGoodStoreLogic implements ProviededGoodStore {
 
 	}
 
-	@Override
-	public int update(ProvidedGood providedGood) {
-		SqlSession session = factory.openSession();
-		int check = 0;
-
-		try {
-			ProvidedGoodMapper mapper = session.getMapper(ProvidedGoodMapper.class);
-			check = mapper.update(providedGood);
-			session.commit();
-		} finally {
-			session.close();
-		}
-		return check;
-
-	}
+	// @Override
+	// public int update(ProvidedGood providedGood) {
+	// SqlSession session = factory.openSession();
+	// int check = 0;
+	//
+	// try {
+	// ProvidedGoodMapper mapper = session.getMapper(ProvidedGoodMapper.class);
+	// check = mapper.update(providedGood);
+	// session.commit();
+	// } finally {
+	// session.close();
+	// }
+	// return check;
+	//
+	// }
 
 	@Override
 	public int delete(int providedGoodId) {

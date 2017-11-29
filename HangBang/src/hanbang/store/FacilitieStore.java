@@ -8,7 +8,7 @@ public interface FacilitieStore {
 
 	int create(Facilitie facilitie);
 
-	int update(Facilitie facilitie);
+	// int update(Facilitie facilitie);
 
 	int delete(int facilitieId);
 

@@ -1,6 +1,7 @@
 package hanbang.store.mapper;
 
 import java.util.List;
+import java.util.Map;
 
 import hanbang.domain.ShareHouse;
 
@@ -20,7 +21,7 @@ public interface ShareHouseMapper {
 
 	List<ShareHouse> searchShareHouse(String searchWord);
 
-	int report(int shareHouseId, String memberId);
+	int report(Map<String, Object> map);
 
 	int deleteByMemberId(String membserId);
 
