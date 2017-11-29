@@ -3,6 +3,7 @@ package hanbang.service.logic;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.apache.catalina.core.ApplicationContext;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -22,6 +23,7 @@ public class HouseServiceLogic implements HouseService {
 	private PublicUsageStore publicStore;
 
 	private int check;
+
 
 	@Override
 	public boolean register(House house, List<PublicUsage> publicUsages) {
@@ -70,7 +72,8 @@ public class HouseServiceLogic implements HouseService {
 	public boolean modify(House house, List<PublicUsage> publicUsages) {
 
 		List<PublicUsage> originUsages = publicStore.retriveAll(house.getHouseId());
-
+		House before = houseStore.retrive(house.getHouseId());
+		
 		int size = originUsages.size();
 
 		if (publicUsages.size() == size) {
@@ -81,11 +84,12 @@ public class HouseServiceLogic implements HouseService {
 				publicStore.update(publicUsage);
 				index++;
 			}
+			before.setPublicUsage(publicUsages);
 			check = houseStore.update(house);
 		} else if (publicUsages.size() < size) {
 			int index = 0;
 			for (PublicUsage publicUsage : originUsages) {
-				if (publicUsages.get(index).equals(null)) {
+				if (publicUsages.get(index).equals("")) {
 					publicStore.delete(publicUsage.getPublicUsageId());
 				} else {
 					publicUsage = publicUsages.get(index);
@@ -94,11 +98,12 @@ public class HouseServiceLogic implements HouseService {
 				}
 				index++;
 			}
+			before.setPublicUsage(publicUsages);
 			check = houseStore.update(house);
 		} else if (publicUsages.size() > size) {
 			int index = 0;
 			for (PublicUsage publicUsage : publicUsages) {
-				if (originUsages.get(index).equals(null)) {
+				if (originUsages.get(index).equals("")) {
 					publicUsage = new PublicUsage();
 					publicUsage = publicUsages.get(index);
 					publicUsage.setHouseId(house.getHouseId());
@@ -110,6 +115,7 @@ public class HouseServiceLogic implements HouseService {
 				}
 				index++;
 			}
+			before.setPublicUsage(publicUsages);
 			check = houseStore.update(house);
 		}
 
