@@ -2,14 +2,13 @@ package hanbang.store;
 
 import hanbang.domain.ExtraInfo;
 
-public  interface ExtraInfoStore {
+public interface ExtraInfoStore {
 
-	  int create(ExtraInfo extraInfo);
+	int create(ExtraInfo extraInfo);
 
-	  ExtraInfo retrive(int shareHouseId);
+	ExtraInfo retrive(int shareHouseId);
 
-	  int update(ExtraInfo extraInfo);
+	int update(ExtraInfo extraInfo);
 
-	  int deleteByShareHouse(int shareHouseId);
-
+	int deleteByShareHouse(int shareHouseId);
 }
