@@ -7,7 +7,9 @@ import org.springframework.context.event.ApplicationContextEvent;
 import org.springframework.stereotype.Service;
 
 import hanbang.domain.Member;
+import hanbang.service.HouseService;
 import hanbang.service.MemberService;
+import hanbang.service.ShareHouseService;
 import hanbang.store.HouseStore;
 import hanbang.store.InterestShareHouseStore;
 import hanbang.store.MemberStore;
@@ -21,9 +23,9 @@ public class MemberServiceLogic implements MemberService {
 	@Autowired
 	private MemberStore memberStore;
 	@Autowired
-	private HouseStore houseStore;
+	private HouseService HouseService;
 	@Autowired
-	private ShareHouseStore shareHouseStore;
+	private ShareHouseService ShareHouseService;
 	@Autowired
 	private ReviewStore reviewStore;
 	@Autowired
@@ -67,8 +69,9 @@ public class MemberServiceLogic implements MemberService {
 	public boolean remove(String memberId) {
 		int check = memberStore.delete(memberId);
 		if (check > 0) {
-			shareHouseStore.deleteByMemberId(memberId);
-			houseStore.deleteByMemberId(memberId);
+			//셰어하우스 서비스
+			ShareHouseService.removeByMemberId(memberId);
+			HouseService.removeByMemberId(memberId);
 			reviewStore.deleteByMemberId(memberId);
 			questionStore.deleteByMemberId(memberId);
 			interestStore.deleteByMemberId(memberId);

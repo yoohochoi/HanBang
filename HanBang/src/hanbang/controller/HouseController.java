@@ -20,12 +20,12 @@ public class HouseController {
 	@Autowired
 	private HouseService service;
 
-	@RequestMapping(value = "registHouse.do", method = RequestMethod.POST)
+	@RequestMapping(value = "houseRegister.do", method = RequestMethod.POST)
 	public String registerHouse(House house, List<PublicUsage> publicUsages, HttpSession session) {
 		house.setMemberId((String) session.getAttribute("memberId"));
 		boolean registed = service.register(house, publicUsages);
 		if (!registed) {
-			return "redirect:/registHouse.do";
+			return "redirect:/houseRegister.do";
 		} else {
 			return "redirect:/findMember.do?memberId=" + house.getMemberId();
 		}

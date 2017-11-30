@@ -4,9 +4,9 @@
 
 <c:set var="ctx" value="${pageContext.request.contextPath}"/>
 
-<c:set var="memberType" value="manager"/>
-<c:set var="memberType" value="provider"/>
-<c:set var="memberType" value="user"/>
+<c:set var="memberType" value="3"/>
+<c:set var="memberType" value="2"/>
+<c:set var="memberType" value="1"/>
 
 <a href="#header" class="skip">본문바로가기</a>
 
@@ -14,10 +14,10 @@
 	<div class="clear">
 		<h1><a href="${ctx}/index.jsp">한방</a></h1>
 		<c:choose>
-			<c:when test="${memberType eq 'manager'}">
+			<c:when test="${memberType eq '3'} ">
 				<nav class="memberMenu clear">
 					<h2 class="hide">회원 메뉴</h2>
-					<a href="${ctx}/memberList.do">회원 관리</a>
+					<a href="${ctx}/findAllMember.do">회원 관리</a>
 					<a href="${ctx}/shareHouseList.do">하우스 찾기</a>
 					<ul>
 						<li><a href="${ctx}/logout.do">로그아웃</a></li>
@@ -28,7 +28,7 @@
 					<li><a href="${ctx}/userList.do">일반 회원</a></li>
 				</ul>
 			</c:when>
-			<c:when test="${memberType eq 'provider'}">
+			<c:when test="${memberType eq '2'}">
 				<nav class="memberMenu clear">
 					<h2 class="hide">회원 메뉴</h2>
 					<a href="${ctx}/shareHouseList.do">하우스 찾기</a>
@@ -37,12 +37,12 @@
 					</ul>
 				</nav>
 				<ul class="gnb clear">
-					<li><a href="${ctx}/profile.do">내 프로필</a></li>
+					<li><a href="${ctx}/findMember.do">내 프로필</a></li>
 					<li><a href="${ctx}/myHouseList.do">마이하우스</a></li>
 					<li><a href="${ctx}/questionList.do">문의 내역</a></li>
 				</ul>
 			</c:when>
-			<c:when test="${memberType eq 'user'}">
+			<c:when test="${memberType eq '1'}">
 				<nav class="memberMenu clear">
 					<h2 class="hide">회원 메뉴</h2>
 					<a href="${ctx}/shareHouseList.do">하우스 찾기</a>
@@ -51,7 +51,7 @@
 					</ul>
 				</nav> 
 				<ul class="gnb clear">
-					<li><a href="${ctx}/profile.do">내 프로필</a></li>
+					<li><a href="${ctx}/findMember.do">내 프로필</a></li>
 					<li><a href="${ctx}/myInterestHouseList.do">관심하우스</a></li>
 					<li><a href="${ctx}/questionList.do">문의 내역</a></li>
 				</ul>
