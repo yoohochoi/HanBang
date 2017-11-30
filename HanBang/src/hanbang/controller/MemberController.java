@@ -85,24 +85,30 @@ public class MemberController {
 		HttpSession session = request.getSession();
 
 		if (member != null) {
+			System.out.println("****로그인확인중");
 			if (member.getPassword().equals(password)) {
+				System.out.println("***2");
 				session.setAttribute("memberId", memberId);
 				session.setAttribute("name", member.getName());
+				System.out.println("*****memberType: " + member.getMemberTypeId());
 				if (member.getMemberTypeId() == 1) {
-					return "redirect:/index.jsp";
+					System.out.println("***@");
+					return "redirect:/views/memberJoin.jsp";
 				} else {
 					List<House> house = houseService.findByMemberId(memberId);
 					if (house == null) {
-						return "redirect:/houseRegister.jsp";
+						return "redirect:/views/houseRegister.jsp";
 					} else {
-						return "redirect:/login.jsp";
+						return "redirect:/views/login.jsp";
 					}
 				}
 			} else {
-				return "redirect:/login.jsp";
+				System.out.println("*******login success");
+				return "redirect:/views/login.jsp";
 			}
 		} else {
-			return "redirect:/login.jsp";
+			System.out.println("******* login failure");
+			return "redirect:/views/login.jsp";
 		}
 
 	}
@@ -112,7 +118,7 @@ public class MemberController {
 		HttpSession session = request.getSession();
 		session.invalidate();
 
-		return "redirect:/index.do";
+		return "redirect:/views/index.jsp";
 	}
 
 }
