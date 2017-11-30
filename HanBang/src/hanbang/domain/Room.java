@@ -11,7 +11,7 @@ public class Room {
 	private int moveDate;
 	private int deposit;
 	private int monthlyFee;
-	private boolean availability;
+	private String availability;
 	private int leastStayDays;
 
 	public Room() {
@@ -89,11 +89,11 @@ public class Room {
 		this.monthlyFee = monthlyFee;
 	}
 
-	public boolean isAvailability() {
+	public String getAvailability() {
 		return availability;
 	}
 
-	public void setAvailability(boolean availability) {
+	public void setAvailability(String availability) {
 		this.availability = availability;
 	}
 

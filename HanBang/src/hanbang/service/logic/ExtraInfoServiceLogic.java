@@ -98,10 +98,9 @@ public class ExtraInfoServiceLogic implements ExtraInfoService {
 
 	@Override
 	public boolean deleteByShareHouse(int shareHouseId) {
-
+		ExtraInfo extraInfo = extraInfoStore.retrive(shareHouseId);
 		int check = extraInfoStore.deleteByShareHouse(shareHouseId);
 
-		ExtraInfo extraInfo = extraInfoStore.retrive(shareHouseId);
 		int extraId = extraInfo.getExtraInfoId();
 		if (check > 0) {
 			facilitieStore.deleteByExtraInfo(extraId);
