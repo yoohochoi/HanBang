@@ -34,7 +34,7 @@ public class MemberController {
 			return "memberJoin.jsp";
 		} else {
 			service.register(member);
-			return "index.jsp";
+			return "redirect:/views/login.jsp";
 		}
 
 	}
@@ -85,25 +85,26 @@ public class MemberController {
 		HttpSession session = request.getSession();
 
 		if (member != null) {
-			System.out.println("****로그인확인중");
+			// System.out.println("****로그인확인중");
 			if (member.getPassword().equals(password)) {
-				System.out.println("***2");
+				// System.out.println("***2");
 				session.setAttribute("memberId", memberId);
 				session.setAttribute("name", member.getName());
-				System.out.println("*****memberType: " + member.getMemberTypeId());
+				// System.out.println("*****memberType: " + member.getMemberTypeId());
+				// System.out.println("memberId" + memberId);
+				// System.out.println("memberName" + member.getName());
 				if (member.getMemberTypeId() == 1) {
-					System.out.println("***@");
-					return "redirect:/views/memberJoin.jsp";
+					// System.out.println("***@");
+					return "redirect:/index.jsp";
 				} else {
 					List<House> house = houseService.findByMemberId(memberId);
 					if (house == null) {
-						return "redirect:/views/houseRegister.jsp";
+						return "redirect:/views/houseCreate.jsp";
 					} else {
-						return "redirect:/views/login.jsp";
+						return "redirect:/index.jsp";
 					}
 				}
 			} else {
-				System.out.println("*******login success");
 				return "redirect:/views/login.jsp";
 			}
 		} else {
