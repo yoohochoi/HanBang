@@ -6,14 +6,15 @@
 		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
 		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.3.xsd">
 
-
+	<mvc:annotation-driven />
+	
 	<mvc:resources location="/resources/" mapping="/resources/**" />
 
 	<context:component-scan base-package="hanbang.controller" />
 	<context:component-scan base-package="hanbang.service.logic" />
 	<context:component-scan base-package="hanbang.store.logic" />
 	<context:component-scan base-package="hanbang.domain" />
-	<mvc:annotation-driven />
+
 	<bean
 		class="org.springframework.web.multipart.commons.CommonsMultipartResolver"
 		id="multipartResolver" />

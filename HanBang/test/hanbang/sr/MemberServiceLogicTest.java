@@ -13,16 +13,14 @@ import hanbang.domain.Member;
 import hanbang.service.MemberService;
 import hanbang.service.logic.MemberServiceLogic;
 
-@Service
 public class MemberServiceLogicTest {
 
-	@Autowired
 	private MemberService service;
 
-	// @Before
-	// public void setUp() {
-	// service = new MemberServiceLogic();
-	// }
+	@Before
+	public void setUp() {
+		service = new MemberServiceLogic();
+	}
 	// @Test
 	// public void testRegister() {
 	// Member member = new Member();

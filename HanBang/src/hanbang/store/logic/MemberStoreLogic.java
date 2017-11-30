@@ -5,6 +5,7 @@ import java.util.List;
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.apache.ibatis.session.SqlSessionFactoryBuilder;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import hanbang.domain.Member;
@@ -15,16 +16,9 @@ import hanbang.store.mapper.MemberMapper;
 @Repository
 public class MemberStoreLogic implements MemberStore {
 
-	private SqlSessionFactory factory;
-
-	public MemberStoreLogic() {
-		factory = SqlSessionFactoryProvider.getSqlSessionFactory();
-
-	}
-
 	@Override
 	public int create(Member member) {
-		SqlSession session = factory.openSession();
+		SqlSession session = SqlSessionFactoryProvider.getSqlSessionFactory().openSession();
 		int check;
 		try {
 			MemberMapper mapper = session.getMapper(MemberMapper.class);
@@ -40,7 +34,7 @@ public class MemberStoreLogic implements MemberStore {
 
 	@Override
 	public List<Member> retriveAll() {
-		SqlSession session = factory.openSession();
+		SqlSession session = SqlSessionFactoryProvider.getSqlSessionFactory().openSession();
 		List<Member> list = null;
 
 		try {
@@ -56,7 +50,7 @@ public class MemberStoreLogic implements MemberStore {
 
 	@Override
 	public Member retrive(String memberId) {
-		SqlSession session = factory.openSession();
+		SqlSession session = SqlSessionFactoryProvider.getSqlSessionFactory().openSession();
 		Member member;
 
 		try {
@@ -70,13 +64,13 @@ public class MemberStoreLogic implements MemberStore {
 
 	@Override
 	public int update(Member member) {
-		SqlSession session = factory.openSession();
+		SqlSession session = SqlSessionFactoryProvider.getSqlSessionFactory().openSession();
 		int check;
 		try {
 			MemberMapper mapper = session.getMapper(MemberMapper.class);
 			check = mapper.update(member);
 			session.commit();
-			
+
 		} finally {
 			session.close();
 		}
@@ -85,7 +79,7 @@ public class MemberStoreLogic implements MemberStore {
 
 	@Override
 	public int delete(String memberId) {
-		SqlSession session = factory.openSession();
+		SqlSession session = SqlSessionFactoryProvider.getSqlSessionFactory().openSession();
 		int check;
 		try {
 			MemberMapper mapper = session.getMapper(MemberMapper.class);

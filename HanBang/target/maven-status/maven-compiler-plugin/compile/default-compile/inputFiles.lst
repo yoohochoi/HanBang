@@ -9,6 +9,7 @@ C:\Users\kosta\git\Final\HanBang\src\hanbang\service\ShareHouseService.java
 C:\Users\kosta\git\Final\HanBang\src\hanbang\controller\MemberController.java
 C:\Users\kosta\git\Final\HanBang\src\hanbang\service\logic\ExtraInfoServiceLogic.java
 C:\Users\kosta\git\Final\HanBang\src\hanbang\store\logic\QuestionStoreLogic.java
+C:\Users\kosta\git\Final\HanBang\src\hanbang\service\EssentialInfoService.java
 C:\Users\kosta\git\Final\HanBang\src\hanbang\controller\HouseController.java
 C:\Users\kosta\git\Final\HanBang\src\hanbang\domain\PublicUsage.java
 C:\Users\kosta\git\Final\HanBang\src\hanbang\domain\Room.java
@@ -63,8 +64,10 @@ C:\Users\kosta\git\Final\HanBang\src\hanbang\store\factory\SqlSessionFactoryProv
 C:\Users\kosta\git\Final\HanBang\src\hanbang\store\ShareHouseStore.java
 C:\Users\kosta\git\Final\HanBang\src\hanbang\store\logic\InterestShareHouseStoreLogic.java
 C:\Users\kosta\git\Final\HanBang\src\hanbang\domain\InterestShareHouse.java
+C:\Users\kosta\git\Final\HanBang\src\hanbang\service\logic\EssentialInfoServiceLogic.java
 C:\Users\kosta\git\Final\HanBang\src\hanbang\store\logic\PublicUsageStoreLogic.java
 C:\Users\kosta\git\Final\HanBang\src\hanbang\service\QuestionService.java
+C:\Users\kosta\git\Final\HanBang\src\hanbang\controller\MapController.java
 C:\Users\kosta\git\Final\HanBang\src\hanbang\store\logic\ProvidedGoodStoreLogic.java
 C:\Users\kosta\git\Final\HanBang\src\hanbang\store\mapper\MemberMapper.java
 C:\Users\kosta\git\Final\HanBang\src\hanbang\store\logic\FacilitieStoreLogic.java
