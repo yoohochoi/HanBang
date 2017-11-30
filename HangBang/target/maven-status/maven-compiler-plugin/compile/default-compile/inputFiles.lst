@@ -2,9 +2,14 @@ C:\Users\kosta\git\HanBang\HangBang\src\hanbang\service\AnswerService.java
 C:\Users\kosta\git\HanBang\HangBang\src\hanbang\store\mapper\ProvidedGoodMapper.java
 C:\Users\kosta\git\HanBang\HangBang\src\hanbang\store\mapper\HouseMapper.java
 C:\Users\kosta\git\HanBang\HangBang\src\hanbang\domain\Question.java
+<<<<<<< HEAD
 C:\Users\kosta\git\HanBang\HangBang\src\hanbang\store\ReviewReportStore.java
+=======
+C:\Users\kosta\git\HanBang\HangBang\src\hanbang\store\logic\PublicUsageStoreLogic.java
+>>>>>>> refs/remotes/origin/suhyun
 C:\Users\kosta\git\HanBang\HangBang\src\hanbang\controller\ReviewController.java
 C:\Users\kosta\git\HanBang\HangBang\src\hanbang\store\mapper\FacilitieMapper.java
+C:\Users\kosta\git\HanBang\HangBang\src\hanbang\controller\ReviewAnswerController.java
 C:\Users\kosta\git\HanBang\HangBang\src\hanbang\service\MemberService.java
 C:\Users\kosta\git\HanBang\HangBang\src\hanbang\store\mapper\ReviewMapper.java
 C:\Users\kosta\git\HanBang\HangBang\src\hanbang\service\ShareHouseService.java
@@ -25,6 +30,12 @@ C:\Users\kosta\git\HanBang\HangBang\src\hanbang\controller\ShareHouseController.
 C:\Users\kosta\git\HanBang\HangBang\src\hanbang\domain\Photo.java
 C:\Users\kosta\git\HanBang\HangBang\src\hanbang\domain\Member.java
 C:\Users\kosta\git\HanBang\HangBang\src\hanbang\domain\ShareHouse.java
+<<<<<<< HEAD
+=======
+C:\Users\kosta\git\HanBang\HangBang\src\hanbang\service\logic\HouseServiceLogic.java
+C:\Users\kosta\git\HanBang\HangBang\src\hanbang\controller\QuestionAnswerController.java
+C:\Users\kosta\git\HanBang\HangBang\src\hanbang\store\factory\SqlSessionFactoryProvider.java
+>>>>>>> refs/remotes/origin/suhyun
 C:\Users\kosta\git\HanBang\HangBang\src\hanbang\controller\MemberController.java
 C:\Users\kosta\git\HanBang\HangBang\src\hanbang\domain\Answer.java
 C:\Users\kosta\git\HanBang\HangBang\src\hanbang\domain\Review.java

@@ -10,6 +10,7 @@ import hanbang.domain.Facilitie;
 import hanbang.store.FacilitieStore;
 import hanbang.store.factory.SqlSessionFactoryProvider;
 import hanbang.store.mapper.FacilitieMapper;
+
 @Repository
 public class FacilitieStoreLogic implements FacilitieStore {
 

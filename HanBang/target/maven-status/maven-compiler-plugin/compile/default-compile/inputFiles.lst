@@ -3,6 +3,7 @@ C:\Users\kosta\git\Final\HanBang\src\hanbang\store\mapper\PublicUsageMapper.java
 C:\Users\kosta\git\Final\HanBang\src\hanbang\service\logic\QuestionServiceLogic.java
 C:\Users\kosta\git\Final\HanBang\src\hanbang\store\mapper\EssentialInfoMapper.java
 C:\Users\kosta\git\Final\HanBang\src\hanbang\store\EssentialInfoStore.java
+C:\Users\kosta\git\Final\HanBang\src\hanbang\controller\QuestionAnswerController.java
 C:\Users\kosta\git\Final\HanBang\src\hanbang\service\logic\AnswerServiceLogic.java
 C:\Users\kosta\git\Final\HanBang\src\hanbang\store\FacilitieStore.java
 C:\Users\kosta\git\Final\HanBang\src\hanbang\service\ShareHouseService.java
@@ -10,6 +11,7 @@ C:\Users\kosta\git\Final\HanBang\src\hanbang\controller\MemberController.java
 C:\Users\kosta\git\Final\HanBang\src\hanbang\service\logic\ExtraInfoServiceLogic.java
 C:\Users\kosta\git\Final\HanBang\src\hanbang\store\logic\QuestionStoreLogic.java
 C:\Users\kosta\git\Final\HanBang\src\hanbang\service\EssentialInfoService.java
+C:\Users\kosta\git\Final\HanBang\src\hanbang\controller\ReviewAnswerController.java
 C:\Users\kosta\git\Final\HanBang\src\hanbang\controller\HouseController.java
 C:\Users\kosta\git\Final\HanBang\src\hanbang\domain\PublicUsage.java
 C:\Users\kosta\git\Final\HanBang\src\hanbang\domain\Room.java
@@ -73,7 +75,6 @@ C:\Users\kosta\git\Final\HanBang\src\hanbang\store\mapper\MemberMapper.java
 C:\Users\kosta\git\Final\HanBang\src\hanbang\store\logic\FacilitieStoreLogic.java
 C:\Users\kosta\git\Final\HanBang\src\hanbang\domain\Question.java
 C:\Users\kosta\git\Final\HanBang\src\hanbang\store\logic\MemberStoreLogic.java
-C:\Users\kosta\git\Final\HanBang\src\hanbang\store\ReviewReportStore.java
 C:\Users\kosta\git\Final\HanBang\src\hanbang\store\mapper\ReviewAnswerMapper.java
 C:\Users\kosta\git\Final\HanBang\src\hanbang\store\HouseStore.java
 C:\Users\kosta\git\Final\HanBang\src\hanbang\store\logic\ExtraInfoStoreLogic.java

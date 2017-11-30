@@ -68,7 +68,13 @@ public class QuestionServiceLogic implements QuestionService{
 		if(check == 0) {
 			return false;
 		} else {
-			return true;
+			int answerCheck = aStore.deleteByQuestionId(questionID);
+			if(answerCheck > 1) {
+				return true;
+			} else {
+				aStore.deleteByQuestionId(questionID);
+				return true;
+			}
 		}
 	}
 

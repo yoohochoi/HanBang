@@ -17,7 +17,11 @@
 <main>
 	<section>
 		<h3>후기 등록</h3>
+<<<<<<< HEAD
 		<form action="${ctx}/reviewCreate.do" method="post">
+=======
+		<form action="${ctx}/review/registReview.do" method="post">
+>>>>>>> refs/remotes/origin/suhyun
 			<div>
 				<input type="text" name="reviewTitle" placeholder="제목">
 				<textarea rows="30" cols="100"></textarea>

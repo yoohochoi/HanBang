@@ -19,30 +19,43 @@ public class QuestionController {
 	@Autowired
 	private QuestionService service;
 	
-//	private AnswerService answerService;
-	
 	@RequestMapping("/question/registQuestion.do")
 	public String registerQuestion() {
-		return "registQuestion.jsp";
+		return "redirect:/views/questionCreate.jsp";
 	}
 	
 	// 문의 등록
 	@RequestMapping(value="/question/registQuestion.do", method=RequestMethod.POST)
-	public String registerQuestion(Question question, HttpSession session) {
+	public String registerQuestion(String schedule, String phoneNumber, String content, HttpSession session) {
+		Question question = new Question();
+		question.setWriterId("sh");
+		question.setShareHouseId(1);
+		question.setSchedule(schedule);
+		question.setPhoneNumber(phoneNumber);
+		question.setQuestionContent(content);
 		boolean registed = service.register(question);
 		if(!registed) {
-			return "redirect:registQuestion.do";
+			return "redirect:/question/registQuestion.do";
 		}
-		return "redirect:questionDetail.do";
+		return "questionList.do";
 	}
 	
 	// 문의 조회
 	@RequestMapping("/question/questionList.do")
 	public String findQuestion(HttpSession session, Model model) {
-		String memberId = (String)session.getAttribute("loginedUser");
-		List<Question> list = service.findByMemberId(memberId);
-		model.addAttribute(list);
-		return "questionList.jsp";
+//		String memberId = null;
+//		if(session.getAttribute("loginedUser").equals(null)) {
+//			memberId = "sh";
+//		} else {
+//			memberId = (String)session.getAttribute("loginedUser");
+//		}
+//		List<Question> questionList = service.findByMemberId(memberId);
+//		model.addAttribute(questionList);
+		int memberType = 1;
+		List<Question> questionList = service.findByMemberId("sh");
+		model.addAttribute(questionList);
+		model.addAttribute(memberType);
+		return "/views/questionList.jsp";
 	}
 	
 	// 문의 상세 조회

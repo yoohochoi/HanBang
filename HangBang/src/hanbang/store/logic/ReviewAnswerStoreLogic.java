@@ -35,19 +35,6 @@ public class ReviewAnswerStoreLogic implements ReviewAnswerStore{
 	}
 
 	@Override
-	public List<Answer> retrieve(int reviewId) {
-		SqlSession session = factory.openSession();
-		List<Answer> list = null;
-		try {
-			ReviewAnswerMapper mapper = session.getMapper(ReviewAnswerMapper.class);
-			list = mapper.retrieve(reviewId);
-		} finally {
-			session.close();
-		}
-		return list;
-	}
-
-	@Override
 	public int update(Answer answer) {
 		SqlSession session = factory.openSession();
 		int check = 0;
@@ -101,6 +88,32 @@ public class ReviewAnswerStoreLogic implements ReviewAnswerStore{
 			session.close();
 		}
 		return check;
+	}
+	
+	@Override
+	public List<Answer> retrieveAll(int reviewId) {
+		SqlSession session = factory.openSession();
+		List<Answer> list = null;
+		try {
+			ReviewAnswerMapper mapper = session.getMapper(ReviewAnswerMapper.class);
+			list = mapper.retrieveAll(reviewId);
+		} finally {
+			session.close();
+		}
+		return list;
+	}
+
+	@Override
+	public Answer retrieveByAnswerId(int answerId) {
+		SqlSession session = factory.openSession();
+		Answer answer = null;
+		try {
+			ReviewAnswerMapper mapper = session.getMapper(ReviewAnswerMapper.class);
+			answer = mapper.retrieveByAnswerId(answerId);
+		} finally {
+			session.close();
+		}
+		return answer;
 	}
 
 }
