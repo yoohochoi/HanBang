@@ -5,7 +5,7 @@
 <html lang="ko">
 
 <head>
-<meta charset=utf-8">
+<meta charset="utf-8">
 <title>한방</title>
 <%@ include file="/views/layout/common.jsp" %>
 </head>

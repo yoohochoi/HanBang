@@ -5,7 +5,7 @@
 <html lang="ko">
 
 <head>
-<meta charset=utf-8">
+<meta charset="utf-8">
 <title>한방</title>
 <%@ include file="/views/layout/common.jsp" %>
 </head>
@@ -20,7 +20,8 @@
 		<form action="${ctx}/questionCreate.do" method="post">
 			<div>
 				<h4>${shareHouseTitle}</h4>
-				<label>방문 가능 날짜<input type="date" name="visitDate"></label>
+				<label>방문 가능 날짜<input type="text" id="datepicker" name="visitDate"></label>
+				<img class="ui-datepicker-trigger" src="../resources/images/buico/ico_calendar.gif" alt="Select date" title="Select date">
 				<input type="tel" name="phoneNumber" placeholder="연락처">
 				<textarea rows="30" cols="100"></textarea>
 			</div>

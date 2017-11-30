@@ -2,12 +2,14 @@ package hanbang.store.logic;
 
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
+import org.springframework.stereotype.Repository;
 
 import hanbang.domain.ExtraInfo;
 import hanbang.store.ExtraInfoStore;
 import hanbang.store.factory.SqlSessionFactoryProvider;
 import hanbang.store.mapper.ExtraInfoMapper;
 
+@Repository
 public class ExtraInfoStoreLogic implements ExtraInfoStore {
 
 	private SqlSessionFactory factory;

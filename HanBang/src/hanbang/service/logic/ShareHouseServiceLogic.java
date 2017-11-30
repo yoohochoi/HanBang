@@ -34,8 +34,6 @@ public class ShareHouseServiceLogic implements ShareHouseService {
 	@Autowired
 	private ShareHouseStore shareHouseStore;
 	@Autowired
-	private EssentialInfoStore essentialInfoStore;
-	@Autowired
 	private RoomStore roomStore;
 	@Autowired
 	private HouseStore houseStore;
@@ -50,8 +48,7 @@ public class ShareHouseServiceLogic implements ShareHouseService {
 	// }
 
 	@Override
-	public boolean register(ShareHouse shareHouse, EssentialInfo essentialInfo, List<Room> rooms, int houseId,
-			House house, List<Photo> photos) {
+	public boolean register(ShareHouse shareHouse, List<Room> rooms, int houseId, House house, List<Photo> photos) {
 		int check = 0;
 		if (houseId > 0) {
 			house = houseStore.retrive(houseId);
@@ -63,7 +60,6 @@ public class ShareHouseServiceLogic implements ShareHouseService {
 		if (check > 0) {
 			int shareHouseId = shareHouse.getShareHouseId();
 
-			essentialInfo.setShareHouseId(shareHouseId);
 			int index = 0;
 			for (Room room : rooms) {
 				room = new Room();
@@ -72,7 +68,6 @@ public class ShareHouseServiceLogic implements ShareHouseService {
 				roomStore.create(room);
 				index++;
 			}
-			essentialInfoStore.create(essentialInfo);
 			return true;
 		} else {
 			return false;
@@ -96,7 +91,6 @@ public class ShareHouseServiceLogic implements ShareHouseService {
 
 		ShareHouse shareHouse = new ShareHouse();
 		shareHouse = shareHouseStore.retrive(shareHouseId);
-		shareHouse.setEssentialInfo(essentialInfoStore.retrive(shareHouseId));
 		shareHouse.setRooms(roomStore.retrive(shareHouseId));
 		// shareHouse.setHouse(houseStore.retrive(shareHouseId));
 
@@ -117,13 +111,11 @@ public class ShareHouseServiceLogic implements ShareHouseService {
 	}
 
 	@Override
-	public boolean modify(ShareHouse shareHouse, EssentialInfo essentialInfo, List<Room> rooms, House house,
-			List<Photo> photos) {
+	public boolean modify(ShareHouse shareHouse, List<Room> rooms, House house, List<Photo> photos) {
 
 		int check = 0;
 		int index = 0;
 
-		essentialInfoStore.update(essentialInfo);
 		for (Room room : rooms) {
 			room = new Room();
 			room = rooms.get(index);
@@ -133,7 +125,6 @@ public class ShareHouseServiceLogic implements ShareHouseService {
 		houseStore.update(house);
 
 		shareHouse.setHouseId(house.getHouseId());
-		shareHouse.setEssentialInfo(essentialInfo);
 		shareHouse.setRooms(rooms);
 
 		check = shareHouseStore.update(shareHouse);
@@ -164,7 +155,6 @@ public class ShareHouseServiceLogic implements ShareHouseService {
 
 		int check = 0;
 
-		essentialInfoStore.deleteByShareHouse(shareHouseId);
 		roomStore.deleteByShareHouse(shareHouseId);
 		check = shareHouseStore.delete(shareHouseId);
 
@@ -187,7 +177,6 @@ public class ShareHouseServiceLogic implements ShareHouseService {
 
 			shareHouse = list.get(index);
 			int shareHouseId = shareHouse.getShareHouseId();
-			essentialInfoStore.deleteByShareHouse(shareHouseId);
 			roomStore.deleteByShareHouse(shareHouseId);
 			check += shareHouseStore.delete(shareHouseId);
 
