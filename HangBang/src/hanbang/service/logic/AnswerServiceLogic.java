@@ -83,7 +83,7 @@ public class AnswerServiceLogic implements AnswerService{
 
 	@Override
 	public List<Answer> findReview(int reviewId) {
-		return rStore.retrieve(reviewId);
+		return rStore.retrieveAll(reviewId);
 	}
 
 	@Override
@@ -124,6 +124,16 @@ public class AnswerServiceLogic implements AnswerService{
 		} else {
 			return true;
 		}
+	}
+
+	@Override
+	public Answer findQuestionAnswerById(int answerId) {
+		return qStore.retrieveByAnswerId(answerId);
+	}
+
+	@Override
+	public Answer findReviewAnswerById(int answerId) {
+		return rStore.retrieveByAnswerId(answerId);
 	}
 
 }

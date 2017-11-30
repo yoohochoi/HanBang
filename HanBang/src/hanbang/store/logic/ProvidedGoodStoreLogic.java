@@ -10,6 +10,10 @@ import hanbang.domain.ProvidedGood;
 import hanbang.store.ProviededGoodStore;
 import hanbang.store.factory.SqlSessionFactoryProvider;
 import hanbang.store.mapper.ProvidedGoodMapper;
+<<<<<<< HEAD
+=======
+
+>>>>>>> refs/remotes/origin/suhyun
 @Repository
 public class ProvidedGoodStoreLogic implements ProviededGoodStore {
 

@@ -19,8 +19,8 @@
 		<selectKey keyProperty="reviewId" resultType="Integer" order="BEFORE">
 			SELECT reviewId_seq.nextval FROM dual
 		</selectKey>
-		INSERT INTO review_tb(reviewId, writerId, shareHouseId, reviewDate, title, reviewContent)
-		VALUES(#{reviewId}, #{writerId}, #{shareHouseId}, sysdate, #{title}, #{content})
+		INSERT INTO review_tb(reviewId, writerId, shareHouseId, reviewDate, title, photo, reviewContent)
+		VALUES(#{reviewId}, #{writerId}, #{shareHouseId}, sysdate, #{title}, #{photo, jdbcType= VARCHAR}, #{content})
 	</insert>
 	
 	<select id="retriveAll" parameterType="Integer" resultMap="reviewMap">

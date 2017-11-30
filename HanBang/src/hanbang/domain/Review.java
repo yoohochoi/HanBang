@@ -3,6 +3,8 @@ package hanbang.domain;
 import java.io.File;
 import java.util.List;
 
+import org.springframework.web.multipart.MultipartFile;
+
 public class Review {
 	
 	private int reviewId;
@@ -10,7 +12,7 @@ public class Review {
 	private String date;
 	private int shareHouseId;
 	private String title;
-	private File photo;
+	private String photo;
 	private String content;
 	private List<Answer> answers;
 	
@@ -59,11 +61,11 @@ public class Review {
 		this.title = title;
 	}
 
-	public File getPhoto() {
+	public String getPhoto() {
 		return photo;
 	}
 
-	public void setPhoto(File photo) {
+	public void setPhoto(String photo) {
 		this.photo = photo;
 	}
 
