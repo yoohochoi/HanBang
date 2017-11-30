@@ -5,59 +5,61 @@
 
 <mapper namespace="hanbang.store.mapper.HouseMapper">
 
+	<resultMap type="House" id="HouseMap">
+	<collection property="publicUsage" column = "houseId"
+	select = "hanbang.store.mapper.PublicUsageMapper.retriveAll"
+	javaType="ArrayList" jdbcType="NUMERIC"></collection>
+	</resultMap>
+
 	<insert id="create" parameterType="House">
-		<selectKey keyProperty="houseId" resultType="int" order="BEFORE">
-			SELECT HOUSEID_seq.nextval FROM dual
+		<selectKey keyProperty="houseId" resultType="Integer" order="BEFORE">
+			SELECT houseId_seq.nextval FROM dual
 		</selectKey>
-		INSERT INTO HOUSE_TB(
-		HOUSEID , PHOTO , ADDRESS, WHOLEAREA,
-		PUBLICUSAGE, BATHROOMS, ROOMS)
-		VALUES (#{HOUSEID} , #{PHOTO} ,
-		#{ADDRESS}, #{WHOLEAREA},
-		#{PUBLICUSAGE},
-		#{BATHROOMS}, #{ROOMS})
+		INSERT INTO HOUSE_TB(houseId, address, wholeArea, bathrooms, rooms, memberId)
+		VALUES (#{houseId}, #{address}, #{wholeArea}, #{bathrooms}, #{rooms}, #{memberId})
 	</insert>
 
 	<select id="retriveByMemberId" parameterType="String"
-		resultType="House">
-		SELECT ADDRESS, WHOLEAREA, PUBLICUSAGE, BATHROOMS, ROOMS
+		resultMap="HouseMap">
+		SELECT ADDRESS, WHOLEAREA, BATHROOMS, ROOMS
 		FROM HOUSE_TB
+		WHERE MEMBERID = #{memberId}
+	</select>
+	
+	<select id="retriveMyHouse" parameterType="int"
+		resultMap="HouseMap">
+		SELECT ADDRESS, WHOLEAREA, BATHROOMS, ROOMS
+		FROM HOUSE_TB
+		WHERE houseId = #{houseId}
 	</select>
 
-	<select id="retrive" parameterType="int" resultType="House">
+	<select id="retrive" parameterType="int" resultMap="HouseMap">
 		SELECT
-		PHOTO, ADDRESS, WHOLEAREA, PUBLICUSAGE, BATHROOMS, ROOMS
+		HOUSEID, ADDRESS, WHOLEAREA, BATHROOMS, ROOMS
 		FROM HOUSE_TB
 		WHERE HOUSEID = (SELECT HOUSEID
 		FROM sharehouse_tb
 		WHERE
-		house_tb.houseid = #{HOUSEID}
+		houseId = #{houseId}
 		)
 	</select>
 
 	<update id="update" parameterType="House">
-		UPDATE
-		HOUSE_TB
-		SET ADDRESS,
-		WHOLEAREA, PUBLICUSAGE, BATHROOMS, ROOMS
-		WHERE
-		HOUSEID = #{HOUSEID}
+		UPDATE HOUSE_TB
+		SET ADDRESS = #{address}, WHOLEAREA = #{wholeArea}, BATHROOMS = #{bathrooms}, ROOMS= #{rooms}
+		WHERE HOUSEID = #{houseId}
 	</update>
 
 	<delete id="delete" parameterType="int">
 		DELETE FROM
 		HOUSE_TB
-		WHERE
-		HOUSEID = #{HOUSEID}
+		WHERE HOUSEID = #{houseId}
 	</delete>
 
 	<delete id="deleteByMemberId" parameterType="String">
 		DELETE FROM
 		HOUSE_TB
-		WHERE MEMBERID =(SELECT MEMBERID
-		FROM MEMBER_TB
-		WHERE HOUSE_TB.MEMBERID
-		= #{MEMBERID})
+		WHERE MEMBERID = #{memberId}
 	</delete>
 
 

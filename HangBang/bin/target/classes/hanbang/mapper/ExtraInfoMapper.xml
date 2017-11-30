@@ -1,1 +1,46 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="hanbang.store.mapper.ExtraInfoMapper">
+
+	<insert id="create" parameterType="ExtraInfoMap">
+		<selectKey keyProperty="extraInfoId" resultType="int" order="BEFORE">
+			SELECT EXTRAINFOID_seq.nextval FROM dual
+		</selectKey>
+		INSERT INTO
+		extraInfo_tb(extraInfoId, shareHouseId, pet, smoke,
+		heatingSystem)
+		VALUES({#extraInfoId}, #{shareHouseId}, #{pet},
+		#{smoke},#{heatingSystem})
+	</insert>
+
+	<update id="update" parameterType="ExtraInfoMap">
+		UPDATE extraInfo_tb
+		SET
+		pet =
+		#{pet}, smoke = #{smoke}, facilities = #{facilities},
+		providedGoods =
+		#{providedGoods},
+		heatingSystem = #{heatingSystem}
+		WHERE shareHouseId =
+		#{shareHouseId}
+	</update>
+
+	<select id="retrive" parameterType="int" resultType="ExtraInfoMap">
+		SELECT
+		extraInfoId, shareHouseId, pet, smoke, facilities,
+		providedGoods
+		FROM
+		extraInfo_tb
+		WHERE shareHouseId = #{shareHouseId}
+	</select>
+
+	<delete id="deleteByShareHouse" parameterType="int">
+		DELETE FROM
+		extraInfo_tb
+		WHERE shareHouseId = #{shareHouseId}
+	</delete>
+
+
+</mapper>

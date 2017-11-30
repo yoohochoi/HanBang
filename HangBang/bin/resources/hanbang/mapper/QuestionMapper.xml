@@ -12,7 +12,7 @@
 	</sql>
 
 	<insert id="create" parameterType="Question">
-	<selectKey keyProperty="questionId" resultType="String" order="BEFORE">
+	<selectKey keyProperty="questionId" resultType="Integer" order="BEFORE">
 		SELECT QUESTIONID_seq.nextval FROM dual
 	</selectKey>
 		INSERT INTO question_tb(questionId, writerId, shareHouseId, questionDate, phoneNumber, schedule, questionContent)

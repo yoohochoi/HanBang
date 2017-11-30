@@ -4,6 +4,10 @@
 	<groupId>HangBang</groupId>
 	<artifactId>HangBang</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
+	<properties>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+	</properties>
 	<packaging>war</packaging>
 	<dependencies>
 
@@ -73,11 +77,35 @@
 			<scope>test</scope>
 		</dependency>
 
+		<dependency>
+			<groupId>org.hibernate</groupId>
+			<artifactId>hibernate-annotations</artifactId>
+			<version>3.5.6-Final</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.hibernate</groupId>
+			<artifactId>hibernate-validator</artifactId>
+			<version>5.1.3.Final</version>
+		</dependency>
+
 
 	</dependencies>
 	<build>
 		<sourceDirectory>src</sourceDirectory>
 		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-surefire-plugin</artifactId>
+				<version>2.16</version>
+				<configuration>
+					<junitArtifactName>junit:junit</junitArtifactName>
+					<excludes>
+						<exclude>**/*_Roo_*</exclude>
+					</excludes>
+				</configuration>
+			</plugin>
+
 			<plugin>
 				<artifactId>maven-compiler-plugin</artifactId>
 				<version>3.6.1</version>

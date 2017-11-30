@@ -39,4 +39,5 @@
 		WHERE shareHouseId = #{shareHouseId}
 	</delete>
 
+
 </mapper>
