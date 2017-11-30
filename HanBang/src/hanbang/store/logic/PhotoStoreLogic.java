@@ -10,10 +10,7 @@ import hanbang.domain.Photo;
 import hanbang.store.PhotoStore;
 import hanbang.store.factory.SqlSessionFactoryProvider;
 import hanbang.store.mapper.PhotoMapper;
-<<<<<<< HEAD
-=======
 
->>>>>>> refs/remotes/origin/suhyun
 @Repository
 public class PhotoStoreLogic implements PhotoStore {
 

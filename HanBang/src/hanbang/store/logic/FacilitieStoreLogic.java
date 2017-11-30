@@ -10,10 +10,7 @@ import hanbang.domain.Facilitie;
 import hanbang.store.FacilitieStore;
 import hanbang.store.factory.SqlSessionFactoryProvider;
 import hanbang.store.mapper.FacilitieMapper;
-<<<<<<< HEAD
-=======
 
->>>>>>> refs/remotes/origin/suhyun
 @Repository
 public class FacilitieStoreLogic implements FacilitieStore {
 

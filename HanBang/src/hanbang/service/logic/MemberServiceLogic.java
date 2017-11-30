@@ -2,7 +2,6 @@ package hanbang.service.logic;
 
 import java.util.List;
 
-import org.apache.catalina.core.ApplicationContext;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.event.ApplicationContextEvent;
 import org.springframework.stereotype.Service;
@@ -31,8 +30,7 @@ public class MemberServiceLogic implements MemberService {
 	private QuestionStore questionStore;
 	@Autowired
 	private InterestShareHouseStore interestStore;
-	
-	
+
 	@Override
 	public boolean register(Member member) {
 		int check = memberStore.create(member);
