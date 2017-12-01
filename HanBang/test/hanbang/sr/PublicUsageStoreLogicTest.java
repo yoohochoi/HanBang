@@ -44,7 +44,6 @@ public class PublicUsageStoreLogicTest {
 	// List<PublicUsage> list =store.retriveAll(1);
 	// assertEquals(2, list.size());
 	// }
-	//
 	// @Test
 	// public void testUpdate() {
 	//
@@ -52,7 +51,6 @@ public class PublicUsageStoreLogicTest {
 	//
 	// publicUsage.setPublicUsage("test입니다.");
 	// store.update(publicUsage);
-
 	// List<PublicUsage> list =store.retriveAll(30);
 	// int index = 0;
 	// for(PublicUsage pu : list) {

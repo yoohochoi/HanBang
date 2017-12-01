@@ -2,7 +2,6 @@ package hanbang.controller;
 
 import java.util.List;
 
-import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
@@ -100,7 +99,7 @@ public class MemberController {
 				session.setAttribute("memberId", memberId);
 				session.setAttribute("name", member.getName());
 				session.setAttribute("memberType", member.getMemberTypeId());
-				
+
 				System.out.println(member.getMemberTypeId());
 				// System.out.println("memberId" + memberId);
 				// System.out.println("memberName" + member.getName());
