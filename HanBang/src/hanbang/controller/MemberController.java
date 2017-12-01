@@ -99,6 +99,9 @@ public class MemberController {
 				// System.out.println("***2");
 				session.setAttribute("memberId", memberId);
 				session.setAttribute("name", member.getName());
+				session.setAttribute("memberType", member.getMemberTypeId());
+				
+				System.out.println(member.getMemberTypeId());
 				// System.out.println("memberId" + memberId);
 				// System.out.println("memberName" + member.getName());
 				if (member.getMemberTypeId() == 1) {

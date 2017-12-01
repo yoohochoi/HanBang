@@ -31,15 +31,15 @@
 			<div>
 				<h4>	보유 하우스</h4>
 				<ul>
-					<c:forEach var="house" items="${houses}" end="">
+					<c:forEach var="house" items="${houses}">
 						<li>
-							<p>${house.houseId}하우스</p>
-							<a href="${ctx}/houseModify.do">수정</a>
-							<button type="button" name="houseDeleteBtn">삭제</button>
+							<p>${name } 님의 ${house.houseName}하우스</p>
+							<a href="${ctx}/houseModify.do?=${house.houseId }" >수정</a>
+							<a href="${ctx}/houseDelete.do?=${house.houseId }" >삭제</a>
 						</li>
 					</c:forEach>
 				</ul>
-				<a href="${ctx}/houseRegister.jsp">하우스 등록 하기</a>
+				<a href="${ctx}/views/houseCreate.jsp">하우스 등록 하기</a>
 			</div>
 			<a href="${ctx }/removeMember.do">회원탈퇴</a>
 			<input type="submit" name="memberModifyBtn" value="수정하기">

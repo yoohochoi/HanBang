@@ -1,19 +1,27 @@
 package hanbang.domain;
 
-import java.util.List;
 
 public class House {
 	
 	private int houseId;
+	private String houseName;
 	private String memberId;
 	private String address;
 	private int wholeArea;
-	private List<PublicUsage> publicUsage;
 	private int bathrooms;
 	private int rooms;
 	
 	public House() {
 	}
+	
+	public String getHouseName() {
+		return houseName;
+	}
+
+	public void setHouseName(String houseName) {
+		this.houseName = houseName;
+	}
+
 
 	public int getHouseId() {
 		return houseId;
@@ -45,15 +53,6 @@ public class House {
 
 	public void setWholeArea(int wholeArea) {
 		this.wholeArea = wholeArea;
-	}
-
-
-	public List<PublicUsage> getPublicUsage() {
-		return publicUsage;
-	}
-
-	public void setPublicUsage(List<PublicUsage> publicUsage) {
-		this.publicUsage = publicUsage;
 	}
 
 	public int getBathrooms() {
