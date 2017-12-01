@@ -37,7 +37,7 @@ public class HouseController {
 		House house = service.find(houseId);
 
 		if (house.getMemberId().equals(memberId)) {
-			model.addAttribute(house);
+			model.addAttribute("house", house);
 			return "houseModify.jsp";
 		} else {
 			return "redirect:/houseDetail.do?houseId=" + houseId;

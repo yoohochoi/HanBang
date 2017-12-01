@@ -16,7 +16,7 @@
 
 <main>
 	<section>
-		<form action="${ctx}/shareHousefList.do" method="get">
+		<form action="${ctx}/shareHouseList.do" method="get">
 			<input type="search" name="searchShareHouse" placeholder="search">
 			<input type="submit" value="검색하기">
 		</form>
@@ -27,22 +27,17 @@
 			</a>
 		</div>
 		<div>
-			<h3>[${shareHouseEA}]개의 셰어하우스</h3>
+			<h3>[1]개의 셰어하우스</h3>
 			<ul>
-				<c:forEach var="shareHouse" items="${shareHouseList}" end="">
+				<c:forEach var="shareHouse" items="${list.shareHouse}">
 				<li>
 					<a href="${ctx}/shareHouseDetail.do">
 						<div>
-							<h4>${shareHouse.shareHouseTitle}</h4>
-							<p>${shareHouse.shareHouseGender}</p>
-							<div><img src="${ctx}/${shareHouse.shareHouseImage}" alt="셰어하우스"></div>
+							<h4>${shareHouse.title}</h4>
+							<p>${shareHouse.shareHouseId}</p>
+							<div><img src="${ctx}/${shareHouse.photo}" alt="셰어하우스"></div>
 						</div>
 						<div>
-							<p>${shareHouse.shareHouseAddress}</p>
-							<span>${shareHouse.shareHouseType}</span>
-							<span>${shareHouse.shareHouseRoomEA}</span>
-							<span>${shareHouse.shareHouseToiletEA}</span>
-							<p>${shareHouse.shareHouseDepositMonthlyRent}</p>
 						</div>
 					</a>
 				</li>

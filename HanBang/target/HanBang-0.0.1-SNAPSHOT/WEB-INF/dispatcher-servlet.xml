@@ -11,8 +11,8 @@
 	<mvc:resources location="/resources/" mapping="/resources/**" />
 
 	<context:component-scan base-package="hanbang.controller" />
-	<context:component-scan base-package="hanbang.service.logic" />
-	<context:component-scan base-package="hanbang.store.logic" />
+	<context:component-scan base-package="hanbang.service" />
+	<context:component-scan base-package="hanbang.store" />
 	<context:component-scan base-package="hanbang.domain" />
 
 	<bean
