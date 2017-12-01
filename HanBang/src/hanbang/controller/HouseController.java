@@ -1,6 +1,5 @@
 package hanbang.controller;
 
-import java.util.List;
 
 import javax.servlet.http.HttpSession;
 
@@ -11,7 +10,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import hanbang.domain.House;
-import hanbang.domain.PublicUsage;
 import hanbang.service.HouseService;
 
 @Controller
@@ -20,14 +18,19 @@ public class HouseController {
 	@Autowired
 	private HouseService service;
 
-	@RequestMapping(value = "registHouse.do", method = RequestMethod.POST)
-	public String registerHouse(House house, List<PublicUsage> publicUsages, HttpSession session) {
-		house.setMemberId((String) session.getAttribute("memberId"));
-		boolean registed = service.register(house, publicUsages);
+	@RequestMapping(value = "houseRegister.do", method = RequestMethod.POST)
+	public String registerHouse(House house, Model model, HttpSession session ) {
+		
+		String memberId = (String) session.getAttribute("memberId");
+		house.setMemberId(memberId);
+		
+		boolean registed = service.register(house);
 		if (!registed) {
-			return "redirect:/registHouse.do";
+			
+			return "redirect:/houseCreate.jsp";
 		} else {
-			return "redirect:/findMember.do?memberId=" + house.getMemberId();
+			model.addAttribute("house", house);
+			return "redirect:/findMember.do?memberId=" + memberId;
 		}
 	}
 
@@ -37,17 +40,17 @@ public class HouseController {
 		House house = service.find(houseId);
 
 		if (house.getMemberId().equals(memberId)) {
-			model.addAttribute("house", house);
-			return "houseModify.jsp";
+			model.addAttribute("house" ,house);
+			return "houseModify.do";
 		} else {
-			return "redirect:/houseDetail.do?houseId=" + houseId;
+			return "redirect:/findMember.do?memberId=" + memberId;
 		}
 
 	}
 
 	@RequestMapping(value = "houseModify.do", method = RequestMethod.POST)
-	public String modifyHouse(House house, List<PublicUsage> publicUsages, Model model) {
-		service.modify(house, publicUsages);
+	public String modifyHouse(House house,  Model model) {
+		service.modify(house);
 		model.addAttribute(house);
 		return "redirect:/houseDetail.do?houseId=" + house.getHouseId();
 	}

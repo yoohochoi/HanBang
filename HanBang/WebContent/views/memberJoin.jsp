@@ -12,8 +12,8 @@
 
 <body>
 
-	<c:set var="memberType" value="user" />
-	<c:set var="memberType" value="provider" />
+	<c:set var="memberType" value="1" />
+	<c:set var="memberType" value="2" />
 
 	<a href="#header" class="skip">본문바로가기</a>
 
@@ -34,17 +34,16 @@
 		<h3>회원 가입</h3>
 		<p>한방에 오신 것을 환영합니다.</p>
 		<form action="${ctx}/memberJoin.do" method="post">
-			<label><input type="radio" name="memberType" value="user">일반
-				회원</label> <label><input type="radio" name="memberType"
-				value="provider">사업자</label>
+			<label><input type="radio" name="memberTypeId" value="1">일반
+				회원</label> <label><input type="radio" name="memberTypeId" value="2">사업자</label>
 			<c:if test="${memberType eq '1'}">
 				<div>
-					<input type="text" name="memberId" placeholder="아이디"> <input
+					<input type="text" name="id" placeholder="아이디"> <input
 						type="password" name="password" placeholder="비밀번호"> <input
 						type="password" name="passwordCheck" placeholder="비밀번호 확인">
 				</div>
 				<div>
-					<input type="text" name="memberName" placeholder="이름"> <input
+					<input type="text" name="name" placeholder="이름"> <input
 						type="tel" name="phoneNumber" placeholder="연락처"> <input
 						type="email" name="email" placeholder="이메일">
 				</div>
@@ -52,12 +51,12 @@
 			</c:if>
 			<c:if test="${memberType eq '2'}">
 				<div>
-					<input type="text" name="memberId" placeholder="아이디"> <input
+					<input type="text" name="id" placeholder="아이디"> <input
 						type="password" name="password" placeholder="비밀번호"> <input
 						type="password" name="passwordCheck" placeholder="비밀번호 확인">
 				</div>
 				<div>
-					<input type="text" name="memberName" placeholder="이름"> <input
+					<input type="text" name="name" placeholder="이름"> <input
 						type="tel" name="phoneNumber" placeholder="연락처"> <input
 						type="email" name="email" placeholder="이메일">
 				</div>

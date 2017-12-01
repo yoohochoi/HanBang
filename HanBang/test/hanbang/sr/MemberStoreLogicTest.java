@@ -43,17 +43,17 @@ public class MemberStoreLogicTest {
 	public void testRetrive() {
 		Member member = store.retrive("sora525");
 		System.out.println(member.getId());
-//		assertEquals("ss", member.getName());
+		assertEquals("test1234", member.getPhoneNumber());
 		
 	}
 
-	@Test
-	public void testUpdate() {
-		Member member = store.retrive("sora525");
-		System.out.println(member.getId());
-		member.setPhoneNumber("test1234");
-		store.update(member);
-	}
+//	@Test
+//	public void testUpdate() {
+//		Member member = store.retrive("sora525");
+//		System.out.println(member.getId());
+//		member.setPhoneNumber("test1234");
+//		store.update(member);
+//	}
 
 //	@Test
 //	public void testDelete() {

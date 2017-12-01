@@ -30,52 +30,61 @@ public class MemberController {
 	@RequestMapping(value = "memberJoin.do", method = RequestMethod.POST)
 	public String registerMember(@Valid Member member, BindingResult bindingResult, HttpServletRequest request) {
 
-		if (bindingResult.hasErrors()) {
-			return "memberJoin.jsp";
-		} else {
-			service.register(member);
-			return "redirect:/views/login.jsp";
-		}
+		// if (bindingResult.hasErrors()) {
+		// return "memberJoin.jsp";
+		// } else {
+		service.register(member);
+		return "redirect:/views/login.jsp";
+		// }
 
 	}
 
 	@RequestMapping(value = "findAllMember.do", method = RequestMethod.GET)
 	public String findAllMember(Model model) {
 		List<Member> members = service.findAll();
+
 		model.addAttribute("members", members);
 
 		return "memberList.jsp";
 	}
 
 	@RequestMapping(value = "findMember.do", method = RequestMethod.GET)
-	public String findByMemberId(String memberId, Model model) {
+	public String findByMemberId(HttpSession session, Model model) {
+		String memberId = (String) session.getAttribute("memberId");
 		Member member = service.find(memberId);
-		model.addAttribute("memberDetail", member);
+		List<House> houses = houseService.findByMemberId(memberId);
 
-		return "memberDetail.jsp";
+		model.addAttribute("member", member);
+		model.addAttribute("houses", houses);
+
+		return "/views/memberDetail.jsp";
 	}
 
 	@RequestMapping(value = "modifyMember.do", method = RequestMethod.GET)
-	public String modifyMember(String memberId, Model model) {
+	public String modifyMember(HttpSession session, Model model) {
+		String memberId = (String) session.getAttribute("memberId");
 		Member member = service.find(memberId);
 
 		model.addAttribute("member", member);
-		return "memberModify.jsp";
+		return "/views/memberModify.jsp";
 	}
 
 	@RequestMapping(value = "modifyMember.do", method = RequestMethod.POST)
 	public String modifyMember(Member member, Model model) {
+
 		service.modify(member);
 		return "redirect:/findMember.do?memberId=" + member.getId();
+
 	}
 
 	@RequestMapping(value = "removeMember.do")
-	public String removeMember(String memberId) {
+	public String removeMember(HttpSession session) {
+		String memberId = (String) session.getAttribute("memberId");
 		service.remove(memberId);
 		if ("admin".equals(memberId)) {
 			return "redirect:/findAllMember.do";
 		}
-		return "index.jsp";
+		return "redirect:/index.jsp";
 	}
 
 	@RequestMapping(value = "login.do", method = RequestMethod.POST)
@@ -90,15 +99,18 @@ public class MemberController {
 				// System.out.println("***2");
 				session.setAttribute("memberId", memberId);
 				session.setAttribute("name", member.getName());
-				// System.out.println("*****memberType: " + member.getMemberTypeId());
+				session.setAttribute("memberType", member.getMemberTypeId());
+				
+				System.out.println(member.getMemberTypeId());
 				// System.out.println("memberId" + memberId);
 				// System.out.println("memberName" + member.getName());
 				if (member.getMemberTypeId() == 1) {
 					// System.out.println("***@");
+
 					return "redirect:/index.jsp";
 				} else {
-					List<House> house = houseService.findByMemberId(memberId);
-					if (house == null) {
+					List<House> houses = houseService.findByMemberId(memberId);
+					if (houses.size() == 0) {
 						return "redirect:/views/houseCreate.jsp";
 					} else {
 						return "redirect:/index.jsp";
@@ -119,7 +131,7 @@ public class MemberController {
 		HttpSession session = request.getSession();
 		session.invalidate();
 
-		return "redirect:/views/index.jsp";
+		return "redirect:/views/login.jsp";
 	}
 
 }
