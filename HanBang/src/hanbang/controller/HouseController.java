@@ -1,6 +1,6 @@
 package hanbang.controller;
 
-
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,14 +19,14 @@ public class HouseController {
 	private HouseService service;
 
 	@RequestMapping(value = "houseRegister.do", method = RequestMethod.POST)
-	public String registerHouse(House house, Model model, HttpSession session ) {
-		
+	public String registerHouse(House house, Model model, HttpSession session) {
+
 		String memberId = (String) session.getAttribute("memberId");
 		house.setMemberId(memberId);
-		
+
 		boolean registed = service.register(house);
 		if (!registed) {
-			
+
 			return "redirect:/houseCreate.jsp";
 		} else {
 			model.addAttribute("house", house);
@@ -35,12 +35,17 @@ public class HouseController {
 	}
 
 	@RequestMapping(value = "houseModify.do", method = RequestMethod.GET)
-	public String modifyHouse(int houseId, Model model, HttpSession session) {
+	public String modifyHouse(Model model, HttpSession session, HttpServletRequest request) {
 		String memberId = (String) session.getAttribute("memberId");
-		House house = service.find(houseId);
+		String s = request.getParameter("houseId").trim();
+		int id = 0;
+		id = Integer.parseInt(s);
+
+		System.out.println("!!!!" + id);
+		House house = service.findMyHouse(id);
 
 		if (house.getMemberId().equals(memberId)) {
-			model.addAttribute("house" ,house);
+			model.addAttribute("house", house);
 			return "houseModify.do";
 		} else {
 			return "redirect:/findMember.do?memberId=" + memberId;
@@ -49,7 +54,7 @@ public class HouseController {
 	}
 
 	@RequestMapping(value = "houseModify.do", method = RequestMethod.POST)
-	public String modifyHouse(House house,  Model model) {
+	public String modifyHouse(House house, Model model) {
 		service.modify(house);
 		model.addAttribute(house);
 		return "redirect:/houseDetail.do?houseId=" + house.getHouseId();
