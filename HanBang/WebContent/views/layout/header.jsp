@@ -31,7 +31,7 @@
 			</nav>
 			<ul class="gnb clear">
 				<li><a href="${ctx}/findMember.do">내 프로필</a></li>
-				<li><a href="${ctx}/myInterestHouseList.do">관심하우스</a></li>
+				<li><a href="${ctx}/interestShareHouseList.do">관심하우스</a></li>
 				<li><a href="${ctx}/questionList.do">문의 내역</a></li>
 			</ul>
 		</c:if>

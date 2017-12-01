@@ -11,9 +11,6 @@ public class House {
 	private int bathrooms;
 	private int rooms;
 	
-	public House() {
-	}
-	
 	public String getHouseName() {
 		return houseName;
 	}

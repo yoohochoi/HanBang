@@ -39,8 +39,8 @@ public class InterestShareHouseController {
 	public String findInterestShareHouse(HttpSession session, Model model) {
 		String memberId = (String)session.getAttribute("memberId");
 		List<ShareHouse> shareHouses = service.findAll(memberId);
-		model.addAttribute(shareHouses);
-		return "InterestHouselist.jsp";
+		model.addAttribute("interestShareHouse", shareHouses);
+		return "views/interestSharteHouseList.jsp";
 	}
 	
 	//리스트에서 삭제할때
