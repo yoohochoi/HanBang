@@ -47,6 +47,7 @@ public class HouseController {
 			model.addAttribute("house", house);
 			
 			return "redirect:/views/houseModify.jsp";
+
 		} else {
 			return "redirect:/findMember.do?memberId=" + memberId;
 		}

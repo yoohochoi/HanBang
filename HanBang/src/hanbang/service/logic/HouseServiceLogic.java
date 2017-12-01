@@ -7,11 +7,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import hanbang.domain.House;
-import hanbang.domain.PublicUsage;
 import hanbang.service.HouseService;
 import hanbang.store.HouseStore;
-import hanbang.store.PublicUsageStore;
-import hanbang.store.logic.HouseStoreLogic;
 
 @Service
 public class HouseServiceLogic implements HouseService {

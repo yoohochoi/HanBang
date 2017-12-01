@@ -3,7 +3,7 @@ package hanbang.domain;
 public class ProvidedGood {
 
 	private int providedGoodId;
-	private int extraInfoId;
+	private int roomId;
 	private String providedGood;
 
 	public int getProvidedGoodId() {
@@ -14,12 +14,12 @@ public class ProvidedGood {
 		this.providedGoodId = providedGoodId;
 	}
 
-	public int getExtraInfoId() {
-		return extraInfoId;
+	public int getRoomId() {
+		return roomId;
 	}
 
-	public void setExtraInfoId(int extraInfoId) {
-		this.extraInfoId = extraInfoId;
+	public void setRoomId(int roomId) {
+		this.roomId = roomId;
 	}
 
 	public String getProvidedGood() {

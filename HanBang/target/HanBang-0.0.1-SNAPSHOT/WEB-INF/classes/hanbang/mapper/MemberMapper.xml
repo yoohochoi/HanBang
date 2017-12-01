@@ -27,11 +27,11 @@
 		FROM MEMBER_TB
 	</select>
 
-	<select id="retrive" parameterType="String" resultType="MemberMap"
-		resultMap="MemberMap">
+	<select id="retrive" parameterType="String" resultType="Member">
 		SELECT
 		MEMBERID, PASSWORD, NAME, PHONENUMBER, EMAIL,
-		MEMBERTYPE as memberTypeId
+		MEMBERTYPE as
+		memberTypeId
 		FROM MEMBER_TB
 		WHERE memberId = #{id}
 	</select>

@@ -2,16 +2,16 @@ package hanbang.domain;
 
 public class Facilitie {
 
-	private int facilitiesId;
+	private int facilitieId;
 	private int extraInfoId;
-	private String facilities;
+	private String facilitie;
 
 	public int getFacilitieId() {
-		return facilitiesId;
+		return facilitieId;
 	}
 
-	public void setFacilitieId(int facilitiesId) {
-		this.facilitiesId = facilitiesId;
+	public void setFacilitieId(int facilitieId) {
+		this.facilitieId = facilitieId;
 	}
 
 	public int getExtraInfoId() {
@@ -22,12 +22,12 @@ public class Facilitie {
 		this.extraInfoId = extraInfoId;
 	}
 
-	public String getFacilities() {
-		return facilities;
+	public String getFacilitie() {
+		return facilitie;
 	}
 
-	public void setFacilities(String facilities) {
-		this.facilities = facilities;
+	public void setFacilitie(String facilitie) {
+		this.facilitie = facilitie;
 	}
 
 }

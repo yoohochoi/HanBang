@@ -9,10 +9,9 @@
 			SELECT EXTRAINFOID_seq.nextval FROM dual
 		</selectKey>
 		INSERT INTO
-		extraInfo_tb(extraInfoId, shareHouseId, pet, smoke,
-		heatingSystem)
+		extraInfo_tb(extraInfoId, shareHouseId, pet, smoke)
 		VALUES(#{extraInfoId}, #{shareHouseId}, #{pet},
-		#{smoke},#{heatingSystem})
+		#{smoke})
 	</insert>
 
 	<update id="update" parameterType="ExtraInfo">
@@ -20,7 +19,6 @@
 		SET
 		pet =
 		#{pet}, smoke = #{smoke}
-		heatingSystem = #{heatingSystem}
 		WHERE
 		shareHouseId =
 		#{shareHouseId}
