@@ -16,6 +16,7 @@ import hanbang.domain.Facilitie;
 import hanbang.domain.House;
 import hanbang.domain.Photo;
 import hanbang.domain.ProvidedGood;
+import hanbang.domain.PublicUsage;
 import hanbang.domain.Room;
 import hanbang.domain.ShareHouse;
 import hanbang.service.EssentialInfoService;
@@ -23,7 +24,6 @@ import hanbang.service.ExtraInfoService;
 import hanbang.service.ShareHouseService;
 
 @Controller
-@RequestMapping("/shareHouse")
 public class ShareHouseController {
 
 	@Autowired
@@ -33,17 +33,16 @@ public class ShareHouseController {
 	@Autowired
 	private ExtraInfoService extraInfoService;
 
-	@RequestMapping(value = "/registShareHouse.do", method = RequestMethod.POST)
+	@RequestMapping(value = "/shareHouse/registShareHouse.do", method = RequestMethod.POST)
 	public String registerShareHouse(HttpSession session, ShareHouse shareHouse, EssentialInfo essentialInfo,
-			ExtraInfo extraInfo, List<Room> rooms, House house, List<Photo> photos, List<Facilitie> facilities,
-			List<ProvidedGood> providedGoods) {
+			ExtraInfo extraInfo, List<Room> rooms, House house, List<Photo> photos, List<Facilitie> facilities, List<PublicUsage> publicUsages) {
 
 		shareHouse.setWriterId((String) session.getAttribute("memberId"));
 		boolean registed = shareHouseService.register(shareHouse, rooms, house, photos);
 		if (!registed) {
-			registed = essentialInfoService.register(essentialInfo);
+			registed = essentialInfoService.register(essentialInfo, publicUsages);
 			if (!registed) {
-				extraInfoService.register(extraInfo, facilities, providedGoods);
+				extraInfoService.register(extraInfo, facilities);
 			} else {
 				System.out.println("필수정보 미입력");
 				return "redirect:/views/shareHouseCreate.jsp";
@@ -56,7 +55,7 @@ public class ShareHouseController {
 		return "redirect:/shareHouseDetail.do?shareHouseId" + shareHouse.getShareHouseId();
 	}
 
-	@RequestMapping(value = "/shareHouseModify.do", method = RequestMethod.GET)
+	@RequestMapping(value = "/shareHouse/shareHouseModify.do", method = RequestMethod.GET)
 	public String modifyShareHouse(int shareHouseId, Model model, HttpSession session) {
 		String memberId = (String) session.getAttribute("memberId");
 		ShareHouse shareHouse = shareHouseService.find(shareHouseId);
@@ -73,15 +72,14 @@ public class ShareHouseController {
 		}
 	}
 
-	@RequestMapping(value = "/shareHouseModify.do", method = RequestMethod.POST)
+	@RequestMapping(value = "/shareHouse/shareHouseModify.do", method = RequestMethod.POST)
 	public String modifyShareHouse(ShareHouse shareHouse, EssentialInfo essentialInfo, ExtraInfo extraInfo,
-			List<Room> rooms, House house, List<Photo> photos, List<Facilitie> facilities,
-			List<ProvidedGood> providedGoods) {
+			List<Room> rooms, House house, List<Photo> photos, List<Facilitie> facilities, List<PublicUsage> publicUsages) {
 		boolean modified = shareHouseService.modify(shareHouse, rooms, house, photos);
 		if (!modified) {
-			modified = essentialInfoService.modify(essentialInfo);
+			modified = essentialInfoService.modify(essentialInfo, publicUsages);
 			if (!modified) {
-				extraInfoService.modify(extraInfo, facilities, providedGoods);
+				extraInfoService.modify(extraInfo, facilities);
 			} else {
 				System.out.println("필수정보 입력안함");
 				return "/shareHouseModify.do?shareHouseId=" + shareHouse.getShareHouseId();
@@ -90,35 +88,36 @@ public class ShareHouseController {
 			System.out.println("shareHouseModify error");
 			return "shareHouseModify.do?shareHouseId=" + shareHouse.getShareHouseId();
 		}
-  
+
 		return "redirect:/shareHouseDetail.do?shareHouseId" + shareHouse.getShareHouseId();
 	}
 
-	@RequestMapping(value = "/shareHouseDelete.do")
-	public String removeShareHouse(int shareHouseId) {
-		shareHouseService.remove(shareHouseId);
-		essentialInfoService.deleteByShareHouse(shareHouseId);
-		extraInfoService.deleteByShareHouse(shareHouseId);
-		return "redirect:/shareHouseList.do";
+	@RequestMapping(value = "/shareHouse/shareHouseDelete.do")
+	public String removeShareHouse(String shareHouseId) {
+		int id = Integer.parseInt(shareHouseId);
+
+		shareHouseService.remove(id);
+		essentialInfoService.deleteByShareHouse(id);
+		extraInfoService.deleteByShareHouse(id);
+		return "redirect:/shareHouseList_.do";
 	}
 
-	@RequestMapping(value = "/shareHouseList.do")
+	@RequestMapping(value = "/shareHouse/shareHouseList.do")
 	public String findAllShareHouse(Model model) {
 
 		List<ShareHouse> list = shareHouseService.findAll();
 		model.addAttribute("list", list);
 
-		return "/views/shareHouseList.jsp";
+		return "/views/shareHouseList_.jsp";
 	}
 
-	@RequestMapping(value = "/shareHouseDetail.do")
-	public String detailShareHouse(int shareHouseId, Model model) {
-
-		ShareHouse shareHouse = shareHouseService.find(shareHouseId);
+	@RequestMapping(value = "/shareHouse/shareHouseDetail.do")
+	public String detailShareHouse(String shareHouseId, Model model) {
+		int id = Integer.parseInt(shareHouseId);
+		ShareHouse shareHouse = shareHouseService.find(id);
 		model.addAttribute("shareHouse", shareHouse);
 
 		return "/views/shareHouseDetail.jsp";
 	}
-	
-	
+
 }

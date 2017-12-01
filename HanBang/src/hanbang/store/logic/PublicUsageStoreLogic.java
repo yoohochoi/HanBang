@@ -35,30 +35,16 @@ public class PublicUsageStoreLogic implements PublicUsageStore {
 	}
 
 	@Override
-	public int update(PublicUsage publicUsage) {
+	public int deleteByEssentialInfo(int essentialInfoId) {
 		SqlSession session = factory.openSession();
 		int check;
 		try {
 			PublicUsageMapper mapper = session.getMapper(PublicUsageMapper.class);
-			check = mapper.update(publicUsage);
+			check = mapper.deleteByEssentialInfo(essentialInfoId);
 			session.commit();
 		} finally {
 			session.close();
-		}
-		return check;
-	}
 
-	@Override
-	public int deleteByHouseId(int houseId) {
-		SqlSession session = factory.openSession();
-		int check;
-		try {
-			PublicUsageMapper mapper = session.getMapper(PublicUsageMapper.class);
-			check = mapper.deleteByHouseId(houseId);
-			session.commit();
-		}finally {
-			session.close();
-			
 		}
 		return check;
 	}
@@ -71,20 +57,20 @@ public class PublicUsageStoreLogic implements PublicUsageStore {
 			PublicUsageMapper mapper = session.getMapper(PublicUsageMapper.class);
 			check = mapper.delete(publicUsageId);
 			session.commit();
-		}finally {
+		} finally {
 			session.close();
 		}
 		return check;
 	}
 
 	@Override
-	public List<PublicUsage> retriveAll(int houseId) {
+	public List<PublicUsage> retriveAll(int essentialInfoId) {
 		SqlSession session = factory.openSession();
 		List<PublicUsage> list = null;
 		try {
 			PublicUsageMapper mapper = session.getMapper(PublicUsageMapper.class);
-			list = mapper.retriveAll(houseId);
-		}finally {
+			list = mapper.retriveAll(essentialInfoId);
+		} finally {
 			session.close();
 		}
 		return list;
@@ -97,7 +83,7 @@ public class PublicUsageStoreLogic implements PublicUsageStore {
 		try {
 			PublicUsageMapper mapper = session.getMapper(PublicUsageMapper.class);
 			publicUsage = mapper.retrive(publicUseageId);
-		}finally {
+		} finally {
 			session.close();
 		}
 		return publicUsage;

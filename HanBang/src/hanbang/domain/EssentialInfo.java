@@ -1,16 +1,26 @@
 package hanbang.domain;
 
+import java.util.List;
+
 public class EssentialInfo {
 
+	private int essentialInfoId;
 	private int shareHouseId;
-	private String sex;
 	private String floorTotalFloor;
 	private String parking;
 	private String lift;
-	private int managementFee;
 	private String buildingType;
+	private List<PublicUsage> publicUsage;
 
 	public EssentialInfo() {
+	}
+
+	public int getEssentialInfoId() {
+		return essentialInfoId;
+	}
+
+	public void setEssentialInfoId(int essentialInfoId) {
+		this.essentialInfoId = essentialInfoId;
 	}
 
 	public int getShareHouseId() {
@@ -19,14 +29,6 @@ public class EssentialInfo {
 
 	public void setShareHouseId(int shareHouseId) {
 		this.shareHouseId = shareHouseId;
-	}
-
-	public String getSex() {
-		return sex;
-	}
-
-	public void setSex(String sex) {
-		this.sex = sex;
 	}
 
 	public String getFloorTotalFloor() {
@@ -53,19 +55,19 @@ public class EssentialInfo {
 		this.lift = lift;
 	}
 
-	public int getManagementFee() {
-		return managementFee;
-	}
-
-	public void setManagementFee(int managementFee) {
-		this.managementFee = managementFee;
-	}
-
 	public String getBuildingType() {
 		return buildingType;
 	}
 
 	public void setBuildingType(String buildingType) {
 		this.buildingType = buildingType;
+	}
+
+	public List<PublicUsage> getPublicUsage() {
+		return publicUsage;
+	}
+
+	public void setPublicUsage(List<PublicUsage> publicUsage) {
+		this.publicUsage = publicUsage;
 	}
 }

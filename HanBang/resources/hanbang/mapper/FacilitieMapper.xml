@@ -5,32 +5,32 @@
 <mapper namespace="hanbang.store.mapper.FacilitieMapper">
 
 	<insert id="create" parameterType="Facilitie">
-		<selectKey keyProperty="facilitiesId" resultType="int"
-			order="BEFORE">
+		<selectKey keyProperty="facilitieId" resultType="int" order="BEFORE">
 			SELECT
-			facilitiesId_seq.nextval FROM dual
+			facilitieId_seq.nextval FROM dual
 		</selectKey>
 		INSERT INTO
-		facilities_tb(facilitiesId, extraInfoId, facilities)
-		VALUES(#{facilitiesId}, #{extraInfoId}, #{facilities})
+		facilitie_tb(facilitieId, extraInfoId, facilitie)
+		VALUES(#{facilitieId}, #{extraInfoId}, #{facilitie})
 	</insert>
 
 	<update id="update" parameterType="Facilitie">
-		UPDATE facilities_tb
+		UPDATE facilitie_tb
 		SET
-		facilities = #{facilities}
+		facilitie = #{facilitie}
 		WHERE extraInfoId = #{extraInfoId} AND
-		facilitiesId = #{facilitiesId}
+		facilitieId = #{facilitieId}
 	</update>
 
 	<select id="retriveAll" parameterType="int" resultType="Facilitie">
 		SELECT
-		extraInfoId, facilitiesId, facilities
+		extraInfoId, facilitieId, facilitie
 		FROM
-		facilities_tb
+		facilitie_tb
 		WHERE
 		extraInfoId
-		= #{extraInfoId}
+		=
+		#{extraInfoId}
 	</select>
 
 	<select id="retrive" parameterType="int" resultType="Facilitie">

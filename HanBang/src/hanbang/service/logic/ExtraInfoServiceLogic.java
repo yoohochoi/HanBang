@@ -21,11 +21,9 @@ public class ExtraInfoServiceLogic implements ExtraInfoService {
 	private ExtraInfoStore extraInfoStore;
 	@Autowired
 	private FacilitieStore facilitieStore;
-	@Autowired
-	private ProviededGoodStore providedGoodStore;
 
 	@Override
-	public boolean register(ExtraInfo extraInfo, List<Facilitie> facilities, List<ProvidedGood> providedGoods) {
+	public boolean register(ExtraInfo extraInfo, List<Facilitie> facilities) {
 		int check = extraInfoStore.create(extraInfo);
 		int index = 0;
 		if (check > 0) {
@@ -34,14 +32,6 @@ public class ExtraInfoServiceLogic implements ExtraInfoService {
 				facilitie = facilities.get(index);
 				facilitie.setExtraInfoId(extraInfo.getExtraInfoId());
 				facilitieStore.create(facilitie);
-				index++;
-			}
-			index = 0;
-			for (ProvidedGood providedGood : providedGoods) {
-				providedGood = new ProvidedGood();
-				providedGood = providedGoods.get(index);
-				providedGood.setExtraInfoId(extraInfo.getExtraInfoId());
-				providedGoodStore.create(providedGood);
 				index++;
 			}
 			return true;
@@ -57,19 +47,17 @@ public class ExtraInfoServiceLogic implements ExtraInfoService {
 		int extraId = extraInfo.getExtraInfoId();
 
 		extraInfo.setFacilities(facilitieStore.retriveAll(extraId));
-		extraInfo.setProvidedGoods(providedGoodStore.retriveAll(extraId));
 		return extraInfo;
 	}
 
 	@Override
-	public boolean modify(ExtraInfo extraInfo, List<Facilitie> facilities, List<ProvidedGood> providedGoods) {
+	public boolean modify(ExtraInfo extraInfo, List<Facilitie> facilities) {
 
 		int extraId = extraInfo.getExtraInfoId();
 		int index = 0;
-		
+
 		ExtraInfo before = extraInfoStore.retrive(extraInfo.getShareHouseId());
 		facilitieStore.deleteByExtraInfo(extraId);
-		providedGoodStore.deleteByExtraInfo(extraId);
 		for (Facilitie facilitie : facilities) {
 			facilitie = new Facilitie();
 			facilitie = facilities.get(index);
@@ -77,18 +65,9 @@ public class ExtraInfoServiceLogic implements ExtraInfoService {
 			facilitieStore.create(facilitie);
 			index++;
 		}
-		index = 0;
-		for (ProvidedGood providedGood : providedGoods) {
-			providedGood = new ProvidedGood();
-			providedGood = providedGoods.get(index);
-			providedGood.setExtraInfoId(extraInfo.getExtraInfoId());
-			providedGoodStore.create(providedGood);
-			index++;
-		}
 
 		before.setFacilities(facilities);
-		before.setProvidedGoods(providedGoods);
-		int check = extraInfoStore.update(extraInfo);
+		int check = extraInfoStore.update(before);
 		if (check > 0) {
 			return true;
 		} else {
@@ -104,8 +83,6 @@ public class ExtraInfoServiceLogic implements ExtraInfoService {
 		int extraId = extraInfo.getExtraInfoId();
 		if (check > 0) {
 			facilitieStore.deleteByExtraInfo(extraId);
-			providedGoodStore.deleteByExtraInfo(extraId);
-
 			return true;
 		} else {
 

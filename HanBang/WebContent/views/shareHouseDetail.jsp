@@ -18,7 +18,7 @@
 	<section>
 		<button type="button" name="reportBtn">신고</button>
 		<div>
-			<h3>${shareHouseTitle}</h3>
+			<h3>${shareHouse.Title}</h3>
 			<div>
 				<button type="button" name="interestShareHouseCreateBtn">
 					<span class="hide">등록</span>
@@ -27,11 +27,10 @@
 					<span class="hide">삭제</span>
 				</button>
 			</div>
-			<span>${shareHouseGender}</span>
+			<span>${shareHouse.Title}</span>
 			<ul>
-				<c:forEach var="shareHouseImage" items="shareHouseImageList" end="">
-					<li><img src="${shareHouseImage.shareHouseImageAddress}"
-						alt="셰어하우스 이미지"></li>
+				<c:forEach var="photo" items="${shareHouse.photos }">
+					<li><img src="${photo.photo}" alt="셰어하우스 이미지"></li>
 				</c:forEach>
 			</ul>
 			<button type="button" name="leftBtn">
