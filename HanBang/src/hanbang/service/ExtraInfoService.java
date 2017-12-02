@@ -8,11 +8,11 @@ import hanbang.domain.ProvidedGood;
 
 public interface ExtraInfoService {
 
-	boolean register(ExtraInfo extraInfo, List<Facilitie> facilities, List<ProvidedGood> providedGoods);
+	boolean register(ExtraInfo extraInfo, List<Facilitie> facilities);
 
 	ExtraInfo find(int shareHouseId);
 
-	boolean modify(ExtraInfo extraInfo, List<Facilitie> facilities, List<ProvidedGood> providedGood);
+	boolean modify(ExtraInfo extraInfo, List<Facilitie> facilities);
 
 	boolean deleteByShareHouse(int shareHouseId);
 

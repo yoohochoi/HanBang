@@ -9,8 +9,6 @@ public class ExtraInfo {
 	private String pet;
 	private String smoke;
 	private List<Facilitie> facilities;
-	private List<ProvidedGood> providedGoods;
-	private String heatingSystem;
 
 	public ExtraInfo() {
 	}
@@ -47,29 +45,12 @@ public class ExtraInfo {
 		return smoke;
 	}
 
-
 	public List<Facilitie> getFacilities() {
 		return facilities;
 	}
 
 	public void setFacilities(List<Facilitie> facilities) {
 		this.facilities = facilities;
-	}
-
-	public List<ProvidedGood> getProvidedGoods() {
-		return providedGoods;
-	}
-
-	public void setProvidedGoods(List<ProvidedGood> providedGoods) {
-		this.providedGoods = providedGoods;
-	}
-
-	public String getHeatingSystem() {
-		return heatingSystem;
-	}
-
-	public void setHeatingSystem(String heatingSystem) {
-		this.heatingSystem = heatingSystem;
 	}
 
 }

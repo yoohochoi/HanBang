@@ -1,5 +1,7 @@
 package hanbang.domain;
 
+import java.util.List;
+
 public class Room {
 
 	private int roomId;
@@ -7,12 +9,10 @@ public class Room {
 	private String sex;
 	private String roomArea;
 	private int bathroom;
-	private String option;
-	private int moveDate;
+	private List<ProvidedGood> providedGoods;
 	private int deposit;
 	private int monthlyFee;
-	private boolean availability;
-	private int leastStayDays;
+	private String availability;
 
 	public Room() {
 	}
@@ -57,22 +57,6 @@ public class Room {
 		this.bathroom = bathroom;
 	}
 
-	public String getOption() {
-		return option;
-	}
-
-	public void setOption(String option) {
-		this.option = option;
-	}
-
-	public int getMoveDate() {
-		return moveDate;
-	}
-
-	public void setMoveDate(int moveDate) {
-		this.moveDate = moveDate;
-	}
-
 	public int getDeposit() {
 		return deposit;
 	}
@@ -89,20 +73,19 @@ public class Room {
 		this.monthlyFee = monthlyFee;
 	}
 
-	public boolean isAvailability() {
+	public String getAvailability() {
 		return availability;
 	}
 
-	public void setAvailability(boolean availability) {
+	public void setAvailability(String availability) {
 		this.availability = availability;
 	}
 
-	public int getLeastStayDays() {
-		return leastStayDays;
+	public List<ProvidedGood> getProvidedGoods() {
+		return providedGoods;
 	}
 
-	public void setLeastStayDays(int leastStayDays) {
-		this.leastStayDays = leastStayDays;
+	public void setProvidedGoods(List<ProvidedGood> providedGoods) {
+		this.providedGoods = providedGoods;
 	}
-
 }

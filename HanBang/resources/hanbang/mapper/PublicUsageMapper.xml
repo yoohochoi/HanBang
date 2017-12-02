@@ -12,37 +12,30 @@
 			order="BEFORE">
 			SELECT publicUsageId_seq.nextval FROM dual
 		</selectKey>
-		INSERT INTO PUBLICUSAGE_TB(HOUSEID, PUBLICUSAGEID, PUBLICUSAGE)
-		VALUES(#{houseId}, #{publicUsageId}, #{publicUsage})
+		INSERT INTO PUBLICUSAGE_TB(ESSENTIALINFOID, PUBLICUSAGEID,
+		PUBLICUSAGE)
+		VALUES(#{essentialInfoId}, #{publicUsageId},
+		#{publicUsage})
 	</insert>
 
 	<select id="retriveAll" resultType="PublicUsage" parameterType="int">
-		SELECT PUBLICUSAGEID, HOUSEID, PUBLICUSAGE
+		SELECT PUBLICUSAGEID, ESSENTIALINFOID, PUBLICUSAGE
 		FROM PUBLICUSAGE_TB
 		WHERE
-		HOUSEID = #{houseId}
+		ESSENTIALINFOID = #{essentialInfoId}
 	</select>
 
 	<select id="retrive" resultType="PublicUsage" parameterType="int">
-		SELECT PUBLICUSAGEID, HOUSEID, PUBLICUSAGE
+		SELECT PUBLICUSAGEID, ESSENTIALINFOID, PUBLICUSAGE
 		FROM PUBLICUSAGE_TB
 		WHERE
 		PUBLICUSAGEID = #{publicUsageId}
 	</select>
 
-	<update id="update">
-		Update publicUsage_tb
-		set publicUsage = #{publicUsage}
-		where houseId = (select houseId
-		from house_tb
-		where houseId = #{houseId}
-		)
-	</update>
-
 	<delete id="deleteByHouseId" parameterType="int">
 		DELETE FROM
 		PUBLICUSAGE_TB
-		WHERE HOUSEID = #{houseId}
+		WHERE ESSENTIALINFOID = #{essentialInfoId}
 	</delete>
 </mapper>
 

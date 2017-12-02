@@ -7,35 +7,21 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import hanbang.domain.House;
-import hanbang.domain.PublicUsage;
 import hanbang.service.HouseService;
 import hanbang.store.HouseStore;
-import hanbang.store.PublicUsageStore;
-import hanbang.store.logic.HouseStoreLogic;
 
 @Service
 public class HouseServiceLogic implements HouseService {
 
 	@Autowired
 	private HouseStore houseStore;
-	@Autowired
-	private PublicUsageStore publicStore;
 
 	private int check;
 
-
 	@Override
-	public boolean register(House house, List<PublicUsage> publicUsages) {
+	public boolean register(House house) {
 		check = houseStore.create(house);
-		int index = 0;
 		if (check > 0) {
-			for (PublicUsage publicUsage : publicUsages) {
-				publicUsage = new PublicUsage();
-				publicUsage = publicUsages.get(index);
-				publicUsage.setHouseId(house.getHouseId());
-				publicStore.create(publicUsage);
-				index++;
-			}
 			return true;
 		} else {
 			return false;
@@ -47,18 +33,14 @@ public class HouseServiceLogic implements HouseService {
 	public House find(int houseId) {
 		House house = houseStore.retrive(houseId);
 
-		house.setPublicUsage(publicStore.retriveAll(houseId));
-
 		return house;
 	}
 
 	// 마이하우스에서 조회
 	@Override
 	public House findMyHouse(int houseId) {
-		House house = houseStore.retriveMyHouse(houseId);
-		house.setPublicUsage(publicStore.retriveAll(houseId));
 
-		return house;
+		return houseStore.retriveMyHouse(houseId);
 	}
 
 	@Override
@@ -68,59 +50,11 @@ public class HouseServiceLogic implements HouseService {
 	}
 
 	@Override
-	public boolean modify(House house, List<PublicUsage> publicUsages) {
+	public boolean modify(House house) {
 
-		List<PublicUsage> originUsages = publicStore.retriveAll(house.getHouseId());
-		House before = houseStore.retrive(house.getHouseId());
-		
-		int size = originUsages.size();
+		check = houseStore.update(house);
 
-		if (publicUsages.size() == size) {
-			int index = 0;
-			for (PublicUsage publicUsage : publicUsages) {
-				publicUsage = publicUsages.get(index);
-				publicUsage.setPublicUsage(publicUsages.get(index).toString());
-				publicStore.update(publicUsage);
-				index++;
-			}
-			before.setPublicUsage(publicUsages);
-			check = houseStore.update(house);
-		} else if (publicUsages.size() < size) {
-			int index = 0;
-			for (PublicUsage publicUsage : originUsages) {
-				if (publicUsages.get(index).equals("")) {
-					publicStore.delete(publicUsage.getPublicUsageId());
-				} else {
-					publicUsage = publicUsages.get(index);
-					publicUsage.setPublicUsage(publicUsages.get(index).toString());
-					publicStore.update(publicUsage);
-				}
-				index++;
-			}
-			before.setPublicUsage(publicUsages);
-			check = houseStore.update(house);
-		} else if (publicUsages.size() > size) {
-			int index = 0;
-			for (PublicUsage publicUsage : publicUsages) {
-				if (originUsages.get(index).equals("")) {
-					publicUsage = new PublicUsage();
-					publicUsage = publicUsages.get(index);
-					publicUsage.setHouseId(house.getHouseId());
-					publicStore.create(publicUsage);
-				} else {
-					publicUsage = publicUsages.get(index);
-					publicUsage.setPublicUsage(publicUsages.get(index).toString());
-					publicStore.update(publicUsage);
-				}
-				index++;
-			}
-			before.setPublicUsage(publicUsages);
-			check = houseStore.update(house);
-		}
-
-		if (check > 0)
-
-		{
+		if (check > 0) {
 			return true;
 		} else {
 			return false;
@@ -130,7 +64,6 @@ public class HouseServiceLogic implements HouseService {
 	@Override
 	public boolean remove(int houseId) {
 
-		publicStore.deleteByHouseId(houseId);
 		check = houseStore.delete(houseId);
 
 		if (check > 0) {
@@ -150,7 +83,6 @@ public class HouseServiceLogic implements HouseService {
 		for (House house : houses) {
 			house = houses.get(index);
 			int houseId = house.getHouseId();
-			publicStore.deleteByHouseId(houseId);
 			houseStore.deleteByMemberId(memberId);
 			index++;
 		}

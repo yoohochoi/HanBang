@@ -6,15 +6,19 @@
 <mapper namespace="hanbang.store.mapper.MemberMapper">
 
 	<resultMap type="Member" id="MemberMap">
-		<id property="id" column="memberId"/>
-		</resultMap>
-	
+		<id property="id" column="memberId" />
+		<result property="name" column="name" />
+		<result property="phoneNumber" column="phoneNumber" />
+		<result property="email" column="email" />
+		<result property="memberTypeId" column="membertype" />
+	</resultMap>
 
 	<insert id="create" parameterType="Member">
 		INSERT INTO MEMBER_TB(MEMBERID
 		, PASSWORD, NAME, PHONENUMBER, EMAIL, MEMBERTYPE)
 		VALUES(#{id} ,
-		#{password}, #{name}, #{phoneNumber}, #{email}, #{memberTypeId})
+		#{password}, #{name}, #{phoneNumber}, #{email},
+		#{memberTypeId})
 	</insert>
 
 	<select id="retriveAll" resultType="Member">
@@ -23,22 +27,26 @@
 		FROM MEMBER_TB
 	</select>
 
-	<select id="retrive" parameterType="String" resultType="Member" resultMap="MemberMap">
+	<select id="retrive" parameterType="String" resultType="Member">
 		SELECT
-		MEMBERID, PASSWORD, NAME, PHONENUMBER, EMAIL, MEMBERTYPE
+		MEMBERID, PASSWORD, NAME, PHONENUMBER, EMAIL,
+		MEMBERTYPE as memberTypeId
 		FROM MEMBER_TB
 		WHERE memberId = #{id}
 	</select>
 
 	<update id="update" parameterType="Member">
 		update member_tb
-		set password = #{password}, phoneNumber = #{phoneNumber}, email = #{email}
-		where memberId = #{id}
+		set password =
+		#{password}, phoneNumber = #{phoneNumber}, email = #{email}
+		where
+		memberId = #{id}
 	</update>
 
 	<delete id="delete" parameterType="String">
-		DELETE FROM MEMBER_TB		
-		WHERE MEMBERID = #{id}
+		DELETE FROM MEMBER_TB
+		WHERE
+		MEMBERID = #{id}
 	</delete>
 
 </mapper>

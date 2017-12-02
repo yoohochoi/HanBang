@@ -12,9 +12,9 @@ public interface ProvidedGoodMapper {
 
 	int delete(int providedGoodId);
 
-	int deleteByExtraInfo(int extraInfoId);
+	int deleteByRoom(int roomId);
 
 	ProvidedGood retrive(int providedGoodId);
 
-	List<ProvidedGood> retriveAll(int extraInfoId);
+	List<ProvidedGood> retriveAll(int roomId);
 }

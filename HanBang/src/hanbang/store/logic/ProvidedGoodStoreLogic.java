@@ -10,6 +10,7 @@ import hanbang.domain.ProvidedGood;
 import hanbang.store.ProviededGoodStore;
 import hanbang.store.factory.SqlSessionFactoryProvider;
 import hanbang.store.mapper.ProvidedGoodMapper;
+
 @Repository
 public class ProvidedGoodStoreLogic implements ProviededGoodStore {
 
@@ -69,13 +70,13 @@ public class ProvidedGoodStoreLogic implements ProviededGoodStore {
 	}
 
 	@Override
-	public int deleteByExtraInfo(int extraInfoId) {
+	public int deleteByRoom(int roomId) {
 		SqlSession session = factory.openSession();
 		int check = 0;
 
 		try {
 			ProvidedGoodMapper mapper = session.getMapper(ProvidedGoodMapper.class);
-			check = mapper.deleteByExtraInfo(extraInfoId);
+			check = mapper.deleteByRoom(roomId);
 			session.commit();
 		} finally {
 			session.close();
@@ -85,12 +86,12 @@ public class ProvidedGoodStoreLogic implements ProviededGoodStore {
 	}
 
 	@Override
-	public List<ProvidedGood> retriveAll(int extraInfoId) {
+	public List<ProvidedGood> retriveAll(int roomId) {
 		SqlSession session = factory.openSession();
 		List<ProvidedGood> providedGoods = null;
 		try {
 			ProvidedGoodMapper mapper = session.getMapper(ProvidedGoodMapper.class);
-			providedGoods = mapper.retriveAll(extraInfoId);
+			providedGoods = mapper.retriveAll(roomId);
 		} finally {
 			session.close();
 		}

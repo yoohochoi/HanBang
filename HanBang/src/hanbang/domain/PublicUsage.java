@@ -3,7 +3,7 @@ package hanbang.domain;
 public class PublicUsage {
 
 	private int publicUsageId;
-	private int HouseId;
+	private int essentialInfoId;
 	private String publicUsage;
 
 	public int getPublicUsageId() {
@@ -14,12 +14,12 @@ public class PublicUsage {
 		this.publicUsageId = publicUsageId;
 	}
 
-	public int getHouseId() {
-		return HouseId;
+	public int getEssentialInfoId() {
+		return essentialInfoId;
 	}
 
-	public void setHouseId(int houseId) {
-		HouseId = houseId;
+	public void setEssentialInfoId(int essentialInfoId) {
+		this.essentialInfoId = essentialInfoId;
 	}
 
 	public String getPublicUsage() {

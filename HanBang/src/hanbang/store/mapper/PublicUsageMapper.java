@@ -8,13 +8,11 @@ public interface PublicUsageMapper {
 
 	int create(PublicUsage publicUsage);
 	
-	int update(PublicUsage publicUsage);
-	
 	int delete(int publicUsageId);
 
-	int deleteByHouseId(int houseId);
+	int deleteByEssentialInfo(int essentialInfoId);
 	
 	PublicUsage retrive(int publicUseageId);
 
-	List<PublicUsage> retriveAll(int houseId);
+	List<PublicUsage> retriveAll(int essentialInfoId);
 }
