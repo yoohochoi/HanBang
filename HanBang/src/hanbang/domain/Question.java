@@ -80,5 +80,12 @@ public class Question {
 	public void setQuestionContent(String questionContent) {
 		this.questionContent = questionContent;
 	}
+
+	@Override
+	public String toString() {
+		return "Question [questionId=" + questionId + ", writerId=" + writerId + ", shareHouseId=" + shareHouseId
+				+ ", questionDate=" + questionDate + ", schedule=" + schedule + ", phoneNumber=" + phoneNumber
+				+ ", questionContent=" + questionContent + ", answers=" + answers + "]";
+	}
 	
 }

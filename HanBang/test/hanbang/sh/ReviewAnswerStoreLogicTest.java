@@ -20,16 +20,16 @@ public class ReviewAnswerStoreLogicTest {
 		store = new ReviewAnswerStoreLogic();
 	}
 
-//	@Test
-//	public void testCreate() {
-//		Answer answer = new Answer();
-//		answer.setContent("222");
-//		answer.setQuesOrReviewId(12);
-//		answer.setWriterId("ms");
-//		answer.setTypeId(2);
-//		store.create(answer);
-//		assertNotNull(answer);
-//	}
+	@Test
+	public void testCreate() {
+		Answer answer = new Answer();
+		answer.setContent("222");
+		answer.setQuesOrReviewId(12);
+		answer.setWriterId("ms");
+		answer.setTypeId(2);
+		store.create(answer);
+		assertNotNull(answer);
+	}
 
 	@Test
 	public void testUpdate() {
@@ -47,11 +47,11 @@ public class ReviewAnswerStoreLogicTest {
 	public void testDeleteByAnswerId() {
 	}
 
-	@Test
-	public void testRetrieveAll() {
-		List<Answer> list = store.retrieveAll(12);
-		assertEquals(2, list.size());
-	}
+//	@Test
+//	public void testRetrieveAll() {
+//		List<Answer> list = store.retrieveAll(12);
+//		assertEquals(2, list.size());
+//	}
 
 	@Test
 	public void testRetrieveByAnswerId() {
