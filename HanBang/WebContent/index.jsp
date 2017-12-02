@@ -40,9 +40,6 @@
 	<a href="#header" class="skip">본문바로가기</a>
 
 	<header id="header">
-		<h1>
-			<a href="${ctx}/index.jsp">한방</a>
-		</h1>
 		<%@ include file="/views/layout/header.jsp"%>
 
 		<div class="searchShareHouse">

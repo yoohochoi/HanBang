@@ -9,7 +9,6 @@
 <title>한방</title>
 <%@ include file="/views/layout/common.jsp"%>
 </head>
-
 <body>
 
 	<%@ include file="/views/layout/header.jsp"%>
@@ -21,17 +20,17 @@
 		<form action="${ctx}/houseRegister.do" method="POST">
 
 			<div>
-				<div>
-					<div id="map" style="width: 100%; height: 250px;"></div>
+				<div id="map_reload">
+					<div id="map" style="width: 100%; height: 230px;"></div>
 					<h4>주소</h4>
 					<script type="text/javascript"
 						src="//dapi.kakao.com/v2/maps/sdk.js?appkey=20a2231eb9d4b20ef7a68674b0d5aca3&libraries=services"></script>
 					<script>
 						var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
 						mapOption = {
-							center : new daum.maps.LatLng(33.450701, 126.570667), // 지도의 중심좌표
-							level : 6
-						// 지도의 확대 레벨
+							center : new daum.maps.LatLng(37.569, 126.979), // 지도의 중심좌표
+							level : 7
+						// 지도의 확대 레벨37.541° 126.986°
 						};
 
 						// 지도를 생성합니다    
@@ -41,28 +40,34 @@
 						var geocoder = new daum.maps.services.Geocoder();
 
 						// 주소로 좌표를 검색합니다
-						geocoder.addressSearch('${com }', function(result,
-								status) {
+						geocoder
+								.addressSearch(
+										'${sample4_roadAddress }',
+										function(result, status) {
 
-							// 정상적으로 검색이 완료됐으면 
-							if (status === daum.maps.services.Status.OK) {
+											// 정상적으로 검색이 완료됐으면 
+											if (status === daum.maps.services.Status.OK) {
 
-								var coords = new daum.maps.LatLng(result[0].y,
-										result[0].x);
+												var coords = new daum.maps.LatLng(
+														result[0].y,
+														result[0].x);
 
-								// 결과값으로 받은 위치를 마커로 표시합니다
-								var marker = new daum.maps.Marker({
-									map : map,
-									position : coords
-								});
+												// 결과값으로 받은 위치를 마커로 표시합니다
+												var marker = new daum.maps.Marker(
+														{
+															map : map,
+															position : coords
+														});
 
-								// 인포윈도우로 장소에 대한 설명을 표시합니다
+												// 인포윈도우로 장소에 대한 설명을 표시합니다
 
-								// 지도의 중심을 결과값으로 받은 위치로 이동시킵니다
-								map.setCenter(coords);
-							}
-						});
+												// 지도의 중심을 결과값으로 받은 위치로 이동시킵니다
+												map.setCenter(coords);
+											}
+										});
 					</script>
+				</div>
+				<div>
 					<input type="text" id="sample4_roadAddress" name="address"
 						placeholder="도로명주소"> <input type="button"
 						onclick="sample4_execDaumPostcode()" value="주소 찾기"><br>
@@ -102,7 +107,7 @@
 					</script>
 				</div>
 				<input type="text" name="houseName" placeholder="하우스 이름"> <input
-					type="number" name="wholeArea" placeholder="전체 면적(m2)"> <input
+					type="number" name="wholeArea" placeholder="전체 면적(m^2)"> <input
 					type="number" name="rooms" placeholder="룸 개수"> <input
 					type="number" name="bathrooms" placeholder="화장실 개수">
 

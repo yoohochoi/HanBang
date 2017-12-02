@@ -34,9 +34,9 @@
 				<ul>
 					<c:forEach var="house" items="${houses}">
 						<li>
-							<p>${name }님의 ${house.houseName}하우스</p> <a
-							href="${ctx}/houseModify.do?=${house.houseId }">수정</a> <a
-							href="${ctx}/houseDelete.do?=${house.houseId }">삭제</a>
+							<p>${name }님의${house.houseName}하우스</p> <a
+							href="${ctx}/houseModify.do?houseId=${house.houseId }">수정</a> <a
+							href="${ctx}/houseDelete.do?houseId=${house.houseId }">삭제</a>
 						</li>
 					</c:forEach>
 				</ul>

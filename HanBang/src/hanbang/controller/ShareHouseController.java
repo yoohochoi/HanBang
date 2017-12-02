@@ -1,14 +1,21 @@
 package hanbang.controller;
 
+import java.io.File;
 import java.util.List;
+import java.util.UUID;
 
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.util.FileCopyUtils;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import hanbang.domain.EssentialInfo;
 import hanbang.domain.ExtraInfo;
@@ -33,12 +40,34 @@ public class ShareHouseController {
 	@Autowired
 	private ExtraInfoService extraInfoService;
 
-	@RequestMapping(value = "/shareHouse/registShareHouse.do", method = RequestMethod.POST)
-	public String registerShareHouse(HttpSession session, ShareHouse shareHouse, EssentialInfo essentialInfo,
-			ExtraInfo extraInfo, List<Room> rooms, House house, List<Photo> photos, List<Facilitie> facilities, List<PublicUsage> publicUsages) {
+	@RequestMapping(value = "/registShareHouse.do", method = RequestMethod.POST)
+	public String registerShareHouse(HttpSession session, @ModelAttribute("shareHouse") ShareHouse shareHouse,
+			EssentialInfo essentialInfo, ExtraInfo extraInfo, List<Room> rooms, House house,
+			MultipartHttpServletRequest mhsq, List<Facilitie> facilities, List<PublicUsage> publicUsages) {
 
 		shareHouse.setWriterId((String) session.getAttribute("memberId"));
-		boolean registed = shareHouseService.register(shareHouse, rooms, house, photos);
+
+		boolean registed = shareHouseService.register(shareHouse, rooms, house);
+
+		String realFolder = "c:/tempFiles/";
+		File dir = new File(realFolder);
+		if (!dir.isDirectory()) {
+			dir.mkdirs();
+		}
+
+		List<MultipartFile> mf = mhsq.getFiles("photos");
+		if (mf.size() == 1 && mf.get(0).getOriginalFilename().equals("")) {
+
+		} else {
+			for (int i = 0; i < mf.size(); i++) {
+				String genId = UUID.randomUUID().toString();
+				String originFileName = mf.get(i).getOriginalFilename();
+				// String saveFileName = genId + "." + getExtension(originFileName);
+
+				// String savePath = realFolder + saveFileName;
+
+			}
+		}
 		if (!registed) {
 			registed = essentialInfoService.register(essentialInfo, publicUsages);
 			if (!registed) {
@@ -74,8 +103,9 @@ public class ShareHouseController {
 
 	@RequestMapping(value = "/shareHouse/shareHouseModify.do", method = RequestMethod.POST)
 	public String modifyShareHouse(ShareHouse shareHouse, EssentialInfo essentialInfo, ExtraInfo extraInfo,
-			List<Room> rooms, House house, List<Photo> photos, List<Facilitie> facilities, List<PublicUsage> publicUsages) {
-		boolean modified = shareHouseService.modify(shareHouse, rooms, house, photos);
+			List<Room> rooms, House house, List<Photo> photos, List<Facilitie> facilities,
+			List<PublicUsage> publicUsages) {
+		boolean modified = shareHouseService.modify(shareHouse, rooms, house);
 		if (!modified) {
 			modified = essentialInfoService.modify(essentialInfo, publicUsages);
 			if (!modified) {
