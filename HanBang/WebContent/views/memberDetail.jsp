@@ -30,18 +30,21 @@
 					name="email" placeholder="${member.email }" readonly></label>
 			</div>
 			<div>
-				<h4>보유 하우스</h4>
-				<ul>
-					<c:forEach var="house" items="${houses}">
-						<li>
-							<p>${name }님의${house.houseName}하우스</p> <a
-							href="${ctx}/houseModify.do?houseId=${house.houseId }">수정</a> <a
-							href="${ctx}/houseDelete.do?houseId=${house.houseId }">삭제</a>
-						</li>
-					</c:forEach>
-				</ul>
-				<a href="${ctx}/views/houseCreate.jsp">하우스 등록 하기</a>
+				<c:if test="${memberType eq '2' }">
+					<h4>보유 하우스</h4>
+					<ul>
+						<c:forEach var="house" items="${houses}">
+							<li>
+								<p>${name }님의${house.houseName} 하우스</p> <a
+								href="${ctx}/houseModify.do?houseId=${house.houseId }">수정</a> <a
+								href="${ctx}/houseDelete.do?houseId=${house.houseId }">삭제</a>
+							</li>
+						</c:forEach>
+					</ul>
+					<a href="${ctx}/views/houseCreate.jsp">하우스 등록 하기</a>
+				</c:if>
 			</div>
+
 			<a href="${ctx }/removeMember.do">회원탈퇴</a> <input type="submit"
 				name="memberModifyBtn" value="수정하기">
 		</form>

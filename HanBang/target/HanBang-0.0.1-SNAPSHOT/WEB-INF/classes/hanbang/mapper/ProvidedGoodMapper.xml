@@ -11,16 +11,16 @@
 			providedGoodId_seq.nextval FROM dual
 		</selectKey>
 		INSERT INTO
-		providedGoods_tb(providedGoodId, extraInfoId, providedGood)
-		VALUES(#{providedGoodId}, #{extraInfoId}, #{providedGood})
+		providedGood_tb(providedGoodId, roomId, providedGood)
+		VALUES(#{providedGoodId}, #{roomId}, #{providedGood})
 	</insert>
 
 	<update id="update" parameterType="ProvidedGood">
-		UPDATE providedGoods_tb
+		UPDATE providedGood_tb
 		SET
 		providedGood =
 		#{providedGood}
-		WHERE extraInfoId = #{extraInfoId} AND
+		WHERE roomId = #{roomId} AND
 		providedGoodId
 		=
 		#{providedGoodId}
@@ -28,35 +28,36 @@
 
 	<select id="retriveAll" parameterType="int" resultType="ProvidedGood">
 		SELECT
-		extraInfoId, providedGoodId, providedGood
+		roomId, providedGoodId, providedGood
 		FROM
-		providedGoods_tb
+		providedGood_tb
 		WHERE
-		extraInfoId = #{extraInfoId}
+		roomId =
+		#{roomId}
 	</select>
 
 
 
 	<select id="retrive" parameterType="int" resultType="ProvidedGood">
 		SELECT
-		extraInfoId, providedGoodId, providedGood
+		roomId, providedGoodId, providedGood
 		FROM
-		providedGoods_tb
+		providedGood_tb
 		WHERE
 		providedGoodId = #{providedGoodId}
 	</select>
 
 	<delete id="delete" parameterType="int">
-		DELETE FROM providedGoods_tb
+		DELETE FROM providedGood_tb
 		WHERE providedGoodId =
 		#{providedGoodId}
 	</delete>
 
-	<delete id="deleteByExtraInfo" parameterType="int">
+	<delete id="deleteByRoom" parameterType="int">
 		DELETE FROM
-		providedGoods_tb
-		WHERE extraInfoId =
-		#{extraInfoId}
+		providedGood_tb
+		WHERE roomId =
+		#{roomId}
 	</delete>
 
 </mapper>

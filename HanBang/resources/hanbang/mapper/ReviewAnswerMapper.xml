@@ -9,6 +9,7 @@
 		<id property="answerId" column="review_answerId"/>
 		<result property="quesOrReviewId" column="reviewId"/>
 		<result property="content" column="review_answerContent"/>
+		<result property="date" column="review_answerDate"/>
 	</resultMap>
 	
 	<sql id="selectAnswer">
@@ -26,9 +27,14 @@
 		VALUES(#{answerId}, #{quesOrReviewId}, #{writerId}, #{content}, sysdate, #{typeId})
 	</insert>
 	
-	<select id="retrieve" parameterType="Integer" resultMap="answerMap">
+	<select id="retrieveAll" parameterType="Integer" resultMap="answerMap">
 		<include refid="selectAnswer"/>
 		WHERE reviewId = #{reviewId}
+	</select>
+	
+	<select id="retrieveByAnswerId" parameterType="Integer" resultMap="answerMap">
+		<include refid="selectAnswer"/>
+		WHERE review_answerId = #{answerId}
 	</select>
 	
 	

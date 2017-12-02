@@ -39,10 +39,12 @@
 		<mapper resource="hanbang/mapper/QuestionMapper.xml" />
 		<mapper resource="hanbang/mapper/QuestionAnswerMapper.xml" />
 		<mapper resource="hanbang/mapper/ReviewMapper.xml" />
+		<mapper resource="hanbang/mapper/ReviewAnswerMapper.xml" />
 		<mapper resource="hanbang/mapper/ShareHouseMapper.xml" />
 		<mapper resource="hanbang/mapper/EssentialInfoMapper.xml" />
 		<mapper resource="hanbang/mapper/PublicUsageMapper.xml"/>
 		<mapper resource="hanbang/mapper/HouseMapper.xml"/>
 		<mapper resource="hanbang/mapper/InterestShareHouseMapper.xml"/>
+			<mapper resource="hanbang/mapper/RoomMapper.xml"/>
 	</mappers>
 </configuration>

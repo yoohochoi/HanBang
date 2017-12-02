@@ -19,4 +19,8 @@
 		class="org.springframework.web.multipart.commons.CommonsMultipartResolver"
 		id="multipartResolver" />
 
+	<bean
+		class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+	</bean>
+
 </beans>

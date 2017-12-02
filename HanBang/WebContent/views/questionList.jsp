@@ -18,31 +18,25 @@
 	<section>
 		<h3>문의 내역</h3>
 		<ul>
-			<li><span>셰어하우스 제목</span> <span>문의 날짜</span> <span>작성자</span></li>
 			<c:forEach items="${questionList}" var="question">
 				<li>
+				<br>
 					<div>
-						<span>${question.phoneNumber}</span> <span>${question.questionDate}</span>
-						<span>${question.writerId}</span>
+						<span> 연락처 : ${question.phoneNumber}</span> <span> 문의날짜 : ${question.questionDate}</span>
+						<span> 작성자 : ${question.writerId}</span>
 					</div>
 					<div>
 						<div>
-							<p>연락처 : ${question.phoneNumber}</p>
-							<p>방문 가능 날짜 : ${question.schedule}</p>
+							<p> 방문 가능 날짜 : ${question.schedule}</p>
+							<span><a
+								href="detailQuestion.do?questionId=${question.questionId }">
+									문의id : ${question.questionId }</a></span>
 						</div>
 						<div>
 							<article>
-								<p>${question.questionContent}</p>
-								<p>${question.questionDate}</p>
-								<span>${question.writerId}</span>
+								<p><a href="detailQuestion.do?questionId=${question.questionId }"> * 문의내용 : ${question.questionContent}</a></p>
+								<p><a href="removeQuestion.do?questionId=${question.questionId }">문의삭제</a></p>
 							</article>
-							<c:forEach var="questionAndAnswer" items="questionAndAnswerList">
-							</c:forEach>
-							<form action="${ctx}/questionAndAnswerCreate.do" method="post">
-								<textarea rows="20" cols="50"></textarea>
-								<input type="submit" value="등록"> <input type="button"
-									value="취소">
-							</form>
 						</div>
 					</div>
 				</li>

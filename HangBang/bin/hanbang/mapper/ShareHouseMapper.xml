@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="hanbang.store.mapper.ShareHouseMapper">
+
+	<insert id="create" parameterType="ShareHouse">
+		INSERT INTO
+		room_tb(shareHouseId, writerId, date, title, content)
+		VALUES(#{shareHouseId}, #{writerId}, #{date}, #{title}, #{content})
+	</insert>
+
+	<update id="update" parameterType="ShareHouse">
+		UPDATE shareHouse_tb
+		SET
+		writerId = #{writerId}, date = #{date}, title = #{title}, content =
+		#{content}
+		WHERE shareHouseId = #{shareHouseId}
+	</update>
+
+	<select id="retriveAll" resultType="ShareHouse">
+		SELECT
+		shareHouseId, writerId,
+		date, title, content
+		FROM shareHouse_tb
+	</select>
+
+	<select id="retriveByMemberId" parameterType="String"
+		resultType="ShareHouse">
+		SELECT
+		shareHouseId, writerId, date, title, content
+		FROM
+		shareHouse_tb
+		WHERE
+		memberId = #{memberId}
+	</select>
+
+	<select id="retrive" parameterType="int" resultType="ShareHouse">
+		SELECT
+		shareHouseId, writerId,
+		date, title, content
+		FROM shareHouse_tb
+		WHERE
+		shareHouseId =
+		#{shareHouseId}
+	</select>
+
+	<delete id="delete" parameterType="int">
+		DELETE FROM
+		shareHouse_tb
+		WHERE
+		shareHouseId = #{shareHouseId}
+	</delete>
+
+	<delete id="deleteByMemberId" parameterType="String">
+		DELETE FROM
+		shareHouse_tb
+		WHERE
+		memberId = #{memberId}
+	</delete>
+
+	<insert id="report" parameterType="int, String">
+		INSERT INTO
+		SHAREHOUSEREPORT_TB(shareHouseId, memberId)
+		VALUES(#{shareHouseId},
+		#{memberId})
+	</insert>
+
+</mapper>

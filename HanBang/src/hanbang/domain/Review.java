@@ -1,9 +1,6 @@
 package hanbang.domain;
 
-import java.io.File;
 import java.util.List;
-
-import org.springframework.web.multipart.MultipartFile;
 
 public class Review {
 	
@@ -83,6 +80,13 @@ public class Review {
 
 	public void setAnswers(List<Answer> answers) {
 		this.answers = answers;
+	}
+
+	@Override
+	public String toString() {
+		return "Review [reviewId=" + reviewId + ", writerId=" + writerId + ", date=" + date + ", shareHouseId="
+				+ shareHouseId + ", title=" + title + ", photo=" + photo + ", content=" + content + ", answers="
+				+ answers + "]";
 	}
 	
 }
