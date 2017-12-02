@@ -24,16 +24,15 @@ public class AnswerServiceLogic implements AnswerService{
 
 	@Override
 	public boolean registerQuestion(Answer answer) {
-		int check = 0;
-		check = qStore.create(answer);
-		answer.setTypeId(1);
+		int check = qStore.create(answer);
+//		answer.setTypeId(1);
 		if(check == 0) {
 			return false;
 		} else {
 			return true;
 		}
 	}
-
+	
 	@Override
 	public List<Answer> findQuestion(int questionId) {
 		return qStore.retrieveAll(questionId);
@@ -68,12 +67,29 @@ public class AnswerServiceLogic implements AnswerService{
 			return true;
 		}
 	}
-
+	
+	@Override
+	public boolean removeByQuesAnswerId(int answerId) {
+		int check = qStore.deleteByAnswerId(answerId);
+		if(check==0) {
+			return false;
+		} else {
+			return true;
+		}
+	}
+	
+	@Override
+	public Answer findQuestionAnswerById(int answerId) {
+		return qStore.retrieveByAnswerId(answerId);
+	}
+	
+	
+	// 후기 답변
 	@Override
 	public boolean registerReview(Answer answer) {
 		int check = 0;
 		check = rStore.create(answer);
-		answer.setTypeId(2);
+//		answer.setTypeId(2);
 		if(check == 0) {
 			return false;
 		} else {
@@ -124,11 +140,6 @@ public class AnswerServiceLogic implements AnswerService{
 		} else {
 			return true;
 		}
-	}
-
-	@Override
-	public Answer findQuestionAnswerById(int answerId) {
-		return qStore.retrieveByAnswerId(answerId);
 	}
 
 	@Override

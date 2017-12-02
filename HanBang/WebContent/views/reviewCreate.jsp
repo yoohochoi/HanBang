@@ -21,7 +21,7 @@
 			<div>
 				<input type="text" name="title" placeholder="제목">
 				<textarea rows="30" cols="100" name="content"></textarea>
-				<label><input type="file" name="file">사진 추가</label>
+				<label>사진 추가<input type="file" name="file"></label>
 			</div>
 			<input type="submit" name="reviewCreateBtn" value="등록하기">
 		</form>
