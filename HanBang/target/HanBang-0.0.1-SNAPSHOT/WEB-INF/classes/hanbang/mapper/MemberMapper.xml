@@ -13,7 +13,7 @@
 		<result property="memberTypeId" column="membertype" />
 	</resultMap>
 
-	<insert id="create" parameterType="MemberMap">
+	<insert id="create" parameterType="Member">
 		INSERT INTO MEMBER_TB(MEMBERID
 		, PASSWORD, NAME, PHONENUMBER, EMAIL, MEMBERTYPE)
 		VALUES(#{id} ,
@@ -30,13 +30,12 @@
 	<select id="retrive" parameterType="String" resultType="Member">
 		SELECT
 		MEMBERID, PASSWORD, NAME, PHONENUMBER, EMAIL,
-		MEMBERTYPE as
-		memberTypeId
+		MEMBERTYPE as memberTypeId
 		FROM MEMBER_TB
 		WHERE memberId = #{id}
 	</select>
 
-	<update id="update" parameterType="MemberMap">
+	<update id="update" parameterType="Member">
 		update member_tb
 		set password =
 		#{password}, phoneNumber = #{phoneNumber}, email = #{email}

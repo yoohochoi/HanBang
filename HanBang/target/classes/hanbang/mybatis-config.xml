@@ -44,5 +44,6 @@
 		<mapper resource="hanbang/mapper/PublicUsageMapper.xml"/>
 		<mapper resource="hanbang/mapper/HouseMapper.xml"/>
 		<mapper resource="hanbang/mapper/InterestShareHouseMapper.xml"/>
+			<mapper resource="hanbang/mapper/RoomMapper.xml"/>
 	</mappers>
 </configuration>

@@ -11,10 +11,14 @@
 	</insert>
 
 	<select id="retriveAll" parameterType="String" resultType="ShareHouse">
-		SELECT SHAREHOUSEID, MEMBERID
+
+		select title, sharehouseId
+		from sharehouse_tb
+		where shareHouse_tb.shareHouseId in(
+		SELECT INTERESTSHAREHOUSE_TB.SHAREHOUSEID
 		FROM INTERESTSHAREHOUSE_TB
 		WHERE MEMBERID
-		= #{memberId}
+		= #{memberId})
 	</select>
 
 	<delete id="delete" parameterType="int">
@@ -28,15 +32,15 @@
 		INTERESTSHAREHOUSE_TB
 		WHERE MEMBERID = #{memberId}
 	</delete>
-	
+
 	<delete id="deleteInterestShareHouse" parameterType="map">
 		DELETE FROM
 		INTERESTSHAREHOUSE_TB
 		WHERE MEMBERID = #{memberId} and
-			SAHREHOUSEID = #{sharehouseId}
-		
+		SAHREHOUSEID = #{sharehouseId}
+
 	</delete>
-	
+
 
 
 </mapper>

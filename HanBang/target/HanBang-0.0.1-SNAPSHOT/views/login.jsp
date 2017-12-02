@@ -19,7 +19,7 @@
 	<nav>
 		<h2 class="hide">회원 메뉴</h2>
 		<ul>
-			<li><a href="${ctx}/memberJoin.jsp">회원 가입</a></li>
+			<li><a href="${ctx}/views/memberJoin.jsp">회원 가입</a></li>
 		</ul>
 	</nav>
 </header>

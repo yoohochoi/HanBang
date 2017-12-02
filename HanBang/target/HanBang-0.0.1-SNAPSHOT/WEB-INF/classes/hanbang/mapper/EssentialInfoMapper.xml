@@ -5,31 +5,40 @@
 <mapper namespace="hanbang.store.mapper.EssentialInfoMapper">
 
 	<insert id="create" parameterType="EssentialInfo">
+		<selectKey keyProperty="essentialInfoId" resultType="int"
+			order="BEFORE">
+			SELECT ESSENTIALINFOID_seq.nextval FROM dual
+		</selectKey>
 		INSERT INTO
-		essentialInfo_tb(shareHouseId, sex, floorTotalFloor, parking,
+		essentialInfo_tb(essentialInfoId, shareHouseId,
+		floorTotalFloor, parking,
 		lift,
-		managementFee, buildingType)
-		VALUES(#{shareHouseId}, #{sex},
-		#{floorTotalFloor}, #{parking}, #{lift}, #{managementFee},
+		buildingType)
+		VALUES(#{essentialInfoId},
+		#{shareHouseId},
+		#{floorTotalFloor}, #{parking},
+		#{lift},
 		#{buildingType})
 	</insert>
 
 	<update id="update" parameterType="EssentialInfo">
 		UPDATE essentialInfo_tb
 		SET
-		sex
-		= #{sex}, floorTotalFloor = #{floorTotalFloor}, parking = #{parking},
-		lift = #{lift}, managementFee = #{managementFee}, buildingType =
+		floorTotalFloor = #{floorTotalFloor}, parking = #{parking},
+		lift =
+		#{lift}, buildingType =
 		#{buildingType}
-		WHERE shareHouseId = #{shareHouseId}
+		WHERE shareHouseId =
+		#{shareHouseId}
 	</update>
 
 	<select id="retrive" parameterType="int" resultType="EssentialInfo">
 		SELECT
-		shareHouseId, sex, floorTotalFloor, parking,
-		lift, managementFee,
+		essentialInfoId, shareHouseId, floorTotalFloor, parking,
+		lift,
 		buildingType
-		FROM essentialInfo_tb
+		FROM
+		essentialInfo_tb
 		WHERE shareHouseId = #{shareHouseId}
 	</select>
 
@@ -38,6 +47,5 @@
 		essentialInfo_tb
 		WHERE shareHouseId = #{shareHouseId}
 	</delete>
-
 
 </mapper>
