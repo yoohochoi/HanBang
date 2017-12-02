@@ -19,9 +19,11 @@ public class QuestionController {
 	@Autowired
 	private QuestionService service;
 	
+//	private AnswerService answerService;
+	
 	@RequestMapping("/question/registQuestion.do")
 	public String registerQuestion() {
-		return "questionCreate.jsp";
+		return "registQuestion.jsp";
 	}
 	
 	// 문의 등록
@@ -93,3 +95,4 @@ public class QuestionController {
 
 
 
+>>>>>>> refs/remotes/origin/master

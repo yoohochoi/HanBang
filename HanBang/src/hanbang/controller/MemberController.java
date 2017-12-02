@@ -1,9 +1,11 @@
 package hanbang.controller;
 
+import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.List;
 
-import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
@@ -28,7 +30,7 @@ public class MemberController {
 	private HouseService houseService;
 
 	@RequestMapping(value = "memberJoin.do", method = RequestMethod.POST)
-	public String registerMember(@Valid Member member, BindingResult bindingResult, HttpServletRequest request) {
+	public String registerMember(Member member, BindingResult bindingResult, HttpServletRequest request) {
 
 		// if (bindingResult.hasErrors()) {
 		// return "memberJoin.jsp";
@@ -48,7 +50,7 @@ public class MemberController {
 		return "memberList.jsp";
 	}
 
-	@RequestMapping(value = "findMember.do", method = RequestMethod.GET)
+	@RequestMapping(value = "findMember.do", method = {RequestMethod.GET , RequestMethod.POST})
 	public String findByMemberId(HttpSession session, Model model) {
 		String memberId = (String) session.getAttribute("memberId");
 		Member member = service.find(memberId);
@@ -88,24 +90,19 @@ public class MemberController {
 	}
 
 	@RequestMapping(value = "login.do", method = RequestMethod.POST)
-	public String login(HttpServletRequest request, String memberId, String password) {
+	public String login(HttpServletRequest request, String memberId, String password,  HttpServletResponse response) {
 
 		Member member = service.find(memberId);
 		HttpSession session = request.getSession();
 
 		if (member != null) {
-			// System.out.println("****로그인확인중");
 			if (member.getPassword().equals(password)) {
-				// System.out.println("***2");
 				session.setAttribute("memberId", memberId);
 				session.setAttribute("name", member.getName());
 				session.setAttribute("memberType", member.getMemberTypeId());
-				
+
 				System.out.println(member.getMemberTypeId());
-				// System.out.println("memberId" + memberId);
-				// System.out.println("memberName" + member.getName());
 				if (member.getMemberTypeId() == 1) {
-					// System.out.println("***@");
 
 					return "redirect:/index.jsp";
 				} else {
@@ -117,11 +114,28 @@ public class MemberController {
 					}
 				}
 			} else {
-				return "redirect:/views/login.jsp";
+				response.setContentType("text/html; charset=UTF-8");
+				PrintWriter out;
+				try {
+					out = response.getWriter();
+					out.println("<script>alert('로그인 정보를 확인해주세요.'); history.go(-1);</script>");
+					out.flush();
+				} catch (IOException e) {
+					e.printStackTrace();
+				}
+				return "/views/login.jsp";
 			}
 		} else {
-			System.out.println("******* login failure");
-			return "redirect:/views/login.jsp";
+			response.setContentType("text/html; charset=UTF-8");
+			PrintWriter out;
+			try {
+				out = response.getWriter();
+				out.println("<script>alert('로그인 정보를 확인해주세요.'); history.go(-1);</script>");
+				out.flush();
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+			return "/views/login.jsp";
 		}
 
 	}

@@ -79,7 +79,7 @@
 			<ul id="reviewList">
 				<li><span>셰어하우스 제목</span> <span>작성자ID</span> <span>작성 날짜</span>
 				</li>
-				<c:forEach var="review" items="reviewList" end="">
+				<c:forEach var="review" items="reviewList">
 					<li><a href="${ctx}/reviewDetail.do"> <span>${review.shareHouseTitle }</span>
 							<span>${review.authorId}</span> <span>${review.writeDate }</span>
 					</a></li>

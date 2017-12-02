@@ -9,6 +9,7 @@
 		<id property="answerId" column="question_answerId"/>
 		<result property="quesOrReviewId" column="questionId"/>
 		<result property="content" column="question_answerContent"/>
+		<result property="date" column="question_answerDate"/>
 	</resultMap>
 	
 	<sql id="selectAnswer">
@@ -28,7 +29,7 @@
 	
 	<select id="retrieveAll" parameterType="Integer" resultMap="answerMap">
 		<include refid="selectAnswer"/>
-		WHERE questionId = #{quesOrReviewId}
+		WHERE questionId = #{questionId}
 	</select>
 	
 	<select id="retrieveByAnswerId" parameterType="Integer" resultMap="answerMap">

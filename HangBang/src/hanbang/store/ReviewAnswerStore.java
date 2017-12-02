@@ -6,18 +6,16 @@ import hanbang.domain.Answer;
 
 public interface ReviewAnswerStore {
 
-	int create(Answer answer);
+	public int create(Answer answer);
 
-	List<Answer> retrieveAll(int reviewId);
-	
-	Answer retrieveByAnswerId(int answerId);
+	public List<Answer> retrieve(int reviewId);
 
-	int update(Answer answer);
+	public int update(Answer answer);
 
-	int delete(String memberId);
+	public int delete(String memberId);
 
-	int deleteByReviewId(int reviewId);
+	public int deleteByReviewId(int reviewId);
 
-	int deleteByAnswerId(int answerId);
+	public int deleteByAnswerId(int answerId);
 
 }

@@ -1,16 +1,15 @@
 package hanbang.sh;
 
+import static org.junit.Assert.*;
+
+import java.util.List;
 
 import org.junit.Before;
 import org.junit.Test;
 
+import hanbang.domain.Answer;
 import hanbang.store.QuestionAnswerStore;
 import hanbang.store.logic.QuestionAnswerStoreLogic;
-
-import static org.junit.Assert.*;
-
-
-import hanbang.domain.Answer;
 
 public class QuestionAnswerStoreLogicTest {
 	

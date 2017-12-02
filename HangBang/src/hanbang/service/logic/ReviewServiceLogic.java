@@ -7,7 +7,6 @@ import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import antlr.collections.AST;
 import hanbang.domain.Answer;
 import hanbang.domain.Review;
 import hanbang.service.ReviewService;
@@ -35,7 +34,7 @@ public class ReviewServiceLogic implements ReviewService{
 	@Override
 	public Review find(int reviewId) {
 		Review review = rStore.retrive(reviewId);
-		List<Answer> reviewAnswers = aStore.retrieveAll(reviewId);
+		List<Answer> reviewAnswers = aStore.retrieve(reviewId);
 		review.setAnswers(reviewAnswers);
 		return review;
 	}
@@ -94,14 +93,9 @@ public class ReviewServiceLogic implements ReviewService{
 		if(check == 0) {
 			return false;
 		} else {
-			int answerCheck = aStore.deleteByReviewId(reviewId);
-			if(answerCheck > 1) {
-				return true;
-			} else {
-				aStore.deleteByReviewId(reviewId);
-				return true;
-			}
+			return true;
 		}
 	}
 
 }
+>>>>>>> refs/remotes/origin/master

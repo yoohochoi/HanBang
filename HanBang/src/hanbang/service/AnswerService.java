@@ -5,7 +5,8 @@ import java.util.List;
 import hanbang.domain.Answer;
 
 public interface AnswerService {
-
+	
+	// 문의 답변
 	boolean registerQuestion(Answer answer);
 
 	List<Answer> findQuestion(int questionId);
@@ -17,7 +18,10 @@ public interface AnswerService {
 	boolean removeQuestionAnswer(String memberId);
 
 	boolean removeByQuestionId(int questionId);
-
+	
+	boolean removeByQuesAnswerId(int answerId);
+	
+	// 후기 답변
 	boolean registerReview(Answer answer);
 
 	List<Answer> findReview(int reviewId);

@@ -16,10 +16,10 @@ public class HouseServiceLogic implements HouseService {
 	@Autowired
 	private HouseStore houseStore;
 
-	private int check;
 
 	@Override
 	public boolean register(House house) {
+		int check = 0;
 		check = houseStore.create(house);
 		if (check > 0) {
 			return true;
@@ -51,7 +51,7 @@ public class HouseServiceLogic implements HouseService {
 
 	@Override
 	public boolean modify(House house) {
-
+		int check = 0;
 		check = houseStore.update(house);
 
 		if (check > 0) {
@@ -63,7 +63,7 @@ public class HouseServiceLogic implements HouseService {
 
 	@Override
 	public boolean remove(int houseId) {
-
+		int check = 0;
 		check = houseStore.delete(houseId);
 
 		if (check > 0) {

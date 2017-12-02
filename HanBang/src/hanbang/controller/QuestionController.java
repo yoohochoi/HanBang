@@ -10,6 +10,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import hanbang.domain.Answer;
 import hanbang.domain.Question;
 import hanbang.service.QuestionService;
 
@@ -62,8 +63,10 @@ public class QuestionController {
 	@RequestMapping("/question/detailQuestion.do")
 	public String detailQuestion(int questionId, Model model) {
 		Question question = service.find(questionId);
-		model.addAttribute(question);
-		return "questionDetail.jsp";
+		model.addAttribute("question", question);
+		List<Answer> answers = question.getAnswers();
+		model.addAttribute("answers", answers);
+		return "/views/questionDetail.jsp";
 	}
 	
 	// 문의 수정
@@ -90,8 +93,14 @@ public class QuestionController {
 	// 문의 삭제
 	@RequestMapping("/question/removeQuestion.do")
 	public String removeQuestion(int questionId) {
-		service.remove(questionId);
-		return "redirect:questionList.do";
+		boolean check = service.remove(questionId);
+		if(check == false) {
+			System.out.println(" * questionRemoveFalse!");
+			return "redirect:questionList.do";
+		} else {
+			System.out.println(" * questionRemoveTrue!");
+			return "redirect:questionList.do";
+		}
 	}
 	
 }

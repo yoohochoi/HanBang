@@ -20,17 +20,19 @@ public class QuestionAnswerController {
 	
 	// 문의 댓글 등록
 	@RequestMapping(value="/question/registAnswer.do", method=RequestMethod.POST)
-	public String registAnswer(HttpSession session, HttpServletRequest request, Model model) {
+	public String registAnswer(String content, int questionId, HttpSession session, HttpServletRequest request, Model model) {
 		Answer answer = new Answer();
-		answer.setWriterId((String)session.getAttribute("loginedUser"));
-		answer.setContent((String)request.getAttribute("content"));
+//		answer.setWriterId((String)session.getAttribute("loginedUser"));
+//		answer.setContent((String)request.getAttribute("content"));
+		answer.setWriterId("sh");
+		answer.setContent(content);
+		answer.setQuesOrReviewId(questionId);
 		answer.setTypeId(1);
 		boolean check = service.registerQuestion(answer);
 		if(check == false) {
-			return "redirect:detailQuestion.do";
+			return "redirect:detailQuestion.do?questionId=" + questionId;
 		} else {
-			model.addAttribute(answer);
-			return "redirect:detailQuestion.do";
+			return "redirect:detailQuestion.do?questionId=" + questionId;
 		}
 	}
 	
@@ -39,7 +41,15 @@ public class QuestionAnswerController {
 	
 	
 	//문의 댓글 삭제
-	
+	@RequestMapping(value="/question/removeAnswer.do", method=RequestMethod.GET)
+	public String removeAnswer(int answerId, int questionId) {
+		boolean check = service.removeByQuesAnswerId(answerId);
+		if(check == true) {
+			return "detailQuestion.do?questionId=" + questionId;
+		} else {
+			return "detailQuestion.do?questionId=" + questionId;
+		}
+	}
 	
 	
 }

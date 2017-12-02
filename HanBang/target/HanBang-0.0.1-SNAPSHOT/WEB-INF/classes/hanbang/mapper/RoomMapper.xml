@@ -7,16 +7,14 @@
 		INSERT INTO
 		room_tb(roomId,
 		shareHouseId,
-		sex, roomArea, bathroom, option, moveDate, deposit,
+		sex, roomArea, bathroom, deposit,
 		monthlyFee,
-		availability
-		leastStayDays)
+		availability)
 		VALUES(#{roomId}, #{shareHouseId}
 		#{sex}, #{roomArea},
-		#{bathroom}, #{option}, #{moveDate}, #{deposit},
+		#{bathroom}, #{deposit},
 		#{monthlyFee},
-		#{availability}
-		#{leastStayDays})
+		#{availability})
 	</insert>
 
 	<update id="update" parameterType="Room">
@@ -24,22 +22,20 @@
 		SET
 		sex = #{sex},
 		roomArea = #{roomArea},
-		bathroom = #{bathroom}, option = #{option},
-		moveDate = #{moveDate}, deposit = #{deposit}, monthlyFee =
+		bathroom = #{bathroom}, deposit = #{deposit},
+		monthlyFee =
 		#{monthlyFee},
 		availability = #{availability}
-		leastStayDays =
-		#{leastStayDays}
-		WHERE roomId = #{roomId}
+		WHERE roomId =
+		#{roomId}
 	</update>
 
 	<select id="retrive" parameterType="int" resultType="Room">
 		SELECT
 		roomId, shareHouseId,
-		sex, roomArea, bathroom, option, moveDate,
+		sex, roomArea, bathroom,
 		deposit, monthlyFee,
 		availability
-		leastStayDays
 		FROM room_tb
 		WHERE
 		shareHouseId = #{shareHouseId}

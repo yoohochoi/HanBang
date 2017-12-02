@@ -14,7 +14,7 @@ import hanbang.domain.ShareHouse;
 
 public interface ShareHouseService {
 
-	boolean register(ShareHouse shareHouse, List<Room> rooms, House house, List<Photo> photos);
+	boolean register(ShareHouse shareHouse, List<Room> rooms, House house);
 
 	List<ShareHouse> findAll();
 
@@ -24,7 +24,7 @@ public interface ShareHouseService {
 
 	List<ShareHouse> researchShareHouse(String searchWord);
 
-	boolean modify(ShareHouse shareHouse, List<Room> rooms, House house, List<Photo> photos);
+	boolean modify(ShareHouse shareHouse, List<Room> rooms, House house);
 
 	boolean notify(Map<String, Object> map);
 
