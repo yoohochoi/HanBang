@@ -43,10 +43,8 @@
 
 	<update id="update" parameterType="House">
 		UPDATE HOUSE_TB
-		SET ADDRESS =
-		#{address}, WHOLEAREA = #{wholeArea}, BATHROOMS = #{bathrooms},
-		ROOMS=
-		#{rooms} , HouseName = #{houseName}
+		SET ADDRESS = #{address} , WHOLEAREA = #{wholeArea} , BATHROOMS = #{bathrooms} ,
+		ROOMS= #{rooms} , HouseName = #{houseName}
 		WHERE HOUSEID = #{houseId}
 	</update>
 

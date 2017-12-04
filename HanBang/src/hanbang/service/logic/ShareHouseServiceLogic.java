@@ -29,14 +29,12 @@ public class ShareHouseServiceLogic implements ShareHouseService {
 	@Autowired
 	private HouseStore houseStore;
 	@Autowired
-	private PhotoStore photoStore;
-	@Autowired
 	private EssentialInfoService essentialInfoService;
 	@Autowired
 	private ExtraInfoService extraInfoService;
 
 	@Override
-	public boolean register(ShareHouse shareHouse, List<Room> rooms, House house, List<Photo> photos) {
+	public boolean register(ShareHouse shareHouse, List<Room> rooms, House house) {
 		int check = 0;
 		houseStore.create(house);
 		shareHouse.setHouseId(house.getHouseId());
@@ -75,7 +73,6 @@ public class ShareHouseServiceLogic implements ShareHouseService {
 
 		ShareHouse shareHouse = shareHouseStore.retrive(shareHouseId);
 		shareHouse.setRooms(roomStore.retrive(shareHouseId));
-		shareHouse.setPhotos(photoStore.retriveAll(shareHouseId));
 		shareHouse.setEssentialInfo(essentialInfoService.find(shareHouseId));
 		shareHouse.setExtraInfo(extraInfoService.find(shareHouseId));
 		return shareHouse;
@@ -95,7 +92,7 @@ public class ShareHouseServiceLogic implements ShareHouseService {
 	}
 
 	@Override
-	public boolean modify(ShareHouse shareHouse, List<Room> rooms, House house, List<Photo> photos) {
+	public boolean modify(ShareHouse shareHouse, List<Room> rooms, House house) {
 
 		int check = 0;
 		int index = 0;
@@ -138,7 +135,6 @@ public class ShareHouseServiceLogic implements ShareHouseService {
 	public boolean remove(int shareHouseId) {
 		roomStore.deleteByShareHouse(shareHouseId);
 		int check = shareHouseStore.delete(shareHouseId);
-		photoStore.deleteByShareHouse(shareHouseId);
 		if (check > 0) {
 			return true;
 		} else {
@@ -158,7 +154,6 @@ public class ShareHouseServiceLogic implements ShareHouseService {
 			shareHouse = list.get(index);
 			int shareHouseId = shareHouse.getShareHouseId();
 			roomStore.deleteByShareHouse(shareHouseId);
-			photoStore.deleteByShareHouse(shareHouseId);
 			essentialInfoService.deleteByShareHouse(shareHouseId);
 			extraInfoService.deleteByShareHouse(shareHouseId);
 			index++;

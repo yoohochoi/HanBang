@@ -34,37 +34,35 @@ public class HouseController {
 	}
 
 	@RequestMapping(value = "houseModify.do", method = RequestMethod.GET)
-	public String modifyHouse(String houseId, Model model, HttpSession session) {
-		String memberId = (String) session.getAttribute("memberId");
+	public String modifyHouse(String houseId, Model model) {
 
-		System.out.println(houseId);
 		int id = Integer.parseInt(houseId);
 		House house = service.findMyHouse(id);
 
-		if (house.getMemberId().equals(memberId)) {
-			model.addAttribute("house", house);
+		model.addAttribute("house", house);
 
-			return "redirect:/views/houseModify.jsp";
-
-		} else {
-			return "redirect:/findMember.do?memberId=" + memberId;
-		}
+		return "/views/houseModify.jsp";
 
 	}
 
 	@RequestMapping(value = "houseModify.do", method = RequestMethod.POST)
-	public String modifyHouse(House house, Model model) {
+	public String modifyHouse(House house) {
+		
 		service.modify(house);
-		model.addAttribute(house);
-		return "redirect:/houseDetail.do?houseId=" + house.getHouseId();
+		
+		return "redirect:/findMember.do?memberId=" + house.getMemberId();
 	}
 
 	@RequestMapping(value = "houseDelete.do")
 	public String removeHouse(String houseId) {
-		House house = service.find(Integer.parseInt(houseId));
+		
+		
+		House house = service.findMyHouse(Integer.parseInt(houseId));
+		
+		String memberId = house.getMemberId();
 		service.remove(Integer.parseInt(houseId));
 
-		return "redirect:/findMember.do?memberId=" + house.getMemberId();
+		return "redirect:/findMember.do?memberId=" + memberId;
 	}
 
 }

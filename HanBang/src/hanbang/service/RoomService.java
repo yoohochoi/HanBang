@@ -9,7 +9,7 @@ public interface RoomService {
 
 	boolean register(Room room, List<ProvidedGood> providedGoods);
 
-	Room find(int shareHouseId);
+	List<Room> find(int shareHouseId);
 
 	boolean modify(Room room, List<ProvidedGood> providedGoods);
 
