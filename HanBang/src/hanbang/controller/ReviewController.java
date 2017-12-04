@@ -40,7 +40,7 @@ public class ReviewController {
 	public String uploadFile(@RequestParam("file") MultipartFile imgFile, Model model, Review review) {
 
 		// String savePath ="C:/Users/limsuhyun/eclipse-workspace/HanBang_11.29_0.03/WebContent/uploadFile";
-		String savePath = "C:/Users/kosta/git/HanBang/HanBang/WebContent/uploadFile";
+		String savePath = "C:/Users/kosta/git/Final/HanBang/WebContent/uploadFile";
 //		String savePath = "C:/file";
 		// String savePath = request.getRealPath("folderName"); // 파일이 저장될 프로젝트 안의 폴더경로
 
