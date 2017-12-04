@@ -26,6 +26,13 @@
 	<select id="retriveAll" parameterType="Integer" resultMap="reviewMap">
 		<include refid="selectReview"/>
 		WHERE shareHouseId = #{shareHouseId}
+		ORDER BY reviewId DESC
+	</select>
+	
+	<select id="retrieveByMemberId" parameterType="String" resultMap="reviewMap">
+		<include refid="selectReview"/>
+		WHERE writerId = #{memberId}
+		ORDER BY reviewId DESC
 	</select>
 	
 	<select id="retrive" parameterType="Integer" resultMap="reviewMap">
@@ -58,6 +65,12 @@
 		INSERT INTO reviewReport_tb(reporterId, reviewId)
 		VALUES(#{reporterId}, #{reviewId})
 	</insert>
+	
+	<select id="countReports" parameterType="Integer" resultType="String">
+		SELECT reporterId
+		FROM reviewReport_tb
+		WHERE reviewId = #{reviewId}
+	</select>
 	
 </mapper>
 

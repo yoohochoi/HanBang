@@ -44,6 +44,11 @@ public class ReviewServiceLogic implements ReviewService{
 	public List<Review> findByShareHouseId(int shareHouseId) {
 		return rStore.retriveAll(shareHouseId);
 	}
+	
+	@Override
+	public List<Review> findByMemberId(String memberId) {
+		return rStore.retrieveByMemberId(memberId);
+	}
 
 	@Override
 	public boolean modify(Review review) {
@@ -102,6 +107,12 @@ public class ReviewServiceLogic implements ReviewService{
 				return true;
 			}
 		}
+	}
+
+	@Override
+	public List<String> countReportReview(int reviewId) {
+		List<String> list = rStore.countReports(reviewId);
+		return null;
 	}
 
 }

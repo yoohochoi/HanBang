@@ -11,6 +11,8 @@ public interface ReviewService {
 	Review find(int reviewId);
 
 	List<Review> findByShareHouseId(int shareHouseId);
+	
+	List<Review> findByMemberId(String memberId);
 
 	boolean modify(Review review);
 
@@ -21,5 +23,7 @@ public interface ReviewService {
 	boolean removeByShareHouse(int shareHouseId);
 
 	boolean reportReview(String memberId, int reviewId);
+	
+	List<String> countReportReview(int reviewId);
 
 }

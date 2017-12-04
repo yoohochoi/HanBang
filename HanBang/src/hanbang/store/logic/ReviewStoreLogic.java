@@ -12,6 +12,7 @@ import hanbang.domain.Review;
 import hanbang.store.ReviewStore;
 import hanbang.store.factory.SqlSessionFactoryProvider;
 import hanbang.store.mapper.ReviewMapper;
+import jdk.internal.org.objectweb.asm.commons.Remapper;
 
 @Repository
 public class ReviewStoreLogic implements ReviewStore{
@@ -50,6 +51,19 @@ public class ReviewStoreLogic implements ReviewStore{
 			session.close();
 		}
 		
+		return list;
+	}
+	
+	@Override
+	public List<Review> retrieveByMemberId(String memberId) {
+		SqlSession session = factory.openSession();
+		List<Review> list = null;
+		try {
+			ReviewMapper mapper = session.getMapper(ReviewMapper.class);
+			list = mapper.retrieveByMemberId(memberId);
+		} finally {
+			session.close();
+		}
 		return list;
 	}
 
@@ -136,6 +150,19 @@ public class ReviewStoreLogic implements ReviewStore{
 			session.close();
 		}
 		return check;
+	}
+
+	@Override
+	public List<String> countReports(int reviewId) {
+		SqlSession session = factory.openSession();
+		List<String> list = null;
+		try {
+			ReviewMapper mapper = session.getMapper(ReviewMapper.class);
+			list = mapper.countReports(reviewId);
+		} finally {
+			session.close();
+		}
+		return list;
 	}
 
 }

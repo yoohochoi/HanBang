@@ -3,7 +3,6 @@ package hanbang.controller;
 import java.io.BufferedOutputStream;
 import java.io.File;
 import java.io.FileOutputStream;
-import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
@@ -18,7 +17,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
-import org.springframework.web.servlet.ModelAndView;
 
 import hanbang.domain.Answer;
 import hanbang.domain.Review;
@@ -42,10 +40,11 @@ public class ReviewController {
 	public String uploadFile(@RequestParam("file") MultipartFile imgFile, Model model, Review review) {
 
 		// String savePath ="C:/Users/limsuhyun/eclipse-workspace/HanBang_11.29_0.03/WebContent/uploadFile";
-		String savePath = "C:/Users/kosta/git/Final/HanBang/WebContent/uploadFile";
+		String savePath = "C:/Users/kosta/git/HanBang/HanBang/WebContent/uploadFile";
+//		String savePath = "C:/file";
 		// String savePath = request.getRealPath("folderName"); // 파일이 저장될 프로젝트 안의 폴더경로
 
-		String originalFilename = imgFile.getOriginalFilename(); // fileName.jpg
+		String originalFilename = imgFile.getOriginalFilename() + ""; // fileName.jpg
 		System.out.println("originalFileName:" + originalFilename);
 		String onlyFileName = originalFilename.substring(0, originalFilename.indexOf(".")); // fileName
 		String extension = originalFilename.substring(originalFilename.indexOf("."));
@@ -140,35 +139,58 @@ public class ReviewController {
 	// 후기 수정
 	@RequestMapping("/review/modifyReview.do")
 	public String modifyReview(int reviewId, HttpSession session, Model model) {
-		String memberId = (String) session.getAttribute("loginedUser");
+//		String memberId = (String) session.getAttribute("loginedUser");
+		String memberId = "ms";
 		Review review = service.find(reviewId);
 		if (review.getWriterId().equals(memberId)) {
-			model.addAttribute(review);
-			return "modifyReview.jsp";
+			model.addAttribute("review", review);
+			System.out.println("***modifyReview.do : " + review.getContent());
+			System.out.println("**** model ");
+			return "/views/reviewModify.jsp";
 		} else {
-			return "reviewDetail.do";
+			return "redirect:reviewDetail.do?reviewId=" + reviewId;
 		}
 	}
 
 	//
 	@RequestMapping(value = "/review/modifyReview.do", method = RequestMethod.POST)
-	public String modifyReview(Review review, Model model, MultipartFile file) {
-		service.modify(review);
-		model.addAttribute(review);
-		return "detailReview.do";
+	public String modifyReview(int reviewId, Review review, Model model) {
+		try {
+			boolean check = service.modify(review);
+			if(check == false) {
+				model.addAttribute("review", review);
+				return "redirect:modifyReview.do?reviewId=" + reviewId;
+			} else {
+				model.addAttribute(review);
+				System.out.println("success");
+				return "detailReview.do?reviewId=" + reviewId;
+			}
+		} catch (Exception e) {
+			System.out.println("nullPointerException");
+			System.out.println("title : " + review.getTitle());
+			return "redirect:modifyReview.do?reviewId="+reviewId;
+		}
 	}
 
 	// 후기 삭제(reviewId)
 	@RequestMapping("/review/removeReviewByReviewId.do")
-	public String removeReviewByReviewId(int reviewId) {
-		boolean check = service.removeByReviewId(reviewId);
-		if (check == false) {
-			return "redirect:reviewDetail.do";
+	public String removeReviewByReviewId(int reviewId, HttpSession session) {
+		String memberId = (String)session.getAttribute("memberId");
+		Review review = service.find(reviewId);
+		if(review.getWriterId().equals(memberId)) {
+			boolean check = service.removeByReviewId(reviewId);
+			if (check == false) {
+				return "redirect:detailReview.do?reviewId=" + reviewId;
+			} else {
+				// shareHouseDetail.do에서 reviewList 뿌려줘야 함!!!!!!!!!
+				return "redirect:reviewList.do";
+			}
 		} else {
-			return "redirect:reviewList.do";
+			return "redirect:detailReview.do?reviewId=" + reviewId;
 		}
 	}
-
+	
+	// MemberController.
 	// 후기 삭제(memberId)
 	@RequestMapping("/review/removeReviewByMemberId.do")
 	public String removeReviewByMemberId(String memberId) {
@@ -179,7 +201,8 @@ public class ReviewController {
 			return "redirect:reviewList.do";
 		}
 	}
-
+	
+	// ShareHouseController.
 	// 후기 삭제(shareHouseId)
 	@RequestMapping("/review/removeReviewByShareHouseId.do")
 	public String removeReviewShareHouseId(int shareHouseId) {
@@ -201,7 +224,18 @@ public class ReviewController {
 			if(check == false) {
 				return "redirect:detailReview.do?reviewId=" + reviewId;
 			} else {
-				return "redirect:detailReview.do?reviewId=" + reviewId;
+				System.out.println("******Review REPORTED ! ");
+				// 후기 숫자 확인 후 자동 삭제
+				List<String> list = service.countReportReview(reviewId);
+				System.out.println("@@@@reviewReportCount.size()" + list.size());
+				if(list.size() >= 2) {
+					service.removeByReviewId(reviewId);
+					System.out.println("**************Review REPORTED &&&&& DELETED BY REVIEWID !");
+					return "redirect:registReview.do";
+				} else {
+					System.out.println("REVIEW REPORTED AND REDIRECTED ! *************8");
+					return "redirect:detailReview.do?reviewId=" + reviewId;
+				}
 			}
 		} catch (Exception e) {
 //			System.out.println(" ***** constraint violated !!");
