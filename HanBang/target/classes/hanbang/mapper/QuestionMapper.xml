@@ -22,11 +22,13 @@
 	<select id="retriveByMemberId" parameterType="String" resultType="Question">
 		<include refid="selectQuestion"/>
 		WHERE writerId = #{writerId}
+		ORDER BY questionId DESC
 	</select>
 	 
 	<select id="retriveByShareHouseId" parameterType="int" resultType="Question">
 		<include refid="selectQuestion"/>
 		WHERE shareHouseId = #{shareHouseId}
+		ORDER BY questionId DESC
 	</select>
 	
 	<select id="retrive" parameterType="int" resultType="Question">

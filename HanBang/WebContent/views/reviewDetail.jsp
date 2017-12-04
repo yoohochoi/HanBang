@@ -29,7 +29,10 @@
 					alt="">
 				<p>사진 : ${review.photo }</p>
 				<p>** 후기내용 : ${review.content}</p>
-				<a href="removeReview.do?reviewId=${review.reviewId }">후기삭제</a>
+				<br>
+				<a href="modifyReview.do?reviewId=${review.reviewId }">후기수정</a>
+				<br>
+				<a href="removeReviewByReviewId.do?reviewId=${review.reviewId }">후기삭제</a>
 				<br>
 				<a href="reportReview.do?reviewId=${review.reviewId }">!후기신고!</a>
 			</article>

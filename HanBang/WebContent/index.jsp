@@ -8,6 +8,6 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<c:redirect url="review/detailReview.do?reviewId=71"/>
+	<c:redirect url="review/registReview.do"/>
 </body>
 </html>
