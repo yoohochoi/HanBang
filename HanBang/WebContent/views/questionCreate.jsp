@@ -45,13 +45,8 @@
         var year = today.getFullYear();   // 년도 
         var month = today.getMonth();     // 달  
         var date = today.getDate();
-<<<<<<< HEAD
-        document.getElementById("year").value = year;  // 이 녀석을 셋팅해준다. ( 이 친구들이 달력의 년도와 달 정보를 담는 변수 정도로 생각 하면 됭 ~ ) 
-        document.getElementById("month").value = month+1; // 이 녀석을 셋팅해준다. 
-=======
         document.getElementById("year").value = year;  // 달력의 년도와 달 정보를 담는 변수
         document.getElementById("month").value = month+1; // 
->>>>>>> refs/remotes/origin/suhyunComputer
         function prev() { 
             // 전달  
             var yy = document.getElementById("year").value;  
