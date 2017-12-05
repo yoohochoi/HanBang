@@ -1,6 +1,8 @@
 package hanbang.store.logic;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
@@ -10,6 +12,7 @@ import hanbang.domain.Photo;
 import hanbang.store.PhotoStore;
 import hanbang.store.factory.SqlSessionFactoryProvider;
 import hanbang.store.mapper.PhotoMapper;
+import hanbang.store.mapper.ShareHouseMapper;
 
 @Repository
 public class PhotoStoreLogic implements PhotoStore {
@@ -21,35 +24,25 @@ public class PhotoStoreLogic implements PhotoStore {
 	}
 
 	@Override
-	public int create(Photo photo) {
+	public int create(String photo, int shareHouseId) {
 
 		SqlSession session = factory.openSession();
 		int check = 0;
 
+		Map<String, Object> map = new HashMap<>();
+		map.put("photo", photo);
+		map.put("shareHouseId", shareHouseId);
+
 		try {
 			PhotoMapper mapper = session.getMapper(PhotoMapper.class);
-			check = mapper.create(photo);
+			check = mapper.create(map);
 			session.commit();
 		} finally {
 			session.close();
 		}
+
 		return check;
 	}
-
-	// @Override
-	// public int update(Photo photo) {
-	// SqlSession session = factory.openSession();
-	// int check = 0;
-	//
-	// try {
-	// PhotoMapper mapper = session.getMapper(PhotoMapper.class);
-	// check = mapper.update(photo);
-	// session.commit();
-	// } finally {
-	// session.close();
-	// }
-	// return check;
-	// }
 
 	@Override
 	public int deleteByShareHouse(int shareHouseId) {

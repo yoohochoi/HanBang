@@ -1,6 +1,9 @@
 package hanbang.controller;
 
+import java.io.BufferedOutputStream;
 import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
 import java.util.List;
 import java.util.UUID;
 
@@ -28,6 +31,7 @@ import hanbang.domain.Room;
 import hanbang.domain.ShareHouse;
 import hanbang.service.EssentialInfoService;
 import hanbang.service.ExtraInfoService;
+import hanbang.service.RoomService;
 import hanbang.service.ShareHouseService;
 
 @Controller
@@ -39,11 +43,15 @@ public class ShareHouseController {
 	private EssentialInfoService essentialInfoService;
 	@Autowired
 	private ExtraInfoService extraInfoService;
+	@Autowired
+	private RoomService roomService;
+	@Autowired
 
 	@RequestMapping(value = "/registShareHouse.do", method = RequestMethod.POST)
 	public String registerShareHouse(HttpSession session, @ModelAttribute("shareHouse") ShareHouse shareHouse,
 			EssentialInfo essentialInfo, ExtraInfo extraInfo, List<Room> rooms, House house,
-			MultipartHttpServletRequest mhsq, List<Facilitie> facilities, List<PublicUsage> publicUsages) {
+			MultipartHttpServletRequest mhsq, List<Facilitie> facilities, List<PublicUsage> publicUsages)
+			throws IOException {
 
 		shareHouse.setWriterId((String) session.getAttribute("memberId"));
 
@@ -62,24 +70,28 @@ public class ShareHouseController {
 			for (int i = 0; i < mf.size(); i++) {
 				String genId = UUID.randomUUID().toString();
 				String originFileName = mf.get(i).getOriginalFilename();
-				// String saveFileName = genId + "." + getExtension(originFileName);
+				String saveFileName = genId + "." + originFileName;
 
-				// String savePath = realFolder + saveFileName;
-
+				File saveFile = new File(dir.getAbsolutePath() + File.separator + saveFileName);
+				byte[] bytes = mf.get(i).getBytes();
+				BufferedOutputStream out = new BufferedOutputStream(new FileOutputStream(saveFile));
+				out.write(bytes);
+				out.close();
+				shareHouseService.savePhoto(saveFileName, shareHouse.getShareHouseId());
 			}
 		}
-		if (!registed) {
-			registed = essentialInfoService.register(essentialInfo, publicUsages);
-			if (!registed) {
-				extraInfoService.register(extraInfo, facilities);
-			} else {
-				System.out.println("필수정보 미입력");
-				return "redirect:/views/shareHouseCreate.jsp";
-			}
-		} else {
-			System.out.println("shareHouse 생성 안된다.");
-			return "redirect:/views/shareHouseCreate.jsp";
-		}
+//		if (!registed) {
+//			registed = essentialInfoService.register(essentialInfo, publicUsages);
+//			if (!registed) {
+		// extraInfoService.register(extraInfo, facilities);
+		// } else {
+//				System.out.println("필수정보 미입력");
+//				return "redirect:/views/shareHouseCreate.jsp";
+//			}
+//		} else {
+//			System.out.println("shareHouse 생성 안된다.");
+//			return "redirect:/views/shareHouseCreate.jsp";
+//		}
 
 		return "redirect:/shareHouseDetail.do?shareHouseId" + shareHouse.getShareHouseId();
 	}
@@ -136,8 +148,21 @@ public class ShareHouseController {
 	public String findAllShareHouse(Model model) {
 
 		List<ShareHouse> list = shareHouseService.findAll();
-		model.addAttribute("list", list);
 
+		Room room = new Room();
+		int id = 0;
+		for (int i = 0; i < list.size(); i++) {
+			id = list.get(i).getShareHouseId();
+		}
+		List<Room> rooms = roomService.find(id);
+
+		if (rooms.size() != 0) {
+			room = rooms.get(0);
+			model.addAttribute("room", room);
+		}
+		model.addAttribute("shareHouses", list);
+		int count = list.size();
+		model.addAttribute("count", count);
 		return "/views/shareHouseList_.jsp";
 	}
 

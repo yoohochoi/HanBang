@@ -32,11 +32,12 @@ public class ShareHouseServiceLogic implements ShareHouseService {
 	private EssentialInfoService essentialInfoService;
 	@Autowired
 	private ExtraInfoService extraInfoService;
+	@Autowired
+	private PhotoStore photoStore;
 
 	@Override
 	public boolean register(ShareHouse shareHouse, List<Room> rooms, House house) {
 		int check = 0;
-		houseStore.create(house);
 		shareHouse.setHouseId(house.getHouseId());
 		check = shareHouseStore.create(shareHouse);
 		if (check > 0) {
@@ -61,9 +62,6 @@ public class ShareHouseServiceLogic implements ShareHouseService {
 
 		List<ShareHouse> list = new ArrayList<>();
 		list = shareHouseStore.retriveAll();
-
-		for (ShareHouse shareHouse : list) {
-		}
 
 		return list;
 	}
@@ -165,6 +163,16 @@ public class ShareHouseServiceLogic implements ShareHouseService {
 			return false;
 		}
 
+	}
+
+	@Override
+	public boolean savePhoto(String saveFileName, int shareHouseId) {
+		int check = photoStore.create(saveFileName, shareHouseId);
+		if (check > 0) {
+			return true;
+		} else {
+			return false;
+		}
 	}
 
 }

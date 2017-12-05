@@ -4,7 +4,7 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="hanbang.store.mapper.PhotoMapper">
 
-	<insert id="create" parameterType="Photo">
+	<insert id="create" parameterType="map">
 		<selectKey keyProperty="photoId" resultType="int" order="BEFORE">
 			SELECT
 			PHOTO_seq.nextval FROM dual

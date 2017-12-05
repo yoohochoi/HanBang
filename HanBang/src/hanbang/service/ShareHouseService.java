@@ -32,4 +32,6 @@ public interface ShareHouseService {
 
 	boolean removeByMemberId(String memberId);
 
+	boolean savePhoto(String saveFileName, int shareHouseId);
+
 }

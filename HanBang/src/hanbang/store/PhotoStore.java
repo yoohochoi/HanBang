@@ -6,9 +6,7 @@ import hanbang.domain.Photo;
 
 public interface PhotoStore {
 
-	int create(Photo photo);
-
-	// int update(Photo photo);
+	int create(String imageUrl, int shareHouseId);
 
 	int deleteByShareHouse(int shareHouseId);
 
