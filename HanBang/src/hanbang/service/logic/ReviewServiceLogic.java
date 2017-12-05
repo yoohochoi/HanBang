@@ -7,7 +7,6 @@ import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import antlr.collections.AST;
 import hanbang.domain.Answer;
 import hanbang.domain.Review;
 import hanbang.service.ReviewService;
@@ -43,6 +42,11 @@ public class ReviewServiceLogic implements ReviewService{
 	@Override
 	public List<Review> findByShareHouseId(int shareHouseId) {
 		return rStore.retriveAll(shareHouseId);
+	}
+	
+	@Override
+	public List<Review> findByMemberId(String memberId) {
+		return rStore.retrieveByMemberId(memberId);
 	}
 
 	@Override
@@ -101,6 +105,21 @@ public class ReviewServiceLogic implements ReviewService{
 				aStore.deleteByReviewId(reviewId);
 				return true;
 			}
+		}
+	}
+
+	@Override
+	public List<Integer> countReportReview(int reviewId) {
+		return rStore.countReports(reviewId);
+	}
+
+	@Override
+	public boolean removeReportedReviews(int reviewId) {
+		int check = rStore.deleteReportedReviews(reviewId);
+		if(check == 0) {
+			return false;
+		} else {
+			return true;
 		}
 	}
 

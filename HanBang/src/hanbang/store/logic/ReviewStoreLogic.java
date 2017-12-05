@@ -52,6 +52,19 @@ public class ReviewStoreLogic implements ReviewStore{
 		
 		return list;
 	}
+	
+	@Override
+	public List<Review> retrieveByMemberId(String memberId) {
+		SqlSession session = factory.openSession();
+		List<Review> list = null;
+		try {
+			ReviewMapper mapper = session.getMapper(ReviewMapper.class);
+			list = mapper.retrieveByMemberId(memberId);
+		} finally {
+			session.close();
+		}
+		return list;
+	}
 
 	@Override
 	public Review retrive(int retriveId) {
@@ -131,6 +144,33 @@ public class ReviewStoreLogic implements ReviewStore{
 		try {
 			ReviewMapper mapper = session.getMapper(ReviewMapper.class);
 			check = mapper.reviewReport(map);
+			session.commit();
+		} finally {
+			session.close();
+		}
+		return check;
+	}
+
+	@Override
+	public List<Integer> countReports(int reviewId) {
+		SqlSession session = factory.openSession();
+		List<Integer> list = null;
+		try {
+			ReviewMapper mapper = session.getMapper(ReviewMapper.class);
+			list = mapper.countReports(reviewId);
+		} finally {
+			session.close();
+		}
+		return list;
+	}
+
+	@Override
+	public int deleteReportedReviews(int reviewId) {
+		SqlSession session = factory.openSession();
+		int check = 0;
+		try {
+			ReviewMapper mapper = session.getMapper(ReviewMapper.class);
+			check = mapper.deleteReportedReviews(reviewId);
 			session.commit();
 		} finally {
 			session.close();
