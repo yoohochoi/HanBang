@@ -13,9 +13,7 @@
 		<servlet-name>dispatcher</servlet-name>
 		<url-pattern>/</url-pattern>
 	</servlet-mapping>
-	
-<<<<<<< HEAD
-=======
+
 	<servlet>
 		<servlet-name>default</servlet-name>
 		<servlet-class>org.apache.catalina.servlets.DefaultServlet</servlet-class>
@@ -28,7 +26,6 @@
 		<url-pattern>*.ico</url-pattern>
 	</servlet-mapping>
 
->>>>>>> refs/remotes/origin/suhyunComputer
 	<welcome-file-list>
 		<welcome-file>index.html</welcome-file>
 		<welcome-file>index.htm</welcome-file>

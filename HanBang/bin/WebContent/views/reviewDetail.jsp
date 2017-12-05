@@ -19,30 +19,26 @@
 		<h3>후기</h3>
 		<div>
 			<article>
-				<h4> 후기제목 : ${review.title}</h4>
+				<h4>후기제목 : ${review.title}</h4>
 				<div>
 					<p>후기날짜 : ${review.date}</p>
 					<p>작성자 : ${review.writerId}</p>
 				</div>
-				<img
-					src="/HanBang/uploadFile/${review.photo}"
-					alt="">
+				<img src="/HanBang/uploadFile/${review.photo}" alt="">
 				<p>사진 : ${review.photo }</p>
 				<p>** 후기내용 : ${review.content}</p>
-				<br>
-				<a href="modifyReview.do?reviewId=${review.reviewId }">후기수정</a>
-				<br>
-				<a href="removeReviewByReviewId.do?reviewId=${review.reviewId }">후기삭제</a>
-				<br>
-				<a href="reportReview.do?reviewId=${review.reviewId }">!후기신고!</a>
+				<br> <a href="modifyReview.do?reviewId=${review.reviewId }">후기수정</a>
+				<br> <a href="removeReview.do?reviewId=${review.reviewId }">후기삭제</a>
+				<br> <a href="reportReview.do?reviewId=${review.reviewId }">!후기신고!</a>
 			</article>
 			<c:forEach items="${answers }" var="answer">
 				<div class="request">
-				<br>
-					<p>** 답변내용 : ${answer.content }</p> 
+					<br>
+					<p>** 답변내용 : ${answer.content }</p>
 					<p>${answer.writerId }</p>
 					<p>${answer.date }</p>
-					<a href="removeAnswer.do?answerId=${answer.answerId }&reviewId=${review.reviewId}">답변삭제</a>
+					<a
+						href="removeAnswer.do?answerId=${answer.answerId }&reviewId=${review.reviewId}">답변삭제</a>
 				</div>
 			</c:forEach>
 			<form action="${ctx}/review/registAnswer.do" method="post">
