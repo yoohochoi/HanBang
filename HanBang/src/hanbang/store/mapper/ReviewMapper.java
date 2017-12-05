@@ -25,6 +25,12 @@ public interface ReviewMapper {
 
 	int reviewReport(Map<String, Object> map);
 	
+<<<<<<< HEAD
 	List<String> countReports(int reviewId);
+=======
+	List<Integer> countReports(int reviewId);
+	
+	int deleteReportedReviews(int reviewId);
+>>>>>>> refs/remotes/origin/suhyunComputer
 
 }

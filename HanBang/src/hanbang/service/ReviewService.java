@@ -24,6 +24,12 @@ public interface ReviewService {
 
 	boolean reportReview(String memberId, int reviewId);
 	
+<<<<<<< HEAD
 	List<String> countReportReview(int reviewId);
+=======
+	List<Integer> countReportReview(int reviewId);
+	
+	boolean removeReportedReviews(int reviewId);
+>>>>>>> refs/remotes/origin/suhyunComputer
 
 }

@@ -25,14 +25,22 @@
 					<p>작성자 : ${review.writerId}</p>
 				</div>
 				<img
+<<<<<<< HEAD
 					src="HanBang/HanBang/WebContent/uploadFile/${review.photo}"
+=======
+					src="/HanBang/uploadFile/${review.photo}"
+>>>>>>> refs/remotes/origin/suhyunComputer
 					alt="">
 				<p>사진 : ${review.photo }</p>
 				<p>** 후기내용 : ${review.content}</p>
 				<br>
 				<a href="modifyReview.do?reviewId=${review.reviewId }">후기수정</a>
 				<br>
+<<<<<<< HEAD
 				<a href="removeReviewByReviewId.do?reviewId=${review.reviewId }">후기삭제</a>
+=======
+				<a href="removeReview.do?reviewId=${review.reviewId }">후기삭제</a>
+>>>>>>> refs/remotes/origin/suhyunComputer
 				<br>
 				<a href="reportReview.do?reviewId=${review.reviewId }">!후기신고!</a>
 			</article>

@@ -39,13 +39,25 @@ public class ReviewController {
 	@RequestMapping(value = "/review/registReview.do", method = RequestMethod.POST)
 	public String uploadFile(@RequestParam("file") MultipartFile imgFile, Model model, Review review) {
 
+<<<<<<< HEAD
 		// String savePath ="C:/Users/limsuhyun/eclipse-workspace/HanBang_11.29_0.03/WebContent/uploadFile";
 		String savePath = "C:/Users/kosta/git/Final/HanBang/WebContent/uploadFile";
 //		String savePath = "C:/file";
+=======
+		// String savePath
+		// ="C:/Users/limsuhyun/eclipse-workspace/HanBang_11.29_0.03/WebContent/uploadFile";
+		// String savePath = "C:/Users/kosta/git/HanBang/HanBang/WebContent/uploadFile";
+		String savePath = "C:/Users/limsuhyun/git/HanBang/HanBang/WebContent/uploadFile";
+		// String savePath = "C:/file";
+>>>>>>> refs/remotes/origin/suhyunComputer
 		// String savePath = request.getRealPath("folderName"); // 파일이 저장될 프로젝트 안의 폴더경로
 
 		String originalFilename = imgFile.getOriginalFilename() + ""; // fileName.jpg
+<<<<<<< HEAD
 		System.out.println("originalFileName:" + originalFilename);
+=======
+		// System.out.println("originalFileName:" + originalFilename);
+>>>>>>> refs/remotes/origin/suhyunComputer
 		String onlyFileName = originalFilename.substring(0, originalFilename.indexOf(".")); // fileName
 		String extension = originalFilename.substring(originalFilename.indexOf("."));
 		// .jpg
@@ -139,7 +151,11 @@ public class ReviewController {
 	// 후기 수정
 	@RequestMapping("/review/modifyReview.do")
 	public String modifyReview(int reviewId, HttpSession session, Model model) {
+<<<<<<< HEAD
 //		String memberId = (String) session.getAttribute("loginedUser");
+=======
+		// String memberId = (String) session.getAttribute("loginedUser");
+>>>>>>> refs/remotes/origin/suhyunComputer
 		String memberId = "ms";
 		Review review = service.find(reviewId);
 		if (review.getWriterId().equals(memberId)) {
@@ -157,6 +173,7 @@ public class ReviewController {
 	public String modifyReview(int reviewId, Review review, Model model) {
 		try {
 			boolean check = service.modify(review);
+<<<<<<< HEAD
 			if(check == false) {
 				model.addAttribute("review", review);
 				return "redirect:modifyReview.do?reviewId=" + reviewId;
@@ -169,15 +186,35 @@ public class ReviewController {
 			System.out.println("nullPointerException");
 			System.out.println("title : " + review.getTitle());
 			return "redirect:modifyReview.do?reviewId="+reviewId;
+=======
+			if (check == false) {
+				model.addAttribute("review", review);
+				return "redirect:modifyReview.do?reviewId=" + reviewId;
+			} else {
+				model.addAttribute(review);
+				System.out.println("success");
+				return "detailReview.do?reviewId=" + reviewId;
+			}
+		} catch (Exception e) {
+			System.out.println("nullPointerException");
+			System.out.println("title : " + review.getTitle());
+			return "redirect:modifyReview.do?reviewId=" + reviewId;
+>>>>>>> refs/remotes/origin/suhyunComputer
 		}
 	}
 
 	// 후기 삭제(reviewId)
 	@RequestMapping("/review/removeReviewByReviewId.do")
 	public String removeReviewByReviewId(int reviewId, HttpSession session) {
+<<<<<<< HEAD
 		String memberId = (String)session.getAttribute("memberId");
 		Review review = service.find(reviewId);
 		if(review.getWriterId().equals(memberId)) {
+=======
+		String memberId = (String) session.getAttribute("memberId");
+		Review review = service.find(reviewId);
+		if (review.getWriterId().equals(memberId)) {
+>>>>>>> refs/remotes/origin/suhyunComputer
 			boolean check = service.removeByReviewId(reviewId);
 			if (check == false) {
 				return "redirect:detailReview.do?reviewId=" + reviewId;
@@ -189,7 +226,11 @@ public class ReviewController {
 			return "redirect:detailReview.do?reviewId=" + reviewId;
 		}
 	}
+<<<<<<< HEAD
 	
+=======
+
+>>>>>>> refs/remotes/origin/suhyunComputer
 	// MemberController.
 	// 후기 삭제(memberId)
 	@RequestMapping("/review/removeReviewByMemberId.do")
@@ -201,7 +242,11 @@ public class ReviewController {
 			return "redirect:reviewList.do";
 		}
 	}
+<<<<<<< HEAD
 	
+=======
+
+>>>>>>> refs/remotes/origin/suhyunComputer
 	// ShareHouseController.
 	// 후기 삭제(shareHouseId)
 	@RequestMapping("/review/removeReviewByShareHouseId.do")
@@ -217,13 +262,17 @@ public class ReviewController {
 	// 후기 신고
 	@RequestMapping("/review/reportReview.do")
 	public String reportReview(HttpSession session, int reviewId) {
-//		String memberId = (String) session.getAttribute("loginedUser");
-		String memberId = "ms";
+		// String memberId = (String) session.getAttribute("loginedUser");
+		String memberId = "rr"; 
+
 		try {
 			boolean check = service.reportReview(memberId, reviewId);
-			if(check == false) {
+			System.out.println("*check : " + check);
+			if (check == false) {
+				// System.out.println(" WHY FALSE ? ");
 				return "redirect:detailReview.do?reviewId=" + reviewId;
 			} else {
+<<<<<<< HEAD
 				System.out.println("******Review REPORTED ! ");
 				// 후기 숫자 확인 후 자동 삭제
 				List<String> list = service.countReportReview(reviewId);
@@ -234,13 +283,58 @@ public class ReviewController {
 					return "redirect:registReview.do";
 				} else {
 					System.out.println("REVIEW REPORTED AND REDIRECTED ! *************8");
+=======
+				// System.out.println("******Review REPORTED ! ");
+				// 후기 숫자 확인 후 자동 삭제
+				List<Integer> list = service.countReportReview(reviewId);
+				// System.out.println("@@@@reviewReportCount.size()" + list.size());
+				if (list.size() >= 2) {
+					boolean removeReports = service.removeReportedReviews(reviewId);
+					if (removeReports == false) {
+						// System.out.println(" REMOVE REPORTS FALSE");
+						return "redirect:registReview.do";
+					} else {
+						service.removeByReviewId(reviewId);
+						// System.out.println("**************Review REPORTED &&&&& DELETED BY REVIEWID
+						// !");
+						return "redirect:registReview.do";
+					}
+				} else {
+					// System.out.println("REVIEW REPORTED AND REDIRECTED ! *************8");
+>>>>>>> refs/remotes/origin/suhyunComputer
 					return "redirect:detailReview.do?reviewId=" + reviewId;
 				}
 			}
 		} catch (Exception e) {
-//			System.out.println(" ***** constraint violated !!");
-			return "redirect:detailReview.do?reviewId=" + reviewId;
+			System.out.println(" report review EXCEPTION !");
+			e.printStackTrace();
+			return "redrect:detailReview.do?reviewId=" + reviewId;
 		}
+		// try {
+		// boolean check = service.reportReview(memberId, reviewId);
+		// System.out.println("*check : " + check);
+		// if(check == false) {
+		// System.out.println(" WHY FALSE ? ");
+		// return "redirect:detailReview.do?reviewId=" + reviewId;
+		// } else {
+		// System.out.println("******Review REPORTED ! ");
+		// // 후기 숫자 확인 후 자동 삭제
+		// List<Integer> list = service.countReportReview(reviewId);
+		// System.out.println("@@@@reviewReportCount.size()" + list.size());
+		// if(list.size() >= 2) {
+		// service.removeByReviewId(reviewId);
+		// System.out.println("**************Review REPORTED &&&&& DELETED BY REVIEWID
+		// !");
+		// return "redirect:registReview.do";
+		// } else {
+		// System.out.println("REVIEW REPORTED AND REDIRECTED ! *************8");
+		// return "redirect:detailReview.do?reviewId=" + reviewId;
+		// }
+		// }
+		// } catch (Exception e) {
+		// System.out.println(" ***** constraint violated !!");
+		// return "redirect:detailReview.do?reviewId=" + reviewId;
+		// }
 	}
 
 }

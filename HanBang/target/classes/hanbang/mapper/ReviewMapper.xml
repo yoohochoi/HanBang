@@ -72,6 +72,14 @@
 		WHERE reviewId = #{reviewId}
 	</select>
 	
+<<<<<<< HEAD
+=======
+	<delete id="deleteReportedReviews" parameterType="Integer">
+		DELETE FROM reviewReport_tb
+		WHERE reviewId = #{reviewId}
+	</delete>
+	
+>>>>>>> refs/remotes/origin/suhyunComputer
 </mapper>
 
 

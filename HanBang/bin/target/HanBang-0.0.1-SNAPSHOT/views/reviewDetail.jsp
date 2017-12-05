@@ -19,18 +19,25 @@
 		<h3>후기</h3>
 		<div>
 			<article>
-				<h4>후기</h4>
+				<h4>${review.reviewTitle}</h4>
 				<div>
-					<p>후기작성자</p>
-					<p>날짜</p>
+					<p>${review.reviewRedactor}</p>
+					<p>${review.reviewDate}</p>
 				</div>
-				<p>내용</p>
+				<img src="${review.reviewPhoto}" alt="">
+				<p>${review.reviewContent}</p>
 			</article>
 			<c:forEach var="answer" items="answerList">
 				<div class="request">
-					<p>답변작성자</p>
-					<span>답변날짜</span>
-					<p>답변내용</p>
+					<p>${answer.answerRedactor}</p>
+					<span>${answer.answerDate}</span>
+					<p>${answer.answerContent}</p>
+					<button>답변</button>
+					<form action="${ctx}/answerCreate.do" method="post">
+						<textarea rows="20" cols="50"></textarea>
+						<input type="submit" value="등록">
+						<input type="button" value="취소">
+					</form>
 				</div>
 			</c:forEach>
 			<form action="${ctx}/answerCreate.do" method="post">

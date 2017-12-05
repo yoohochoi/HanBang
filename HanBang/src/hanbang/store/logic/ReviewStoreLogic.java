@@ -153,6 +153,7 @@ public class ReviewStoreLogic implements ReviewStore{
 	}
 
 	@Override
+<<<<<<< HEAD
 	public List<String> countReports(int reviewId) {
 		SqlSession session = factory.openSession();
 		List<String> list = null;
@@ -163,6 +164,32 @@ public class ReviewStoreLogic implements ReviewStore{
 			session.close();
 		}
 		return list;
+=======
+	public List<Integer> countReports(int reviewId) {
+		SqlSession session = factory.openSession();
+		List<Integer> list = null;
+		try {
+			ReviewMapper mapper = session.getMapper(ReviewMapper.class);
+			list = mapper.countReports(reviewId);
+		} finally {
+			session.close();
+		}
+		return list;
+	}
+
+	@Override
+	public int deleteReportedReviews(int reviewId) {
+		SqlSession session = factory.openSession();
+		int check = 0;
+		try {
+			ReviewMapper mapper = session.getMapper(ReviewMapper.class);
+			check = mapper.deleteReportedReviews(reviewId);
+			session.commit();
+		} finally {
+			session.close();
+		}
+		return check;
+>>>>>>> refs/remotes/origin/suhyunComputer
 	}
 
 }
