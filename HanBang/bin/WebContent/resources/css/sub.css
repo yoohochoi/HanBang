@@ -1,0 +1,53 @@
+@charset "utf-8";
+/* CSS Document */
+
+/* 속성 제공 순서
+overflow
+display
+float
+position
+left,right,top,bottom
+padding
+margin
+width
+height
+background
+border
+font
+etc
+*/
+
+/*header*/
+header h1 { float:left; width:8%; padding:15px 0 0 40px; box-sizing:border-box;}
+.memberMenu { float:left; width:92%;}
+.memberMenu > a { display:block; float:left; padding:15px 20px; font-size:14px; color:#fff; box-sizing:border-box;}
+.memberMenu > a:hover { background:#3f7f95;}
+.memberMenu ul { float:right; padding:15px 40px 0 0; box-sizing:border-box;}
+
+.loginHeader,
+.memberJoinHeader { padding:50px 0 0 0; background:#fff; text-align:center;}
+.loginHeader h1,
+.memberJoinHeader h1 { float:none; padding:0 0 60px 0; width:100%; font-size:40px;}
+.loginHeader h1 a,
+.memberJoinHeader h1 a { color:#000;}
+.loginHeader nav ul,
+.memberJoinHeader nav ul { float:none; position:absolute; right:20px; top:20px;}
+.loginHeader nav ul li a,
+.memberJoinHeader nav ul li a { font-size:14px; color:#000;}
+
+.gnb { clear:both; padding-left:50px; background:#d3d5d4;}
+.gnb li { float:left; padding:10px 10px; box-sizing:border-box;}
+.gnb li a { color:#000;}
+.gnb li a:hover { font-weight:bold;}
+
+/*main*/
+main > section { margin:0 auto; width:800px;}
+
+/*login*/
+.loginSection,
+.memberJoinSection { width:400px !important;}
+
+/*etc*/
+input { padding:5px 0; margin:3px 0; border-radius:5px;}
+
+
