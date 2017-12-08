@@ -7,6 +7,7 @@ import org.springframework.context.event.ApplicationContextEvent;
 import org.springframework.stereotype.Service;
 
 import hanbang.domain.Member;
+import hanbang.domain.ShareHouse;
 import hanbang.service.HouseService;
 import hanbang.service.MemberService;
 import hanbang.service.ShareHouseService;
@@ -45,7 +46,7 @@ public class MemberServiceLogic implements MemberService {
 
 	@Override
 	public List<Member> findAll() {
-
+		
 		return memberStore.retriveAll();
 	}
 
@@ -70,8 +71,9 @@ public class MemberServiceLogic implements MemberService {
 		int check = memberStore.delete(memberId);
 		if (check > 0) {
 			//셰어하우스 서비스
-			ShareHouseService.removeByMemberId(memberId);
+			
 			HouseService.removeByMemberId(memberId);
+			ShareHouseService.removeByMemberId(memberId);
 			reviewStore.deleteByMemberId(memberId);
 			questionStore.deleteByMemberId(memberId);
 			interestStore.deleteByMemberId(memberId);
@@ -82,16 +84,11 @@ public class MemberServiceLogic implements MemberService {
 		}
 	}
 
-	// @Override
-	// public boolean login(String memberId, String password) {
-	//
-	// Member member = memberStore.retrive(memberId);
-	//
-	// if (member.getPassword().equals(password)) {
-	// return true;
-	// } else {
-	// return false;
-	// }
-	// }
+	@Override
+	public List<Member> findByMemberType(int memberType) {
+		
+		return memberStore.retriveByMemberType(memberType);
+	}
+
 
 }

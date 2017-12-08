@@ -1,6 +1,7 @@
 package hanbang.controller;
 
 import java.io.File;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
@@ -28,6 +29,8 @@ import hanbang.domain.Room;
 import hanbang.domain.ShareHouse;
 import hanbang.service.EssentialInfoService;
 import hanbang.service.ExtraInfoService;
+import hanbang.service.HouseService;
+import hanbang.service.RoomService;
 import hanbang.service.ShareHouseService;
 
 @Controller
@@ -39,6 +42,8 @@ public class ShareHouseController {
 	private EssentialInfoService essentialInfoService;
 	@Autowired
 	private ExtraInfoService extraInfoService;
+	@Autowired
+	private HouseService houseService;
 
 	@RequestMapping(value = "/registShareHouse.do", method = RequestMethod.POST)
 	public String registerShareHouse(HttpSession session, @ModelAttribute("shareHouse") ShareHouse shareHouse,
@@ -135,10 +140,33 @@ public class ShareHouseController {
 	@RequestMapping(value = "/shareHouse/shareHouseList.do")
 	public String findAllShareHouse(Model model) {
 
-		List<ShareHouse> list = shareHouseService.findAll();
+		List<ShareHouse> shareHouses = shareHouseService.findAll();
+		List<House>houses= houseService.findAll();
+		
+		List<String> list = new ArrayList<>();
+		for (House house : houses) {
+			list.add(house.getAddress());
+		}
+		
+		int size = shareHouses.size();
+//		House house = new House();
+//		int id = 0;
+//		int houseId = 0;
+//		for (int i = 0; i < shareHouses.size(); i++) {
+//			id = shareHouses.get(i).getShareHouseId();
+//		
+//		}
+//		ShareHouse sHouse = shareHouseService.find(id);
+//		houseId = sHouse.getHouseId();
+//		house = houseService.find(houseId);
+//		if (house != null) {
+//			model.addAttribute("house", house);
+//		}
+		
+		model.addAttribute("size", size);
+		model.addAttribute("shareHouses", shareHouses);
 		model.addAttribute("list", list);
-
-		return "/views/shareHouseList_.jsp";
+		return "/views/shareHouseList.jsp";
 	}
 
 	@RequestMapping(value = "/shareHouse/shareHouseDetail.do")
@@ -150,4 +178,28 @@ public class ShareHouseController {
 		return "/views/shareHouseDetail.jsp";
 	}
 
+	
+	@RequestMapping(value = "index.do")
+	public String index(Model model) {
+
+		List<ShareHouse> shareHouses = shareHouseService.findAll();
+		List<House>houses= houseService.findAll();
+//		House house = new House();
+//		int id = 0;
+//		int houseId = 0;
+//		for (int i = 0; i < shareHouses.size(); i++) {
+//			id = shareHouses.get(i).getShareHouseId();
+//		
+//		}
+//		ShareHouse sHouse = shareHouseService.find(id);
+//		houseId = sHouse.getHouseId();
+//		house = houseService.find(houseId);
+//		if (house != null) {
+//			model.addAttribute("house", house);
+//		}
+		
+		model.addAttribute("shareHouses", shareHouses);
+		model.addAttribute("house", houses);
+		return "index.jsp";
+	}
 }

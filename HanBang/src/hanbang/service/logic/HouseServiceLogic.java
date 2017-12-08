@@ -93,4 +93,10 @@ public class HouseServiceLogic implements HouseService {
 		}
 	}
 
+	@Override
+	public List<House> findAll() {
+		List<House> houses = houseStore.retriveAll();
+		return houses;
+	}
+
 }

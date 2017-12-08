@@ -31,5 +31,5 @@ public interface ShareHouseService {
 	boolean remove(int shareHouseId);
 
 	boolean removeByMemberId(String memberId);
-
+	
 }

@@ -52,10 +52,10 @@ public class QuestionController {
 //		}
 //		List<Question> questionList = service.findByMemberId(memberId);
 //		model.addAttribute(questionList);
-		int memberType = 1;
-		List<Question> questionList = service.findByMemberId("sh");
+		
+		String id = (String) session.getAttribute("memberId");
+		List<Question> questionList = service.findByMemberId(id);
 		model.addAttribute(questionList);
-		model.addAttribute(memberType);
 		return "/views/questionList.jsp";
 	}
 	

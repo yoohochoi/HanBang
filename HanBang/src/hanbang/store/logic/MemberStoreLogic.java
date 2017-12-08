@@ -92,4 +92,22 @@ public class MemberStoreLogic implements MemberStore {
 		return check;
 	}
 
+	@Override
+	public List<Member> retriveByMemberType(int memberType) {
+		SqlSession session = SqlSessionFactoryProvider.getSqlSessionFactory().openSession();
+		List<Member> list = null;
+
+		try {
+			MemberMapper mapper = session.getMapper(MemberMapper.class);
+			list = mapper.retriveByMemberType(memberType);
+
+		} finally {
+			session.close();
+		}
+
+		return list;
+	}
+
+
+
 }

@@ -9,6 +9,8 @@ public interface MemberStore {
 	int create(Member member);
 
 	List<Member> retriveAll();
+	
+	List<Member> retriveByMemberType(int memberType);
 
 	Member retrive(String memberId);
 

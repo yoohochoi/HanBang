@@ -11,6 +11,8 @@ public interface HouseStore {
 	House retrive(int houseId);
 	
 	House retriveMyHouse(int houseId);
+	
+	List<House> retriveAll();
 
 	List<House> retriveByMemberId(String memberId);
 

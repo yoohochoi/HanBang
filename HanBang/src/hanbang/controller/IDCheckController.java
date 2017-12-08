@@ -15,6 +15,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import hanbang.domain.Member;
 import hanbang.service.MemberService;
@@ -27,6 +28,7 @@ public class IDCheckController extends HttpServlet {
 	private MemberService service;
 
 	@RequestMapping(value = "checkId.do", method = RequestMethod.POST)
+	@ResponseBody
 	protected void doPost(HttpServletRequest req, HttpServletResponse response) throws ServletException, IOException {
 		List<Member> members = service.findAll();
 

@@ -19,8 +19,8 @@
 		<typeAlias type="hanbang.domain.Facilitie" alias="Facilitie" />
 		<typeAlias type="hanbang.domain.ProvidedGood" alias="ProvidedGood" />
 		<typeAlias type="hanbang.domain.PublicUsage" alias="PublicUsage" />
-		<typeAlias type="hanbang.domain.InterestShareHouse" alias="InterestShareHouse"/>
-		
+		<typeAlias type="hanbang.domain.InterestShareHouse" alias="InterestShareHouse" />
+
 
 	</typeAliases>
 	<environments default="development">
@@ -42,9 +42,11 @@
 		<mapper resource="hanbang/mapper/ReviewAnswerMapper.xml" />
 		<mapper resource="hanbang/mapper/ShareHouseMapper.xml" />
 		<mapper resource="hanbang/mapper/EssentialInfoMapper.xml" />
-		<mapper resource="hanbang/mapper/PublicUsageMapper.xml"/>
-		<mapper resource="hanbang/mapper/HouseMapper.xml"/>
-		<mapper resource="hanbang/mapper/InterestShareHouseMapper.xml"/>
-			<mapper resource="hanbang/mapper/RoomMapper.xml"/>
+		<mapper resource="hanbang/mapper/ExtraInfoMapper.xml" />
+		<mapper resource="hanbang/mapper/PublicUsageMapper.xml" />
+		<mapper resource="hanbang/mapper/HouseMapper.xml" />
+		<mapper resource="hanbang/mapper/InterestShareHouseMapper.xml" />
+		<mapper resource="hanbang/mapper/RoomMapper.xml" />
+
 	</mappers>
 </configuration>

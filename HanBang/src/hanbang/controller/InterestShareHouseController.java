@@ -10,9 +10,10 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import hanbang.domain.House;
 import hanbang.domain.InterestShareHouse;
-import hanbang.domain.Room;
 import hanbang.domain.ShareHouse;
+import hanbang.service.HouseService;
 import hanbang.service.InterestShareHouseService;
 import hanbang.service.RoomService;
 
@@ -23,7 +24,8 @@ public class InterestShareHouseController {
 	private InterestShareHouseService service;
 	@Autowired
 	private RoomService roomService;
-	
+	@Autowired
+	private HouseService houseService;
 
 	@RequestMapping(value = "registInterstHouse.do")
 	public String registerInterstHouse(InterestShareHouse interstHouse, int shareHouseId, HttpSession session,
@@ -43,29 +45,20 @@ public class InterestShareHouseController {
 	@RequestMapping(value = "interestShareHouseList.do", method = RequestMethod.GET)
 	public String findInterestShareHouse(HttpSession session, Model model) {
 		String memberId = (String) session.getAttribute("memberId");
-		List<ShareHouse> shareHouses = service.findAll(memberId);
+		List<ShareHouse> list = service.findAll(memberId);
+		List<House> house = houseService.findAll();
 		
+		model.addAttribute("interestShareHouses", list);
+		model.addAttribute("houses", house);
 		
-		Room room = new Room() ;
-		int id = 0;
-		for(int i = 0 ; i < shareHouses.size() ; i++) {
-			id = shareHouses.get(i).getShareHouseId();
-		}
-			List<Room> rooms = roomService.find(id);
-			
-			if(rooms.size() !=0) {
-				room = rooms.get(0);
-				model.addAttribute("room", room);
-			}
-		model.addAttribute("interestShareHouses", shareHouses);
 		return "/views/interestShareHouseList.jsp";
 	}
 
 	// 리스트에서 삭제할때
 	@RequestMapping(value = "interestShareHouseDelete.do")
-	public String removeShareHouse(HttpSession session) {
-		String memberId = (String) session.getAttribute("memberId");
-		service.removeByMemberId(memberId);
+	public String removeShareHouse(int shareHouseId) {
+		System.out.println("##########"+shareHouseId);
+		service.remove(shareHouseId);
 		return "interestShareHouseList.do";
 	}
 
