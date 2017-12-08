@@ -8,7 +8,7 @@ public class Room {
 	private int shareHouseId;
 	private String sex;
 	private String roomArea;
-	private int bathroom;
+	private String bathroom;
 	private List<ProvidedGood> providedGoods;
 	private int deposit;
 	private int monthlyFee;
@@ -49,11 +49,11 @@ public class Room {
 		this.roomArea = roomArea;
 	}
 
-	public int getBathroom() {
+	public String getBathroom() {
 		return bathroom;
 	}
 
-	public void setBathroom(int bathroom) {
+	public void setBathroom(String bathroom) {
 		this.bathroom = bathroom;
 	}
 

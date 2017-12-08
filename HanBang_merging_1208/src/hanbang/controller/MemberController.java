@@ -7,19 +7,20 @@ import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import hanbang.domain.House;
 import hanbang.domain.Member;
+import hanbang.domain.ShareHouse;
 import hanbang.service.HouseService;
 import hanbang.service.MemberService;
+import hanbang.service.ReviewService;
+import hanbang.service.ShareHouseService;
 
 @Controller
 public class MemberController {
@@ -28,31 +29,65 @@ public class MemberController {
 	private MemberService service;
 	@Autowired
 	private HouseService houseService;
+	@Autowired
+	private ReviewService reviewService;
+	@Autowired
+	private ShareHouseService shareHouseService;
 
 	@RequestMapping(value = "memberJoin.do", method = RequestMethod.POST)
-	public String registerMember(Member member, BindingResult bindingResult, HttpServletRequest request) {
+	public String registerMember(Member member) {
 
-		// if (bindingResult.hasErrors()) {
-		// return "memberJoin.jsp";
-		// } else {
 		service.register(member);
 		return "redirect:/views/login.jsp";
-		// }
-
 	}
 
-	@RequestMapping(value = "findAllMember.do", method = RequestMethod.GET)
+	// 사업자 리스트
+	@RequestMapping(value = "providerList.do", method = RequestMethod.GET)
+	public String findAllProvider(Model model) {
+		List<Member> members = service.findByMemberType(2);
+		List<ShareHouse> houses = shareHouseService.findAll();
+
+		model.addAttribute("members", members);
+		model.addAttribute("shareHouses", houses);
+		return "views/memberProviderList.jsp";
+	}
+
+	// 일반회원 리스트
+	@RequestMapping(value = "userList.do", method = RequestMethod.GET)
+	public String findAllUser(Model model) {
+		List<Member> members = service.findByMemberType(1);
+
+		// List<Review> reviews = reviewService
+
+		model.addAttribute("members", members);
+		// model.addAttribute("size", size);
+		return "views/memberUserList.jsp";
+	}
+
+	// 전체회원
+	@RequestMapping(value = "allMemberList.do", method = RequestMethod.GET)
 	public String findAllMember(Model model) {
 		List<Member> members = service.findAll();
 
 		model.addAttribute("members", members);
-
-		return "memberList.jsp";
+		model.addAttribute("size", members.size());
+		return "views/allMemberList.jsp";
 	}
 
 	@RequestMapping(value = "findMember.do", method = { RequestMethod.GET, RequestMethod.POST })
 	public String findByMemberId(HttpSession session, Model model) {
 		String memberId = (String) session.getAttribute("memberId");
+		Member member = service.find(memberId);
+		List<House> houses = houseService.findByMemberId(memberId);
+
+		model.addAttribute("member", member);
+		model.addAttribute("houses", houses);
+
+		return "/views/memberDetail.jsp";
+	}
+
+	@RequestMapping(value = "adminFindMember.do", method = RequestMethod.GET)
+	public String adminFindByMemberId(String memberId, Model model) {
 		Member member = service.find(memberId);
 		List<House> houses = houseService.findByMemberId(memberId);
 
@@ -97,6 +132,8 @@ public class MemberController {
 
 		Member member = service.find(memberId);
 		HttpSession session = request.getSession();
+		response.setContentType("text/html; charset=UTF-8");
+		PrintWriter out;
 
 		if (member != null) {
 			if (member.getPassword().equals(password)) {
@@ -105,20 +142,17 @@ public class MemberController {
 				session.setAttribute("memberType", member.getMemberTypeId());
 
 				System.out.println(member.getMemberTypeId());
-				if (member.getMemberTypeId() == 1) {
-
-					return "redirect:/index.jsp";
-				} else {
+				if (member.getMemberTypeId() == 2) {
 					List<House> houses = houseService.findByMemberId(memberId);
 					if (houses.size() == 0) {
 						return "redirect:/views/houseCreate.jsp";
 					} else {
-						return "redirect:/index.jsp";
+						return "redirect:/index.do";
 					}
+				} else {
+					return "redirect:/index.do";
 				}
 			} else {
-				response.setContentType("text/html; charset=UTF-8");
-				PrintWriter out;
 				try {
 					out = response.getWriter();
 					out.println("<script>alert('로그인 정보를 확인해주세요.'); history.go(-1);</script>");
@@ -129,8 +163,6 @@ public class MemberController {
 				return "/views/login.jsp";
 			}
 		} else {
-			response.setContentType("text/html; charset=UTF-8");
-			PrintWriter out;
 			try {
 				out = response.getWriter();
 				out.println("<script>alert('로그인 정보를 확인해주세요.'); history.go(-1);</script>");

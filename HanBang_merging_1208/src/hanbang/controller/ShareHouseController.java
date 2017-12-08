@@ -242,27 +242,9 @@ public class ShareHouseController {
 	public String myHouse(Model model, HttpSession session) {
 		String memberId = (String) session.getAttribute("memberId");
 		List<ShareHouse> list = shareHouseService.findByMemberId(memberId);
-		boolean flag;
-		if (list != null) {
-			flag = true;
-		} else {
-			flag = false;
-		}
-
-		Room room = new Room();
-		int id = 0;
-		for (int i = 0; i < list.size(); i++) {
-			id = list.get(i).getShareHouseId();
-		}
-		List<Room> rooms = roomService.find(id);
-
-		if (rooms.size() != 0) {
-			room = rooms.get(0);
-			model.addAttribute("room", room);
-		}
-
+		List<House> house = houseService.findAll();
 		model.addAttribute("shareHouses", list);
-		model.addAttribute("flag", flag);
+		model.addAttribute("house",house);
 		return "/views/myHouseList.jsp";
 	}
 

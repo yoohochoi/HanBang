@@ -39,12 +39,12 @@ public class ShareHouseServiceLogic implements ShareHouseService {
 	@Override
 	public List<ShareHouse> findAll() {
 
-		List<ShareHouse> list  = shareHouseStore.retriveAll();
+		List<ShareHouse> list = shareHouseStore.retriveAll();
 		for (ShareHouse shareHouse : list) {
-			
+
 			shareHouse.setRooms(roomStore.retrive(shareHouse.getShareHouseId()));
 			shareHouse.setEssentialInfo(essentialInfoService.find(shareHouse.getShareHouseId()));
-			
+
 		}
 
 		return list;
@@ -64,6 +64,12 @@ public class ShareHouseServiceLogic implements ShareHouseService {
 	public List<ShareHouse> findByMemberId(String memberId) {
 		List<ShareHouse> list = new ArrayList<>();
 		list = shareHouseStore.retriveByMemberId(memberId);
+		for (ShareHouse shareHouse : list) {
+
+			shareHouse.setRooms(roomStore.retrive(shareHouse.getShareHouseId()));
+			shareHouse.setEssentialInfo(essentialInfoService.find(shareHouse.getShareHouseId()));
+
+		}
 		return list;
 	}
 

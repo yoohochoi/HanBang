@@ -29,10 +29,10 @@
 							href="${ctx}/shareHouseDetail.do">
 							<h4>${interestHouse.title}</h4> 
 							<c:choose>
-								<c:when test="${interestHouse.rooms[0].sex eq '여'}">
+								<c:when test="${interestHouse.rooms[0].sex eq '여성전용'}">
 									<p class="woman">여성전용</p>
 								</c:when>
-								<c:when test="${interestHouse.rooms[0].sex eq '남'}">
+								<c:when test="${interestHouse.rooms[0].sex eq '남성전용'}">
 									<p class="man">남성전용</p>
 								</c:when>
 								<c:otherwise>

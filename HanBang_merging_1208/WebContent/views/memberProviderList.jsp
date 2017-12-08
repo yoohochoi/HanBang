@@ -26,7 +26,7 @@
 			<c:forEach var="provider" items="${members }">
 				<div>
 					<div>
-						<span>${provider.id }</span> <span>  </span> <span> </span>
+						<span>${provider.id }</span> <span> </span> <span> </span>
 					</div>
 				</div>
 				<div>
@@ -44,7 +44,8 @@
 
 						<a href="${ctx}/adminFindMember.do?memberId=${provider.id}">[${provider.id}]님의
 							정보 더보기</a> <a href="${ctx }/removeMember.do?memberId=${provider.id }">
-							<button type="button" name="userDeleteBtn">삭제</button></a>
+							<button type="button" name="userDeleteBtn">삭제</button>
+						</a>
 					</div>
 				</div>
 
