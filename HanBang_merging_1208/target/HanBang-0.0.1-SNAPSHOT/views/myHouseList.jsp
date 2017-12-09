@@ -53,7 +53,8 @@
 						</a>
 							</div>
 							<div>
-								<a href="${ctx}/shareHouse/shareHouseModify.do?shareHouseId=${shareHouse.shareHouseId }">수정</a>
+								<a
+									href="${ctx}/shareHouse/shareHouseModify.do?shareHouseId=${shareHouse.shareHouseId }">수정</a>
 							</div>
 					</c:forEach>
 				</c:if>

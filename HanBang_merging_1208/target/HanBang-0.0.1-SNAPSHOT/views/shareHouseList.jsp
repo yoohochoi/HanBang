@@ -26,6 +26,7 @@
 						placeholder="지역명, 대학교, 지하철역을 입력해 주세요."> <input
 						type="submit" name="searchShareHouseBtn" value="검색하기">
 				</form>
+
 				<div id="map"></div>
 				<script src="https://code.jquery.com/jquery-2.2.3.js"></script>
 				<script type="text/javascript"
@@ -121,25 +122,25 @@
 				<h3>[${size}]개의 셰어하우스</h3>
 				<ul>
 					<c:forEach var="shareHouse" items="${shareHouses }">
-						<li><a href="${ctx}/shareHouseDetail.do">
+						<li><a
+							href=${ctx}/shareHouse/shareHouseDetail.do?shareHouseId=${shareHouse.shareHouseId}">
 								<div>
 									<div>
-										<img src="${shareHouse.photos[0]}">
+										<img src="/images/${shareHouse.photos[0].photo}">
 									</div>
 									<h4>${shareHouse.title}</h4>
 
 									<c:choose>
-										<c:when test="${shareHouse.rooms[0].sex eq '여성전용'}">
+										<c:when test="${shareHouse.rooms[0].sex eq '여성 전용'}">
 											<p class="woman">여성전용</p>
 										</c:when>
-										<c:when test="${shareHouse.rooms[0].sex eq '남성전용'}">
+										<c:when test="${shareHouse.rooms[0].sex eq '남성 전용'}">
 											<p class="man">남성전용</p>
 										</c:when>
 										<c:otherwise>
-											<p class="unisex">성별무관</p>
+											<p class="unisex">성별 무관</p>
 										</c:otherwise>
 									</c:choose>
-
 								</div>
 								<div>
 									<span>${shareHouse.essentialInfo.buildingType}</span> <span>${house.rooms}</span>

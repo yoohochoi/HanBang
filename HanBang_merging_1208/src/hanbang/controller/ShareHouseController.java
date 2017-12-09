@@ -293,7 +293,4 @@ public class ShareHouseController {
 		// model.addAttribute("house", houses);
 		return "index.jsp";
 	}
-
-}>>>>>>>branch'master'
-
-of https:// github.com/yoohochoi/HanBang.git
+}
