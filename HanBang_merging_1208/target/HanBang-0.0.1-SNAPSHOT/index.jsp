@@ -43,7 +43,7 @@
 		<%@ include file="/views/layout/header.jsp"%>
 
 		<div class="searchShareHouse">
-			<a href="${ctx}/shareHouse/shareHouseList.do">하우스 살펴보기</a>
+			<a href="${ctx}/shareHouse/shareHouseList.do">하우스 전체보기</a>
 			<form action="searchShareHouse.do" method="post">
 				<div class="shareHouseGender">
 					<label><input type="radio" name="shareHouseGender">성별
@@ -52,7 +52,7 @@
 						전용</label>
 				</div>
 				<div class="searchBar">
-					<input type="text" placeholder="지역명, 대학교, 지하철역을 입력해 주세요.">
+					<input type="text" name = "searchWord" placeholder="지역명, 대학교, 지하철역을 입력해 주세요.">
 					<input type="submit" value="찾아보기">
 				</div>
 			</form>
@@ -83,78 +83,29 @@
                </a>
             </li>
          </c:forEach>
+         
+         
  --%>
-			<li><a href="#a">
-					<div>
-						<h4>셰어하우스타이틀</h4>
-						<p></p>
+
+			<c:forEach var="shareHouse" items="${shareHouses }">
+				<li><a href="${ctx}/shareHouseDetail.do">
 						<div>
-							<img src="" alt="셰어하우스">
+							<h4>${shareHouse.title}</h4>
+							<p>${shareHouse.rooms[0].sex}</p>
+							<div>
+								<img src="${shareHouse.photos[0]}">
+							</div>
 						</div>
-					</div>
-					<div>
-						<p>셰어하우스 주소</p>
-						<span>셰어하우스 타입</span> <span>셰어하우스룸개수</span> <span>셰어하우스화장실개수</span>
-						<p>보증금 / 월세</p>
-					</div>
-			</a></li>
-			<li><a href="#a">
-					<div>
-						<h4>셰어하우스타이틀</h4>
-						<p></p>
 						<div>
-							<img src="" alt="셰어하우스">
+							<span>${shareHouse.essentialInfo.buildingType}</span> <span>${house.rooms}</span>
+							<span>${house.bathrooms}</span>
+							<p>${shareHouse.rooms[0].deposit }/
+								${shareHouse.rooms[0].monthlyFee }</p>
 						</div>
-					</div>
-					<div>
-						<p>셰어하우스 주소</p>
-						<span>셰어하우스 타입</span> <span>셰어하우스룸개수</span> <span>셰어하우스화장실개수</span>
-						<p>보증금 / 월세</p>
-					</div>
-			</a></li>
-			<li><a href="#a">
-					<div>
-						<h4>셰어하우스타이틀</h4>
-						<p></p>
-						<div>
-							<img src="" alt="셰어하우스">
-						</div>
-					</div>
-					<div>
-						<p>셰어하우스 주소</p>
-						<span>셰어하우스 타입</span> <span>셰어하우스룸개수</span> <span>셰어하우스화장실개수</span>
-						<p>보증금 / 월세</p>
-					</div>
-			</a></li>
-			<li><a href="#a">
-					<div>
-						<h4>셰어하우스타이틀</h4>
-						<p></p>
-						<div>
-							<img src="" alt="셰어하우스">
-						</div>
-					</div>
-					<div>
-						<p>셰어하우스 주소</p>
-						<span>셰어하우스 타입</span> <span>셰어하우스룸개수</span> <span>셰어하우스화장실개수</span>
-						<p>보증금 / 월세</p>
-					</div>
-			</a></li>
-			<li><a href="#a">
-					<div>
-						<h4>셰어하우스타이틀</h4>
-						<p></p>
-						<div>
-							<img src="" alt="셰어하우스">
-						</div>
-					</div>
-					<div>
-						<p>셰어하우스 주소</p>
-						<span>셰어하우스 타입</span> <span>셰어하우스룸개수</span> <span>셰어하우스화장실개수</span>
-						<p>보증금 / 월세</p>
-					</div>
-			</a></li>
+				</a></li>
+			</c:forEach>
 		</ul>
+
 	</section>
 	</main>
 
