@@ -17,12 +17,12 @@ public interface ShareHouseStore {
 
 	int delete(int shareHouseId);
 
-	List<ShareHouse> retriveByMemberId(String memberId);
+	List<ShareHouse> retriveByMemberId(String writerId);
 
 	List<ShareHouse> searchShareHouse(String searchWord);
 
 	int report(Map<String, Object> map);
 
-	int deleteByMemberId(String memberId);
+	int deleteByMemberId(String writerId);
 
 }

@@ -12,6 +12,13 @@ public class EssentialInfo {
 	private String buildingType;
 	private List<PublicUsage> publicUsages;
 
+	@Override
+	public String toString() {
+		return "EssentialInfo [essentialInfoId=" + essentialInfoId + ", shareHouseId=" + shareHouseId
+				+ ", floorTotalFloor=" + floorTotalFloor + ", parking=" + parking + ", lift=" + lift + ", buildingType="
+				+ buildingType + ", publicUsages=" + publicUsages + "]";
+	}
+
 	public EssentialInfo() {
 	}
 

@@ -41,7 +41,6 @@
 							</c:choose> 
 							<c:forEach var="house" items="${houses }">
 								<c:if test="${interestHouse.houseId eq house.houseId }">
-									<span>${interestHouse.essentialInfo.buildingType}</span>
 									<span>${house.rooms}</span>
 									<span>${house.bathrooms}</span>
 								</c:if>

@@ -43,7 +43,6 @@
 									</c:choose>
 									<c:forEach var="house" items="${houses }">
 										<c:if test="${shareHouse.houseId eq house.houseId }">
-											<span>${shareHouse.essentialInfo.buildingType}</span>
 											<span>${house.rooms}</span>
 											<span>${house.bathrooms}</span>
 										</c:if>
@@ -52,6 +51,9 @@
 									<p>${shareHouse.rooms[0].deposit }/
 										${shareHouse.rooms[0].monthlyFee }</p>
 						</a>
+							</div>
+							<div>
+								<a href="${ctx}/shareHouse/shareHouseModify.do?shareHouseId=${shareHouse.shareHouseId }">수정</a>
 							</div>
 					</c:forEach>
 				</c:if>
@@ -63,10 +65,6 @@
 			</ul>
 			<input type="submit" name="myHouseDeleteBtn" value="삭제">
 		</form>
-		<div>
-			<p>무료로 셰어하우스를 등록해 보세요.</p>
-			<a href="${ctx }/registShareHouse.do">셰어하우스 등록하기</a>
-		</div>
 	</section>
 	</main>
 

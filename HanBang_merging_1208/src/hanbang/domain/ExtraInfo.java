@@ -8,9 +8,14 @@ public class ExtraInfo {
 	private int shareHouseId;
 	private String pet;
 	private String smoke;
-	private List<Facilitie> facilities;
 
 	public ExtraInfo() {
+	}
+
+	@Override
+	public String toString() {
+		return "ExtraInfo [extraInfoId=" + extraInfoId + ", shareHouseId=" + shareHouseId + ", pet=" + pet + ", smoke="
+				+ smoke + "]";
 	}
 
 	public int getExtraInfoId() {
@@ -43,14 +48,6 @@ public class ExtraInfo {
 
 	public String getSmoke() {
 		return smoke;
-	}
-
-	public List<Facilitie> getFacilities() {
-		return facilities;
-	}
-
-	public void setFacilities(List<Facilitie> facilities) {
-		this.facilities = facilities;
 	}
 
 }

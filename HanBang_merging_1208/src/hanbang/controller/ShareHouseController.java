@@ -98,7 +98,6 @@ public class ShareHouseController {
 
 		/* essentialInfo create */
 		EssentialInfo essentialInfo = new EssentialInfo();
-		// String buildingtype = request.getParameter("buildingType");
 		essentialInfo.setBuildingType(buildingType);
 		essentialInfo.setFloorTotalFloor(floorTotalFloor);
 		if (parking == null) {
@@ -148,21 +147,36 @@ public class ShareHouseController {
 
 	@RequestMapping(value = "/shareHouse/shareHouseModify.do", method = RequestMethod.GET)
 	public String modifyShareHouse(String shareHouseId, Model model, HttpSession session) {
+
+		System.out.println(shareHouseId);
+
 		String memberId = (String) session.getAttribute("memberId");
 		int id = Integer.parseInt(shareHouseId);
+
+		System.out.println(id);
+
 		ShareHouse shareHouse = shareHouseService.find(id);
+
+		System.out.println(shareHouse.toString());
+
 		EssentialInfo essentialInfo = essentialInfoService.find(id);
+
+		System.out.println(essentialInfo.toString());
+
 		List<Room> roomList = roomService.find(id);
+
+		System.out.println(roomList.toString());
+
 		List<Photo> photoList = shareHouse.getPhotos();
-		if (shareHouse.getWriterId().equals(memberId)) {
-			model.addAttribute("shareHouse", shareHouse);
-			model.addAttribute("essentialInfo", essentialInfo);
-			model.addAttribute("roomList", roomList);
-			model.addAttribute("photoList", photoList);
-			return "/views/shareHouseModify.jsp";
-		} else {
-			return "redirect:/shareHoueDetail.do?shareHouseId=" + shareHouse.getShareHouseId();
-		}
+
+		System.out.println(photoList.toString());
+		
+		model.addAttribute("shareHouse", shareHouse);
+		model.addAttribute("essentialInfo", essentialInfo);
+		model.addAttribute("roomList", roomList);
+		model.addAttribute("photoList", photoList);
+		return "redirect:/views/shareHouseModify.jsp";
+
 	}
 
 	@RequestMapping(value = "/shareHouse/shareHouseModify.do", method = RequestMethod.POST)
@@ -184,7 +198,7 @@ public class ShareHouseController {
 			return "shareHouseModify.do?shareHouseId=" + shareHouse.getShareHouseId();
 		}
 
-		return "redirect:/shareHouseDetail.do?shareHouseId" + shareHouse.getShareHouseId();
+		return "redirect:/shareHouseDetail.do?shareHouseId=" + shareHouse.getShareHouseId();
 	}
 
 	@RequestMapping(value = "/shareHouse/shareHouseDelete.do")
@@ -194,7 +208,7 @@ public class ShareHouseController {
 		shareHouseService.remove(id);
 		essentialInfoService.deleteByShareHouse(id);
 		extraInfoService.deleteByShareHouse(id);
-		return "redirect:/shareHouseList_.do";
+		return "redirect:/shareHouseList.do";
 	}
 
 	@RequestMapping(value = "/shareHouse/shareHouseList.do")
@@ -244,7 +258,7 @@ public class ShareHouseController {
 		List<ShareHouse> list = shareHouseService.findByMemberId(memberId);
 		List<House> house = houseService.findAll();
 		model.addAttribute("shareHouses", list);
-		model.addAttribute("house",house);
+		model.addAttribute("house", house);
 		return "/views/myHouseList.jsp";
 	}
 
