@@ -64,36 +64,14 @@
 		<h3>추천 하우스</h3>
 		<p>단기간 내에 바로 입주 가능한 셰어하우스</p>
 		<ul class="shareHouseRecommend clear">
-			<%--
-          <c:forEach var="shareHouse" items="${shareHouseList}" end="">
-            <li>
-               <a href="${ctx}/shareHouseDetail.do">
-                  <div>
-                     <h4>${shareHouse.shareHouseTitle}</h4>
-                     <p>${shareHouse.shareHouseGender}</p>
-                     <div><img src="${ctx}/${shareHouse.shareHouseImage}" alt="셰어하우스"></div>
-                  </div>
-                  <div>
-                     <p>${shareHouse.shareHouseAddress}</p>
-                     <span>${shareHouse.shareHouseType}</span>
-                     <span>${shareHouse.shareHouseRoomEA}</span>
-                     <span>${shareHouse.shareHouseToiletEA}</span>
-                     <p>${shareHouse.shareHouseDeposit} / ${shareHouse.shareHouseMonthlyRent}</p>
-                  </div>
-               </a>
-            </li>
-         </c:forEach>
-         
-         
- --%>
-
+	
 			<c:forEach var="shareHouse" items="${shareHouses }">
-				<li><a href="${ctx}/shareHouseDetail.do">
+				<li><a href="${ctx}/shareHouse/shareHouseDetail.do?shareHouseId=${shareHouse.shareHouseId}">
 						<div>
 							<h4>${shareHouse.title}</h4>
 							<p>${shareHouse.rooms[0].sex}</p>
 							<div>
-								<img src="${shareHouse.photos[0]}">
+								<img src="/images/${shareHouse.photos[0].photo}">
 							</div>
 						</div>
 						<div>

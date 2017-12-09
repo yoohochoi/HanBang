@@ -53,17 +53,19 @@
 						<div>
 							<a href="${ctx}/questionCreate.jsp" target="_blank">하우스 방문 문의</a>
 						</div>
+						<input type="submit" name="interestShareHouseDeleteBtn" value="삭제">
 					</div>
+					
 				</c:forEach>
+					
 			</c:if>
-			<c:if test="${interestShareHouse eq 'null'}">
+			<c:if test="${interestShareHouse eq null}">
 				<div class="shareHouseNull">
 					<span>!</span>관심하우스로 등록된 셰어하우스가 없습니다.
 				</div>
 			</c:if>
 
 
-			<input type="submit" name="interestShareHouseDeleteBtn" value="삭제">
 		</form>
 	</section>
 	</main>

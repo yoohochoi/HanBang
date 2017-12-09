@@ -127,7 +127,7 @@ public class MemberController {
 		}
 	}
 
-	@RequestMapping(value = "login.do", method = RequestMethod.POST)
+	@RequestMapping(value = "/login.do", method = RequestMethod.POST)
 	public String login(HttpServletRequest request, String memberId, String password, HttpServletResponse response) {
 
 		Member member = service.find(memberId);

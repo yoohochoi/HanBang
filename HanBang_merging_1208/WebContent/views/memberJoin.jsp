@@ -69,7 +69,7 @@
 
 		var pass1 = document.getElementById("password2");
 
-		if (!chk(/^[a-z][a-z\d]{8,12}$/, pass,
+		if (!chk(/^[a-z][a-z\d]{7,13}$/, pass,
 				"비밀번호는  8-12자 이내로 입력해주세요.(영문,숫자 포함)")) {
 			return false;
 		}

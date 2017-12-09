@@ -27,14 +27,14 @@
 						<li><input type="checkbox" id="myHouseDelete"
 							name="myHouseDelete"> <label class="hide"
 							for="myHouseDelete">마이하우스 삭제</label> <a
-							href="${ctx}/shareHouse/shareHouseModify.do?shareHouseId=${shareHouse.shareHouseId}">
+							href="${ctx}/shareHouse/shareHouseDetail.do?shareHouseId=${shareHouse.shareHouseId}">
 								<div class="shareHouseValue">
 									<h4>${shareHouse.title}</h4>
 									<c:choose>
-										<c:when test="${shareHouse.rooms[0].sex eq '여'}">
+										<c:when test="${shareHouse.rooms[0].sex eq '여성 전용'}">
 											<p class="woman">여성전용</p>
 										</c:when>
-										<c:when test="${shareHouse.rooms[0].sex eq '남'}">
+										<c:when test="${shareHouse.rooms[0].sex eq '남성 전용'}">
 											<p class="man">남성전용</p>
 										</c:when>
 										<c:otherwise>
@@ -51,21 +51,23 @@
 									<span>${shareHouse.essentialInfo.buildingType}</span>
 									<p>${shareHouse.rooms[0].deposit }/
 										${shareHouse.rooms[0].monthlyFee }</p>
+
+								</div>
 						</a>
-							</div>
 					</c:forEach>
 				</c:if>
 				<c:if test="${interestShareHouse eq 'null'}">
 					<div class="shareHouseNull">
 						<span>!</span>등록된 셰어하우스가 없습니다.
+							<p>무료로 셰어하우스를 등록해 보세요.</p>
 					</div>
 				</c:if>
 			</ul>
 			<input type="submit" name="myHouseDeleteBtn" value="삭제">
 		</form>
 		<div>
-			<p>무료로 셰어하우스를 등록해 보세요.</p>
-			<a href="${ctx }/registShareHouse.do">셰어하우스 등록하기</a>
+		
+			<a href="${ctx }/findMember.do">셰어하우스 등록하기</a>
 		</div>
 	</section>
 	</main>

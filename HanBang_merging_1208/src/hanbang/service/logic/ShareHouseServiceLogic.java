@@ -44,6 +44,7 @@ public class ShareHouseServiceLogic implements ShareHouseService {
 
 			shareHouse.setRooms(roomStore.retrive(shareHouse.getShareHouseId()));
 			shareHouse.setEssentialInfo(essentialInfoService.find(shareHouse.getShareHouseId()));
+			shareHouse.setPhotos(photoStore.retriveAll(shareHouse.getShareHouseId()));
 
 		}
 

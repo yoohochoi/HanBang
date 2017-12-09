@@ -31,11 +31,13 @@ import hanbang.domain.Member;
 import hanbang.domain.Photo;
 import hanbang.domain.ProvidedGood;
 import hanbang.domain.PublicUsage;
+import hanbang.domain.Review;
 import hanbang.domain.Room;
 import hanbang.domain.ShareHouse;
 import hanbang.service.EssentialInfoService;
 import hanbang.service.ExtraInfoService;
 import hanbang.service.HouseService;
+import hanbang.service.ReviewService;
 import hanbang.service.RoomService;
 import hanbang.service.ShareHouseService;
 
@@ -52,6 +54,8 @@ public class ShareHouseController {
 	private ExtraInfoService extraInfoService;
 	@Autowired
 	private RoomService roomService;
+	@Autowired
+	private ReviewService reviewService;
 
 	@RequestMapping(value = "/registShareHouse.do", method = RequestMethod.GET)
 	public String registerShareHouse(Model model, int houseId) {
@@ -233,8 +237,10 @@ public class ShareHouseController {
 	public String detailShareHouse(String shareHouseId, Model model) {
 		int id = Integer.parseInt(shareHouseId);
 		ShareHouse shareHouse = shareHouseService.find(id);
+		List<Review> reviews = reviewService.findByShareHouseId(id);
+		
 		model.addAttribute("shareHouse", shareHouse);
-
+		model.addAttribute("reviews", reviews);
 		return "/views/shareHouseDetail.jsp";
 	}
 
