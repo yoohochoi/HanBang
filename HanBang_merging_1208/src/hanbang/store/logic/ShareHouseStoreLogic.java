@@ -99,12 +99,12 @@ public class ShareHouseStoreLogic implements ShareHouseStore {
 	}
 
 	@Override
-	public List<ShareHouse> retriveByMemberId(String memberId) {
+	public List<ShareHouse> retriveByMemberId(String writerId) {
 		SqlSession session = factory.openSession();
 		List<ShareHouse> list = null;
 		try {
 			ShareHouseMapper mapper = session.getMapper(ShareHouseMapper.class);
-			list = mapper.retriveByMemberId(memberId);
+			list = mapper.retriveByMemberId(writerId);
 		} finally {
 			session.close();
 		}
@@ -135,13 +135,13 @@ public class ShareHouseStoreLogic implements ShareHouseStore {
 	}
 
 	@Override
-	public int deleteByMemberId(String memberId) {
+	public int deleteByMemberId(String writerId) {
 		SqlSession session = factory.openSession();
 		int check = 0;
 
 		try {
 			ShareHouseMapper mapper = session.getMapper(ShareHouseMapper.class);
-			check = mapper.deleteByMemberId(memberId);
+			check = mapper.deleteByMemberId(writerId);
 			session.commit();
 		} finally {
 			session.close();

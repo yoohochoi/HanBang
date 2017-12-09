@@ -14,7 +14,7 @@
 
 	<%@ include file="/views/layout/header.jsp"%>
 
-	<main>
+
 	<section>
 		<h3>셰어하우스 수정</h3>
 		<form action="${ctx }/shareHouse/shareHouseModify.do" method="post"
@@ -244,18 +244,16 @@
 					</div>
 					<button type="button" name="roomCreateBtn" class="roomCreateBtn">추가하기</button>
 				</div>
-				<textarea rows="30" cols="100" placeholder="작성해주세요" name="content"
-					value=${shareHouse.content }></textarea>
+				<textarea rows="30" cols="100" placeholder="작성해주세요" name="content">${shareHouse.content }</textarea>
 			</div>
-			<div class="fileUpLoad">
+			 <div class="fileUpLoad">
 				<p>하우스 대표 사진</p>
-				<label><input type="file" name="photos" multiple="multiple"
-					value=<c:foreach var="photo" items="${photoList.photo }">"${photo.photo }"</c:foreach>>></label>
+				<label><input type="file" name="photos" multiple="multiple"></label>
 			</div>
 			<input type="submit" name="shareHouseModifyBtn" value="수정하기">
 		</form>
 	</section>
-	</main>
+
 
 	<%@ include file="/views/layout/footer.jsp"%>
 

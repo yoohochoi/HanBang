@@ -17,6 +17,14 @@ public class ShareHouse {
 	private List<Review> reviews;
 	private List<Room> rooms;
 
+	@Override
+	public String toString() {
+		return "ShareHouse [shareHouseId=" + shareHouseId + ", writerId=" + writerId + ", shareHouseDate="
+				+ shareHouseDate + ", title=" + title + ", content=" + content + ", houseId=" + houseId + ", photos="
+				+ photos + ", essentialInfo=" + essentialInfo + ", extraInfo=" + extraInfo + ", reviews=" + reviews
+				+ ", rooms=" + rooms + "]";
+	}
+
 	public ShareHouse() {
 	}
 

@@ -14,6 +14,13 @@ public class Room {
 	private int monthlyFee;
 	private String availability;
 
+	@Override
+	public String toString() {
+		return "Room [roomId=" + roomId + ", shareHouseId=" + shareHouseId + ", sex=" + sex + ", roomArea=" + roomArea
+				+ ", bathroom=" + bathroom + ", providedGoods=" + providedGoods + ", deposit=" + deposit
+				+ ", monthlyFee=" + monthlyFee + ", availability=" + availability + "]";
+	}
+
 	public Room() {
 	}
 
